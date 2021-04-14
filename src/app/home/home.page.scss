@@ -1,27 +1,44 @@
-#container {
+// ion-content.background{
+//   --background:url(../../assets/icon/bg1.jpg) no-repeat;
+//   background-size: 100% 50%;
+
+// }
+
+.content{
+
+  position: fixed;
+  margin-top: 50px;
+  margin-left: 30px;
+
+}
+
+.text1{
   text-align: center;
+  padding-top: 40%;
+  color:crimson;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: x-large;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+
+ion-input{
+  width:100%;
+  background-color:whitesmoke;
+  border-radius: 5px;
+  font-size:medium;
+
+}
+.btn1{
+
+  background-color: turquoise;
+  color: black;
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-right: 13px;
+  font-size: medium;
+  font-family: 'Times New Roman', Times, serif;
+
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
 
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
