@@ -1,0 +1,43 @@
+.background{
+  --background:url('../../assets/fingure\ ring.jpg') no-repeat center center fixed;
+  background-size: cover;
+
+}
+ion-card{
+  background-color: transparent;
+
+}
+
+
+.text1{
+  text-align: center;
+  padding-top: 40%;
+  color:crimson;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: x-large;
+
+}
+
+ion-card-content{
+  color: black;
+  font-size: large;
+}
+
+ion-input{
+  width:100%;
+  // border-radius: 5px;
+  font-size:medium;
+ }
+.btn1{
+  border-radius: 60%;
+  background-color: turquoise;
+  color: black;
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-right: 13px;
+  font-size: medium;
+  font-family: 'Times New Roman', Times, serif;
+
+}
+
+
