@@ -1,22 +1,33 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>silderpages</ion-title>
+  </ion-toolbar>
+</ion-header>
+ion-slides {
+  --bullet-background: blue;
+  --bullet-background-active: yellow;
+} -->
 
+<ion-content >
 
-<ion-content class="background">
+  <ion-slides #slidesRef (ionSlideDidChange)="onSlideMoved($event)" [options]="slideOpts" pager=true>
+    <br><br>
+    <ion-slide>
+      <img src="../../assets/cake.jpg">
+    </ion-slide>
 
+    <ion-slide>
+      <img src="../../assets/rose.jpg">
+    </ion-slide>
 
-  <div class="content" >
+    <ion-slide>
+      <img src="../../assets/fingure ring.jpg">
+    </ion-slide>
 
-  <b><p class="text1">SIGN IN</p></b>
-
-
-<ion-input input type ="text" placeholder="Email"></ion-input><br>
-<ion-input input type="password" placeholder="Password"></ion-input><br>
-
-<ion-button class="btn1" expand="full">SIGN IN</ion-button>
-
-<p class="text2">Don't have an account? </p>
-</div>
+  </ion-slides>
+<ion-card style="box-shadow: none ;margin-bottom: 0%;">
+  <ion-card-content>
+    <a>Login</a>
+  </ion-card-content>
+</ion-card>
 </ion-content>
-
-
-
-
