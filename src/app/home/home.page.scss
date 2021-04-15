@@ -1,10 +1,16 @@
 ion-slides {
   --bullet-background: blue;
   --bullet-background-active: black;
-  height: 85%;
+  height: 90%;
   margin-top: 0%;
 }
 
 ion-slide{
   height: 100%;
 }
+
+.btn{
+   // background-color: turquoise;
+  background: linear-gradient(to bottom, #ff0066 0%, #cc00ff 100%);
+
+ }

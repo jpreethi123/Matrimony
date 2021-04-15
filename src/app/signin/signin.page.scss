@@ -1,10 +1,13 @@
-.background{
-  --background:url('../../assets/fingure\ ring.jpg') no-repeat center center fixed;
-  background-size: cover;
+//.background{
+//   --background:url('../../assets/fingure\ ring.jpg') no-repeat center center fixed;
+//   background-size: cover;
 
-}
-ion-card{
-  background-color: transparent;
+
+ //}
+
+ ion-card{
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+  overflow: visible;
 
 }
 
@@ -28,11 +31,11 @@ ion-input{
   // border-radius: 5px;
   font-size:medium;
  }
+
 .btn1{
-  border-radius: 60%;
-  background-color: turquoise;
-  color: black;
-  border-radius: 5px;
+
+  // background-color: turquoise;
+  background: linear-gradient(to bottom, #ff0066 0%, #cc00ff 100%);
   margin-left: 15px;
   margin-right: 13px;
   font-size: medium;
