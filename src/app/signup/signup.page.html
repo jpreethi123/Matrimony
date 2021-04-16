@@ -16,7 +16,7 @@
       <!-- Basic registation details -->
       <ion-slide>
         <br>
-        <ion-button>Scan Aadhar to Register</ion-button>
+        <ion-button class="btn" color="black">Scan Aadhar to Register</ion-button>
           <ion-list>
             <ion-item>
               <span item-right><ion-icon name="person"></ion-icon></span>
@@ -34,7 +34,7 @@
             </ion-item>
           </ion-list>
           <br>
-        <ion-button (click)="swipeNext()">Next</ion-button>
+        <ion-button class="btn" color="black" (click)="swipeNext()">Next</ion-button>
       </ion-slide>
 
       <!-- Personal details -->
@@ -89,7 +89,7 @@
 
         <ion-item>
           <ion-label >Profile Photo</ion-label>
-          <ion-button (click)="getImages()">Choose Images</ion-button>
+          <ion-button (click)="getImages()" class="btn" color="black">Choose Images</ion-button>
         </ion-item>
 
         <ion-item>
@@ -127,8 +127,8 @@
           <ion-textarea placeholder="Write about yourself"></ion-textarea>
         </ion-item>
         <br>
-        <ion-button (click)="swipeBack()">Back</ion-button>
-        <ion-button (click)="swipeNext()">Next</ion-button>
+        <ion-button (click)="swipeBack()" class="btn" color="black">Back</ion-button>
+        <ion-button (click)="swipeNext()" class="btn" color="black">Next</ion-button>
       </ion-slide>
 
        <!-- Eductional details -->
@@ -205,8 +205,8 @@
             </ionic-selectable>
         </ion-item>
         <br>
-        <ion-button (click)="swipeBack()">Back</ion-button>
-        <ion-button (click)="swipeNext()">Next</ion-button>
+        <ion-button (click)="swipeBack()" class="btn" color="black">Back</ion-button>
+        <ion-button (click)="swipeNext()" class="btn" color="black">Next</ion-button>
       </ion-slide>
 
       <!-- Family details -->
@@ -277,8 +277,8 @@
        <ion-textarea placeholder="About Family...."></ion-textarea>
      </ion-item>
         <br>
-        <ion-button (click)="swipeBack()">Back</ion-button>
-        <ion-button (click)="swipeNext()">Next</ion-button>
+        <ion-button (click)="swipeBack()" class="btn" color="black">Back</ion-button>
+        <ion-button (click)="swipeNext()" class="btn" color="black">Next</ion-button>
 
        </ion-slide>
 
@@ -425,8 +425,8 @@
             <ion-textarea placeholder="Write about preferred partner"></ion-textarea>
           </ion-item>
         <br>
-        <ion-button (click)="swipeBack()">Back</ion-button>
-        <ion-button (click)="signin()">Register</ion-button>
+        <ion-button (click)="swipeBack()" class="btn" color="black">Back</ion-button>
+        <ion-button (click)="signin()" class="btn" color="black">Register</ion-button>
        </ion-slide>
 
 
