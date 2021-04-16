@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <!-- <ion-buttons slot="start">
+    <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-    </ion-buttons> -->
+    </ion-buttons>
     <ion-title>
       signup
     </ion-title>
@@ -42,7 +42,7 @@
         <br>
         <ion-header>Personal Details</ion-header>
         <ion-item>
-          <ion-label>Marital status </ion-label>
+          <ion-label position="floating">Marital status </ion-label>
           <ion-select value="maritalstatue" okText="Select" cancelText="Cancel">
             <ion-select-option value="unmarried">Unmarried</ion-select-option>
             <ion-select-option value="divorced">Divorced</ion-select-option>
@@ -52,13 +52,15 @@
         </ion-item>
 
         <ion-item>
-          <ion-label>Mother Tongue</ion-label>
+          <ion-label position="floating">Mother Tongue</ion-label>
           <ionic-selectable
             #selectComponent
             [(ngModel)]="selected_mt"
             [items]="motherTongue"
             itemValueField="id" itemTextField="name"
             headerColor="primary"
+            [canSearch]="true"
+            (onChange)="portChange($event)"
             searchFailText="nothing found">
 
             <ng-template ionicSelectableCloseButtonTemplate>
@@ -72,26 +74,26 @@
           </ion-item>
 
         <ion-item>
-          <ion-label>Religion</ion-label>
+          <ion-label position="floating">Religion</ion-label>
           <ion-select value="religion" okText="Select" cancelText="Cancel">
             <ion-select-option value="hindu">Hindu</ion-select-option>
           </ion-select>
         </ion-item>
 
         <ion-item>
-          <ion-label>Caste</ion-label>
+          <ion-label position="floating">Caste</ion-label>
           <ion-select value="caste" okText="Select" cancelText="Cancel">
             <ion-select-option value="marathi">Marathi</ion-select-option>
           </ion-select>
         </ion-item>
 
         <ion-item>
-          <ion-label>Profile Photo</ion-label>
+          <ion-label >Profile Photo</ion-label>
           <ion-button (click)="getImages()">Choose Images</ion-button>
         </ion-item>
 
         <ion-item>
-          <ion-label>Weight</ion-label>
+          <ion-label position="floating">Weight</ion-label>
           <ion-range min="40" max="200" color="primary" pin>
             <ion-label slot="start">40</ion-label>
             <ion-label slot="end">200</ion-label>
@@ -99,13 +101,29 @@
         </ion-item>
 
         <ion-item>
-          <ion-label>Height</ion-label>
-          <ion-select value="height" okText="Select" cancelText="Cancel" [(ngModel)]="heightRange">
-            <ion-select-option *ngFor="let i of heightRange" value="i">{{i}}</ion-select-option>
-          </ion-select>
-        </ion-item>
+          <ion-label position="floating">Height</ion-label>
+          <ionic-selectable
+            #selectComponent
+            [(ngModel)]="heightsel"
+            [items]="heightRange"
+            itemValueField="id" itemTextField="h"
+            headerColor="primary"
+            [canSearch]="true"
+            (onChange)="portChange($event)"
+            searchFailText="nothing found">
+
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+              Height
+            </ng-template>
+
+            </ionic-selectable>
+          </ion-item>
 
         <ion-item>
+          <ion-label position="floating">About me</ion-label>
           <ion-textarea placeholder="Write about yourself"></ion-textarea>
         </ion-item>
         <br>
@@ -118,51 +136,73 @@
         <br>
        <ion-header>Eduction Details</ion-header>
         <ion-item>
-          <ion-label>Highest Degree</ion-label>
+          <ion-label position="floating">Highest Degree</ion-label>
           <ionic-selectable
             #selectComponent
-            [(ngModel)]="selected_mt"
-            [items]="motherTongue"
+            [(ngModel)]="select"
+            [items]="education"
             itemValueField="id" itemTextField="name"
             headerColor="primary"
+            [canSearch]="true"
             searchFailText="nothing found">
 
             <ng-template ionicSelectableCloseButtonTemplate>
               <ion-icon name="close-circle"></ion-icon>
             </ng-template>
             <ng-template ionicSelectableTitleTemplate>
-              Mother Tongue
+              Highest Degree
             </ng-template>
             </ionic-selectable>
         </ion-item>
 
         <ion-item>
-          <ion-label>Occuption</ion-label>
+          <ion-label position="floating">Occuption</ion-label>
           <ionic-selectable
             #selectComponent
-            [(ngModel)]="selected_mt"
-            [items]="motherTongue"
+            [(ngModel)]="selectocc"
+            [items]="occupation"
             itemValueField="id" itemTextField="name"
             headerColor="primary"
+            [canSearch]="true"
+
+
             searchFailText="nothing found">
 
             <ng-template ionicSelectableCloseButtonTemplate>
               <ion-icon name="close-circle"></ion-icon>
             </ng-template>
             <ng-template ionicSelectableTitleTemplate>
-              Mother Tongue
+              Occupation
             </ng-template>
             </ionic-selectable>
         </ion-item>
 
         <ion-item>
-          <ion-label>Salary (Anual)</ion-label>
-          <ion-select value="Salary" okText="Select" cancelText="Cancel">
+          <ion-label position="floating">Salary (Annual)</ion-label>
+          <!-- <ion-select value="Salary" okText="Select" cancelText="Cancel">
             <ion-select-option value="50"> Below 50,000</ion-select-option>
             <ion-select-option value="200">50,001 - 2,00,000</ion-select-option>
             <ion-select-option value="500">2,00,001 - 5,00,000</ion-select-option>
             <ion-select-option value="501">Above 5,00,000</ion-select-option>
-          </ion-select>
+          </ion-select> -->
+          <ionic-selectable
+            #selectComponent
+            [(ngModel)]="selectsal"
+            [items]="salary"
+            itemValueField="id" itemTextField="name"
+            headerColor="primary"
+            [canSearch]="true"
+
+
+            searchFailText="nothing found">
+
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+              salary(Annual)
+            </ng-template>
+            </ionic-selectable>
         </ion-item>
         <br>
         <ion-button (click)="swipeBack()">Back</ion-button>
@@ -262,6 +302,30 @@
             </ion-range>
 
            </ion-item>
+
+
+           <ion-item>
+            <ion-label position="floating">Height</ion-label>
+            <ionic-selectable
+              #selectComponent
+              [(ngModel)]="heightselpre"
+              [items]="heightRange1"
+              itemValueField="id" itemTextField="h"
+              headerColor="primary"
+              [canSearch]="true"
+              (onChange)="portChange($event)"
+              searchFailText="nothing found">
+
+              <ng-template ionicSelectableCloseButtonTemplate>
+                <ion-icon name="close-circle"></ion-icon>
+              </ng-template>
+              <ng-template ionicSelectableTitleTemplate>
+                Height
+              </ng-template>
+
+              </ionic-selectable>
+            </ion-item>
+
            <ion-item>
              <ion-label position="floating">Religion</ion-label>
              <ion-select>
@@ -272,10 +336,11 @@
              <ion-label position="floating">Mother Tongue</ion-label>
              <ionic-selectable
               #selectComponent
-              [(ngModel)]="selected_mt"
-              [items]="motherTongue"
+              [(ngModel)]="selectedpre"
+              [items]="motherTongue1"
               itemValueField="id" itemTextField="name"
               headerColor="primary"
+              [canSearch]="true"
               searchFailText="nothing found">
 
               <ng-template ionicSelectableCloseButtonTemplate>
@@ -288,25 +353,83 @@
             </ionic-selectable>
            </ion-item>
            <ion-item>
-             <ion-label position="floating">Education</ion-label>
+            <ion-label>Highest Degree</ion-label>
+            <ionic-selectable
+              #selectComponent
+              [(ngModel)]="selectpre"
+              [items]="education1"
+              itemValueField="id" itemTextField="name"
+              headerColor="primary"
+              [canSearch]="true"
+              searchFailText="nothing found">
+
+              <ng-template ionicSelectableCloseButtonTemplate>
+                <ion-icon name="close-circle"></ion-icon>
+              </ng-template>
+              <ng-template ionicSelectableTitleTemplate>
+                Highest Degree
+              </ng-template>
+              </ionic-selectable>
+
 
            </ion-item>
            <ion-item>
-             <ion-label position="floating">Occupation</ion-label>
+            <ion-label position="floating">Occuption</ion-label>
+            <ionic-selectable
+              #selectComponent
+              [(ngModel)]="selectoccpre"
+              [items]="occupation1"
+              itemValueField="id" itemTextField="name"
+              headerColor="primary"
+              [canSearch]="true"
+
+
+              searchFailText="nothing found">
+
+              <ng-template ionicSelectableCloseButtonTemplate>
+                <ion-icon name="close-circle"></ion-icon>
+              </ng-template>
+              <ng-template ionicSelectableTitleTemplate>
+                Occupation
+              </ng-template>
+              </ionic-selectable>
 
            </ion-item>
+
+
+           <ion-item>
+            <ion-label position="floating">Salary(Annual)</ion-label>
+            <ionic-selectable
+              #selectComponent
+              [(ngModel)]="selectsalpre"
+              [items]="salary1"
+              itemValueField="id" itemTextField="name"
+              headerColor="primary"
+              [canSearch]="true"
+
+
+              searchFailText="nothing found">
+
+              <ng-template ionicSelectableCloseButtonTemplate>
+                <ion-icon name="close-circle"></ion-icon>
+              </ng-template>
+              <ng-template ionicSelectableTitleTemplate>
+                salary(Annual)
+              </ng-template>
+              </ionic-selectable>
+
+           </ion-item>
+
+           <ion-item>
+            <ion-label position="floating">About partner</ion-label>
+            <ion-textarea placeholder="Write about preferred partner"></ion-textarea>
+          </ion-item>
         <br>
         <ion-button (click)="swipeBack()">Back</ion-button>
-        <ion-button>Register</ion-button>
+        <ion-button (click)="signin()">Register</ion-button>
        </ion-slide>
 
-      <!-- <ion-slide>
-        <img src="assets/raindow.jpg" height="100"/>
-        <h2>Ready to Play?</h2>
-        <ion-button (click)="swipeBack()">Back</ion-button>
-        <ion-button>Submit</ion-button>
-        <ion-button fill="clear">Continue <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
-      </ion-slide> -->
+
 
     </ion-slides>
   </ion-content>
