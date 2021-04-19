@@ -3,7 +3,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, LoadingController } from '@ionic/angular';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { IonicSelectableComponent } from 'ionic-selectable';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
+import { CountriesService } from './../countries.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,6 +16,17 @@ export class SignupPage implements OnInit {
   @ViewChild('mySlider')  slides: IonSlides;
   imageResponse: any;
   options: any;
+  public slideTwoForm: FormGroup;
+  public slideThreeForm: FormGroup;
+  public slideFourForm: FormGroup;
+
+  public stateInfo: any[] = [];
+  public countryInfo: any[] = [];
+  public cityInfo: any[] = [];
+  cities = [];
+
+	public submitAttempt = false;
+
   // eslint-disable-next-line @typescript-eslint/naming-convention
   selected_mt = null;
   motherTongue=[{id:1,name:'Assamese'},{id:2,name:'Bangla'},{id:3,name:'Bodo'},
@@ -142,10 +155,71 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
 {id:31,h:'6ft 11'},{id:32,h:'7ft'}];
 
 
-  constructor(private imagePicker: ImagePicker,private router: Router,public loadingController: LoadingController) {
+  constructor(private imagePicker: ImagePicker,private router: Router,public loadingController: LoadingController,
+    public formBuilder: FormBuilder,public alertCtrl: AlertController,private country: CountriesService) {
+      this.slideTwoForm = this.formBuilder.group({
+        firstName: ['', Validators.compose([Validators.minLength(3), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+        // eslint-disable-next-line max-len
+        aadhar:['',Validators.compose([Validators.maxLength(12), Validators.pattern('[0-9]*'),Validators.required,Validators.minLength(12)])],
+        // eslint-disable-next-line max-len
+        email:['', Validators.compose([Validators.minLength(10), Validators.pattern('^[a-z0-9_.+-]+@[a-z0-9-]+.[a-z]+$'), Validators.required])],
+        password:['', Validators.compose([Validators.minLength(8), Validators.pattern('[a-zA-Z0-9@$_]*'), Validators.required])],
+        // eslint-disable-next-line max-len
+        phone:['', Validators.compose([Validators.minLength(10), Validators.pattern('[0-9]*'), Validators.required,Validators.maxLength(10)])],
+        country:['',Validators.required],
+        state:['',Validators.required],
+        city:['',Validators.required]
+      });
+
+      this.slideThreeForm = this.formBuilder.group({
+        maritalStatue:['',Validators.required],
+        mothertongue: ['',Validators.required],
+        height:['',Validators.required],
+        caste:['',Validators.required],
+        religion:['',Validators.required]
+      });
+
+      this.slideFourForm = this.formBuilder.group({
+        edu:['',Validators.required],
+        occ:['',Validators.required]
+      });
    }
 
-  ngOnInit() {
+
+    ngOnInit() {
+      this.getCountries();
+  }
+  getCountries(){
+    this.country.allCountries().
+    subscribe(
+      data2 => {
+        this.countryInfo=data2.Countries;
+        console.log('Data:', this.countryInfo);
+      },
+      err => console.log(err),
+      () => console.log('complete')
+    );
+  }
+
+  onChangeCountry(event: {
+    component: IonicSelectableComponent;
+    value: any;
+  }) {
+     this.stateInfo=event.value.States;
+  }
+
+  onChangeState(event: {
+    component: IonicSelectableComponent;
+    value: any;
+  }) {
+    //  this.stateInfo=event.value.States;
+     this.cityInfo=event.value.Cities;
+     // eslint-disable-next-line @typescript-eslint/prefer-for-of
+     for (let i = 0; i < this.cityInfo.length; i++){
+               this.cities.push({id: i,city: this.cityInfo[i]});
+              }
+    // this.cities = [Object.assign({}, this.cityInfo)];
+    //console.log(this.cities);
   }
 
   getImages() {
@@ -188,6 +262,32 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
     this.slides.slidePrev();
   }
 
+  async slidetwoform(){
+    if(this.slideTwoForm.valid){
+      this.slides.slideNext();
+    }
+    else{
+      const alert = await this.alertCtrl.create({
+        message: 'Please enter all details',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }
+  }
+
+  async slidethreeform(){
+    if(this.slideThreeForm.valid){
+      this.slides.slideNext();
+    }
+    else{
+      const alert = await this.alertCtrl.create({
+        message: 'Please enter all details',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }
+  }
+
   portChange(event: {
     component: IonicSelectableComponent;
     value: any;
@@ -195,15 +295,24 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
     console.log('port:', event.value);
   }
 
-  async signin(){
-    const loading=await this.loadingController.create({
-      duration:500,
-      message:'Please wait...',
-      translucent:true,
-      cssClass:'custom-class custom-loading'
-    });
-    this.router.navigate(['main']);
-    return (await loading).present();
-  }
 
+  async signup(){
+    if(this.slideFourForm.valid){
+      const loading=await this.loadingController.create({
+        duration:500,
+        message:'Please wait...',
+        translucent:true,
+        cssClass:'custom-class custom-loading'
+      });
+      this.router.navigate(['main']);
+      return (await loading).present();
+     }
+    else{
+      const alert = await this.alertCtrl.create({
+        message: 'Please enter all details',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }
+  }
 }

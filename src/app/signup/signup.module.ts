@@ -9,13 +9,17 @@ import { SignupPageRoutingModule } from './signup-routing.module';
 import { SignupPage } from './signup.page';
 import { IonicSelectableModule } from 'ionic-selectable';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     SignupPageRoutingModule,
-    IonicSelectableModule
+    IonicSelectableModule,
+    ReactiveFormsModule
   ],
   declarations: [SignupPage]
 })
