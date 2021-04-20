@@ -15,7 +15,8 @@
         <br>
         <ion-header>Aadhar Scanning</ion-header>
         <br>
-        <ion-button color="light" shape="round" style="--box-shadow:none;">Scan Aadhar</ion-button>
+        <ion-img *ngIf="uploaded" [src]="image"></ion-img>
+        <ion-button color="light" shape="round" style="--box-shadow:none;" (click)="captureImage()">Capture/Upload Aadhar</ion-button>
          <br><br>
         <ion-button (click)="swipeNext()" color="light" shape="round" style="--box-shadow:none;" >Next</ion-button>
       </ion-slide>
@@ -28,29 +29,36 @@
           <ion-list>
             <ion-item>
               <ion-label position="floating">Name<ion-text color="danger">*</ion-text></ion-label>
-              <ion-input type="text" required="true" formControlName="firstName" [class.invalid]="!slideTwoForm.controls.firstName.valid && (slideTwoForm.controls.firstName.dirty || submitAttempt)"></ion-input>
+              <ion-input type="text"  required="true" formControlName="firstName" [class.invalid]="!slideTwoForm.controls.firstName.valid && (slideTwoForm.controls.firstName.dirty || submitAttempt)"></ion-input>
             </ion-item>
             <ion-item *ngIf="!slideTwoForm.controls.firstName.valid  && (slideTwoForm.controls.firstName.dirty || submitAttempt)">
               <ion-text color="danger">Please enter a valid name.</ion-text>
           </ion-item>
 
             <ion-item>
-              <ion-radio-group>
+              <ion-radio-group formControlName="gender">
                 <ion-list-header>
                   <ion-label>Gender<ion-text color="danger">*</ion-text></ion-label>
                 </ion-list-header>
                 <ion-item>
                   <ion-label>Male</ion-label>
-                  <ion-radio slot="start" color="tertiary" value="male"></ion-radio>
+                  <ion-radio slot="start" color="tertiary" value="Male" ></ion-radio>
                 </ion-item>
 
                 <ion-item>
                   <ion-label>Female</ion-label>
-                  <ion-radio slot="start" color="tertiary" value="female"></ion-radio>
+                  <ion-radio slot="start" color="tertiary" value="Female"></ion-radio>
                 </ion-item>
 
               </ion-radio-group>
             </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Date</ion-label>
+              <ion-datetime displayFormat="DD/MM/YYYY" name="date" formControlName="date"></ion-datetime>
+            </ion-item>
+
+
 
             <ion-item>
               <ion-label position="floating">Aadhar Number<ion-text color="danger">*</ion-text></ion-label>
