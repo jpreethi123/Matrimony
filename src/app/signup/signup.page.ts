@@ -9,6 +9,7 @@ import { CountriesService } from './../countries.service';
 import { Platform } from '@ionic/angular';
 import { Plugins,CameraResultType,CameraSource } from '@capacitor/core';
 import { createWorker } from 'tesseract.js';
+import { AuthService } from './../services/auth.service';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const { Camera }=Plugins;
@@ -40,6 +41,7 @@ export class SignupPage implements OnInit {
   hasname=true;uploaded=false;
   isgender=true;
   mm;yyyy;dd;
+  userdetails;
 
   worker: Tesseract.Worker;
   workerReady=false;
@@ -174,7 +176,7 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
 
 
   constructor(private imagePicker: ImagePicker,private router: Router,public loadingController: LoadingController,
-    public formBuilder: FormBuilder,public alertCtrl: AlertController,private country: CountriesService) {
+    public formBuilder: FormBuilder,public alertCtrl: AlertController,private country: CountriesService,private authService: AuthService) {
       this.slideTwoForm = this.formBuilder.group({
         firstName: ['', Validators.compose([Validators.minLength(3), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         // eslint-disable-next-line max-len
@@ -420,6 +422,8 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
         translucent:true,
         cssClass:'custom-class custom-loading'
       });
+       this.usersignup();
+
       this.router.navigate(['main']);
       return (await loading).present();
      }
@@ -467,4 +471,45 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
 
 
   }
+
+  usersignup(): void{
+    const country1=this.slideTwoForm.get('country').value;
+    //console.log('country name',country1.CountryName);
+    const state1=this.slideTwoForm.get('state').value;
+    const city1=this.slideTwoForm.get('city').value;
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const mother_tongue1=this.slideThreeForm.get('mothertongue').value;
+    const height1=this.slideThreeForm.get('height').value;
+    const degree=this.slideFourForm.get('edu').value;
+    const occ1=this.slideFourForm.get('occ').value;
+    this.userdetails={
+      uid:this.slideTwoForm.get('aadhar').value,
+      name:this.slideTwoForm.get('firstName').value,
+      gender:this.slideTwoForm.get('gender').value,
+      dob:this.slideTwoForm.get('date').value,
+      mail:this.slideTwoForm.get('email').value,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      phone_num:this.slideTwoForm.get('phone').value,
+      password:this.slideTwoForm.get('password').value,
+      country:country1.CountryName,
+      state:state1.StateName,
+      city:city1.city,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      marital_status:this.slideThreeForm.get('maritalStatue').value,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      mother_tongue:mother_tongue1.name,
+      religion:this.slideThreeForm.get('religion').value,
+      caste:this.slideThreeForm.get('caste').value,
+      height:height1.h,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      highest_degree:degree.name,
+      occupation:occ1.name
+
+    };
+    this.authService.signup(this.userdetails)
+    .subscribe((msg)=>console.log(msg));
+    console.log('entire details are: ',this.userdetails);
+
+  }
+
 }
