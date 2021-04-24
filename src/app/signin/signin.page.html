@@ -29,7 +29,8 @@
       <ion-card-title>Sign In</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-item>
+     
+      <!-- <ion-item>
       <ion-label position="floating">
         <span item-right><ion-icon name="person"></ion-icon></span>&nbsp;
         User Name
@@ -43,7 +44,28 @@
         Password
       </ion-label>
       <ion-input type="password"></ion-input>
-    </ion-item>
+    </ion-item> -->
+    <form [formGroup]="submit">
+      <ion-item>
+        <!-- <span item-right><ion-icon name="person"></ion-icon></span> -->
+        <ion-label position="floating">Email<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input type="text" formControlName="email" [class.invalid]="!submit.controls.email.valid && (submit.controls.email.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!submit.controls.email.valid  && (submit.controls.email.dirty || submitAttempt)">
+        <ion-text color="danger">Please enter valid email eg: abc@xyz.com</ion-text>
+      </ion-item>
+
+      <ion-item>
+        <!-- <span item-right> <ion-icon name="key"></ion-icon></span> -->
+        <ion-label position="floating">Password<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input type="password" formControlName="password" [class.invalid]="!submit.controls.password.valid && (submit.controls.password.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!submit.controls.password.valid  && (submit.controls.password.dirty || submitAttempt)">
+        <ion-text color="danger">Please enter valid password min of 8 charachter.</ion-text>
+      </ion-item>
+    
+
+    </form>
      <br>
     <ion-button color="light" shape="round" style="--box-shadow:none;" expand="block" (click)="signin()">SIGN IN</ion-button>
     </ion-card-content>

@@ -6,6 +6,14 @@ import { IonicSelectableComponent } from 'ionic-selectable';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { CountriesService } from './../countries.service';
+import { Platform } from '@ionic/angular';
+import { Plugins,CameraResultType,CameraSource } from '@capacitor/core';
+import { createWorker } from 'tesseract.js';
+import { AuthService } from './../services/auth.service';
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const { Camera }=Plugins;
+
 
 @Component({
   selector: 'app-signup',
@@ -26,6 +34,18 @@ export class SignupPage implements OnInit {
   cities = [];
 
 	public submitAttempt = false;
+  username; useruid;usergender: string;userdate;
+  date='';date1='';name=[];txt=''; image=''; ocr='';ocr1='';
+  i=0;str=[];j=0;k=0;p=0;gen='';
+  opresult='';ocrResult='';
+  hasname=true;uploaded=false;
+  isgender=true;
+  mm;yyyy;dd;
+  userdetails;
+
+  worker: Tesseract.Worker;
+  workerReady=false;
+
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
   selected_mt = null;
@@ -156,11 +176,14 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
 
 
   constructor(private imagePicker: ImagePicker,private router: Router,public loadingController: LoadingController,
-    public formBuilder: FormBuilder,public alertCtrl: AlertController,private country: CountriesService) {
+    public formBuilder: FormBuilder,public alertCtrl: AlertController,private country: CountriesService,private authService: AuthService) {
       this.slideTwoForm = this.formBuilder.group({
         firstName: ['', Validators.compose([Validators.minLength(3), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         // eslint-disable-next-line max-len
-        aadhar:['',Validators.compose([Validators.maxLength(12), Validators.pattern('[0-9]*'),Validators.required,Validators.minLength(12)])],
+        gender:['',Validators.required],
+        date:['',Validators.required],
+        aadhar:['',Validators.compose([Validators.maxLength(14), Validators.pattern('[0-9 ]*'),
+        Validators.required,Validators.minLength(14)])],
         // eslint-disable-next-line max-len
         email:['', Validators.compose([Validators.minLength(10), Validators.pattern('^[a-z0-9_.+-]+@[a-z0-9-]+.[a-z]+$'), Validators.required])],
         password:['', Validators.compose([Validators.minLength(8), Validators.pattern('[a-zA-Z0-9@$_]*'), Validators.required])],
@@ -183,6 +206,7 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
         edu:['',Validators.required],
         occ:['',Validators.required]
       });
+      this.loadWorker();
    }
 
 
@@ -255,24 +279,118 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
       alert(err);
     });
   }
-  swipeNext(){
+
+
+  async swipeNext(){
+    if(this.image === '')
+    {
+      const alert=await this.alertCtrl.create({
+        message: 'please upload or capture your Aadhar',
+        buttons:['Ok']
+      });
+      await alert.present();
+
+
+    }
+    else{
     this.slides.slideNext();
+    }
   }
   swipeBack(){
     this.slides.slidePrev();
   }
 
   async slidetwoform(){
-    if(this.slideTwoForm.valid){
-      this.slides.slideNext();
+    this.useruid=this.slideTwoForm.get('aadhar').value;
+    this.username=this.slideTwoForm.get('firstName').value;
+    this.usergender=this.slideTwoForm.get('gender').value;
+    this.userdate=this.slideTwoForm.get('date').value;
+
+    const result=await this.worker.recognize(this.image);
+
+    this.ocrResult=result.data.text;
+    this.ocr=result.data.text;
+    while(this.i<this.ocr.length)
+    {
+      if(this.ocr.charAt(this.i)==='\n')
+      {
+        if(this.ocr1!=='' && this.ocr1!=='\n')
+        {
+        this.str[this.j]=this.ocr1;
+        this.j=this.j+1;
+        }
+        this.ocr1='';
+      }
+      else
+      {
+        this.ocr1=this.ocr1+this.ocr.charAt(this.i);
+      }
+      this.i=this.i+1;
+
     }
-    else{
+    while(this.k<this.str.length)
+    {
+      console.log('line ',this.k,' ',this.str[this.k]);
+      this.opresult=this.opresult+this.str[this.k]+'\n';
+      this.k=this.k+1;
+
+    }
+
+    this.gen=this.usergender.toUpperCase();
+    this.name=this.username.split(' ');
+
+    if(this.usergender==='Male')
+    {
+      if((this.opresult.includes('Female')||this.opresult.includes('FEMALE')))
+      {
+        this.isgender=false;
+      }
+    }
+
+    console.log('gender '+this.isgender);
+    for(this.p=0;this.p<this.name.length;this.p=this.p+1)
+    {
+      this.txt=this.name[this.p].charAt(0).toUpperCase() +this.name[this.p].substr(1).toLowerCase();
+      if((!this.opresult.includes(this.txt))&& (this.name[this.p]!==' '))
+      {
+
+        this.hasname=false;
+        console.log(this.name[this.p]);
+        break;
+      }
+
+    }
+
+    this.date=this.userdate.substring(8,10)+'/'+this.userdate.substring(5,7)+'/'+this.userdate.substring(0,4);
+    this.date1=this.userdate.substring(0,4);
+    console.log('my details : '+this.useruid+' '+this.username+' '+ this.usergender+' '+this.userdate+' '+this.date);
+    if(!this.slideTwoForm.valid)
+    {
       const alert = await this.alertCtrl.create({
         message: 'Please enter all details',
         buttons: ['OK']
       });
       await alert.present();
+
     }
+
+   else if(this.hasname && (this.opresult.includes(this.useruid) && this.useruid.length===14) &&
+     ( this.isgender && (((this.opresult).includes(this.usergender)) || ((this.opresult).includes(this.gen))) )&&
+     ((this.opresult.includes('Birth') && this.opresult.includes(this.date1) ) ||
+      (this.opresult.includes('DOB') && this.opresult.includes(this.date))))
+    {
+
+      this.slides.slideNext();
+    }
+    else{
+      const alert = await this.alertCtrl.create({
+        message: 'enter details as per Aadhar',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }
+
+
   }
 
   async slidethreeform(){
@@ -304,6 +422,8 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
         translucent:true,
         cssClass:'custom-class custom-loading'
       });
+       this.usersignup();
+
       this.router.navigate(['main']);
       return (await loading).present();
      }
@@ -315,4 +435,81 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
       await alert.present();
     }
   }
+
+
+
+  async loadWorker(){
+    this.worker = createWorker({
+      logger: progress =>{
+        console.log(progress);
+
+      }
+    });
+
+    await this.worker.load();
+    await this.worker.loadLanguage('eng');
+
+    await this.worker.initialize('eng');
+
+     this.workerReady=true;
+  }
+
+
+
+  async captureImage() {
+
+    const image=await Camera.getPhoto({
+      quality:90,
+      allowEditing:true,
+      resultType:CameraResultType.DataUrl,
+      source:CameraSource.Camera
+
+    });
+    this.uploaded=true;
+    console.log('image ',image);
+    this.image=image.dataUrl;
+
+
+  }
+
+  usersignup(): void{
+    const country1=this.slideTwoForm.get('country').value;
+    //console.log('country name',country1.CountryName);
+    const state1=this.slideTwoForm.get('state').value;
+    const city1=this.slideTwoForm.get('city').value;
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const mother_tongue1=this.slideThreeForm.get('mothertongue').value;
+    const height1=this.slideThreeForm.get('height').value;
+    const degree=this.slideFourForm.get('edu').value;
+    const occ1=this.slideFourForm.get('occ').value;
+    this.userdetails={
+      uid:this.slideTwoForm.get('aadhar').value,
+      name:this.slideTwoForm.get('firstName').value,
+      gender:this.slideTwoForm.get('gender').value,
+      dob:this.slideTwoForm.get('date').value,
+      mail:this.slideTwoForm.get('email').value,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      phone_num:this.slideTwoForm.get('phone').value,
+      password:this.slideTwoForm.get('password').value,
+      country:country1.CountryName,
+      state:state1.StateName,
+      city:city1.city,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      marital_status:this.slideThreeForm.get('maritalStatue').value,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      mother_tongue:mother_tongue1.name,
+      religion:this.slideThreeForm.get('religion').value,
+      caste:this.slideThreeForm.get('caste').value,
+      height:height1.h,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      highest_degree:degree.name,
+      occupation:occ1.name
+
+    };
+    this.authService.signup(this.userdetails)
+    .subscribe((msg)=>console.log(msg));
+    console.log('entire details are: ',this.userdetails);
+
+  }
+
 }
