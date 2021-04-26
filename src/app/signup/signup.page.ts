@@ -42,6 +42,7 @@ export class SignupPage implements OnInit {
   isgender=true;
   mm;yyyy;dd;
   userdetails;
+  isuser=false;
 
   worker: Tesseract.Worker;
   workerReady=false;
@@ -416,16 +417,8 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
 
   async signup(){
     if(this.slideFourForm.valid){
-      const loading=await this.loadingController.create({
-        duration:500,
-        message:'Please wait...',
-        translucent:true,
-        cssClass:'custom-class custom-loading'
-      });
-       this.usersignup();
 
-      this.router.navigate(['main']);
-      return (await loading).present();
+       this.usersignup();
      }
     else{
       const alert = await this.alertCtrl.create({
@@ -472,7 +465,7 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
 
   }
 
-  usersignup(): void{
+  async usersignup(): Promise<void>{
     const country1=this.slideTwoForm.get('country').value;
     //console.log('country name',country1.CountryName);
     const state1=this.slideTwoForm.get('state').value;
@@ -507,7 +500,31 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
 
     };
     this.authService.signup(this.userdetails)
-    .subscribe((msg)=>console.log(msg));
+    .subscribe(async (msg)=>{
+      if(msg)
+      {
+        this.isuser=true;
+        const loading=await this.loadingController.create({
+          duration:500,
+          message:'Please wait...',
+          translucent:true,
+          cssClass:'custom-class custom-loading'
+        });
+        console.log('console msg',msg);
+        this.router.navigate(['main']);
+        return (await loading).present();
+      }
+
+    });
+    if(this.isuser===false)
+      {
+        const alert = await this.alertCtrl.create({
+          message: 'User with this Mail ID/UID already exists',
+          buttons: ['OK']
+        });
+        await alert.present();
+      }
+    console.log('console msg',this.isuser);
     console.log('entire details are: ',this.userdetails);
 
   }

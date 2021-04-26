@@ -8,8 +8,6 @@ const User=require('../models/user');
 
 exports.signup = async(req,res,next)=>{
   const errors=validationResult(req);
-
-  console.log(errors);
   if(!errors.isEmpty()) return;
 
   const uid=req.body.uid;
@@ -82,8 +80,6 @@ exports.signup = async(req,res,next)=>{
       occupation:occupation
 
     }
-    // console.log('userdetails '+ userDetails);
-    // const result=await User.save(userDetails);
     const user=await User.findmail(mail);
     if(user[0].length === 1){
       const error=new Error('User with this email already exists')
@@ -94,7 +90,6 @@ exports.signup = async(req,res,next)=>{
     }
     const user1=await User.finduid(uid);
     if(user1[0].length === 1){
-      // res.status(401).json({message:'User with this email could not be found'});
       const error=new Error('User with this uid already exists')
       error.statusCode=410;
       throw error;
