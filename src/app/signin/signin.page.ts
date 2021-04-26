@@ -33,14 +33,14 @@ export class SigninPage implements OnInit {
 
   async signin(){
     if(this.submit.valid){
-    const loading = await this.loadingController.create({
-      duration: 500,
-      message: 'Please wait...',
-      translucent: true,
-      cssClass: 'custom-class custom-loading'
-    });
+    // const loading = await this.loadingController.create({
+    //   duration: 500,
+    //   message: 'Please wait...',
+    //   translucent: true,
+    //   cssClass: 'custom-class custom-loading'
+    // });
     this.login();
-    return (await loading).present();
+    // return (await loading).present();
   }
   else{
     const alert=await this.alertCtrl.create({
@@ -51,11 +51,25 @@ export class SigninPage implements OnInit {
   }
 
   }
-login(): void{
+async login(): Promise<void>{
   const mail=this.submit.get('email').value;
   const password=this.submit.get('password').value;
   console.log(mail+' '+password);
-  this.authService.login(mail,password).subscribe((msg)=>console.log('msg: ',msg));
+  this.authService.login(mail,password).subscribe(async (msg)=>{
+    if(msg)
+    {
+    console.log(msg);
+    }
+    else
+    {
+      const alert=await this.alertCtrl.create({
+        message:'Your Email/Password are wrong.',
+        buttons:['OK']
+      });
+      await alert.present();
+
+    }
+  });
 
 }
 
