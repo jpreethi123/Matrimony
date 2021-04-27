@@ -24,7 +24,7 @@ module.exports=class User{
       this.occupation=occupation;
     }
 
-    static findmail(mail){
+    static findmail (mail){
       return db.execute(
         'SELECT * FROM basic_details WHERE mail=?',[mail]
       );
