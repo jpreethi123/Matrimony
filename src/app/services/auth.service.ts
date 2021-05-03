@@ -58,4 +58,36 @@ httpOptions: {headers: HttpHeaders}={
       }>('login'))
     );
   }
+
+  getBasicDetails(uid)
+  {
+    return this.http.get(`http://localhost:5000/auth/getBasicDetails/${uid}`,this.httpOptions);
+  }
+
+  putBasicDetails(user)
+  {
+    return this.http.put(`http://localhost:5000/auth/putBasicDetails`,user,this.httpOptions);
+  }
+
+  getPersonalDetails(uid)
+  {
+    return this.http.get(`http://localhost:5000/auth/getPersonalDetails/${uid}`,this.httpOptions);
+  }
+
+  // getEduDetails(uid)
+  // {
+  //   return this.http.get(`http://localhost:5000/auth/getEduDetails/${uid}`,this.httpOptions);
+  // }
+
+  // getPartnerDetails(uid)
+  // {
+  //   return this.http.get(`http://localhost:5000/auth/getPartnerDetails/${uid}`,this.httpOptions);
+  // }
+
+  // getFamilyDetails(uid)
+  // {
+  //   return this.http.get(`http://localhost:5000/auth/getFamilyDetails/${uid}`,this.httpOptions);
+  // }
+
+
 }

@@ -49,4 +49,15 @@ router.post('/signup',
 
 router.post('/login',authController.login);
 
+router.get('/getBasicDetails/:uid',authController.getBasicDetails);
+router.put('/putBasicDetails',authController.putBasicDetails);
+
+router.get('/getPersonalDetails/:uid',authController.getPersonalDetails);
+
+// router.get('/getEduDetails/:uid',authController.getEduDetails);
+
+// router.get('/getPartnerDetails/:uid',authController.getPartnerDetails);
+
+// router.get('/getFamilyDetails/:uid',authController.getFamilyDetails);
+
 module.exports=router;

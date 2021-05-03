@@ -24,6 +24,42 @@ module.exports=class User{
       this.occupation=occupation;
     }
 
+    static getBasicDetails(uid){
+      return db.execute(
+        'SELECT * FROM basic_details WHERE uid=?',[uid]
+      );
+    }
+
+    static putBasicDetails(basic){
+      return db.execute(
+        'UPDATE basic_details SET country=?,state=?,city=? WHERE uid=?',[basic.country,basic.state,basic.city,basic.uid]
+      );
+    }
+
+    static getPersonalDetails(uid){
+      return db.execute(
+        'SELECT * FROM personal_details WHERE uid=?',[uid]
+      );
+    }
+
+    // static getEduDetails(uid){
+    //   return db.execute(
+    //     'SELECT * FROM education_details WHERE uid=?',[uid]
+    //   );
+    // }
+
+    // static getPartnerDetails(uid){
+    //   return db.execute(
+    //     'SELECT * FROM partner_details WHERE uid=?',[uid]
+    //   );
+    // }
+
+    // static getFamilyDetails(uid){
+    //   return db.execute(
+    //     'SELECT * FROM family_details WHERE uid=?',[uid]
+    //   );
+    // }
+
     static findmail (mail){
       return db.execute(
         'SELECT * FROM basic_details WHERE mail=?',[mail]

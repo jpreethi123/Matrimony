@@ -183,3 +183,81 @@ next(err);
 }
 
 };
+
+exports.getBasicDetails=async(req,res,next)=>{
+  const uid=req.params.uid;
+  console.log("uid "+uid);
+  try{
+    const user=await User.getBasicDetails(uid);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.putBasicDetails=async(req,res,next)=>{
+  const basic = {
+   uid: req.body.uid,
+   country: req.body.country,
+   state: req.body.state,
+   city: req.body.city
+  }
+  console.log("basic "+basic);
+  try{
+    const user=await User.putBasicDetails(basic);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.getPersonalDetails=async(req,res,next)=>{
+  const uid=req.params.uid;
+  console.log("uid "+uid);
+  try{
+    const user=await User.getPersonalDetails(uid);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+// exports.getEduDetails=async(req,res,next)=>{
+//   const uid=req.params.uid;
+//   console.log("uid "+uid);
+//   try{
+//     const user=await User.getEduDetails(uid);
+//     res.status(200).json(user);
+//   }
+//   catch(err){
+//    console.log(err.message);
+//   }
+// };
+
+// exports.getPartnerDetails=async(req,res,next)=>{
+//   const uid=req.params.uid;
+//   console.log("uid "+uid);
+//   try{
+//     const user=await User.getPartnerDetails(uid);
+//     res.status(200).json(user);
+//   }
+//   catch(err){
+//    console.log(err.message);
+//   }
+// };
+
+// exports.getFamilyDetails=async(req,res,next)=>{
+//   const uid=req.params.uid;
+//   console.log("uid "+uid);
+//   try{
+//     const user=await User.getFamilyDetails(uid);
+//     res.status(200).json(user);
+//   }
+//   catch(err){
+//    console.log(err.message);
+//   }
+// };
+
