@@ -15,8 +15,7 @@
       <!-- Basic registation details -->
       <ion-slide>
         <form [formGroup]="slideTwoForm">
-        <br>
-        <ion-header>Basic Details</ion-header>
+        <ion-label>Basic Details</ion-label>
           <ion-list>
             <ion-item>
               <ion-label position="floating">Name</ion-label>
@@ -134,15 +133,15 @@
               </ion-item>
           <br>
           <ion-button routerLink="/main"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
-          <ion-button type="submit" color="light" shape="round" style="--box-shadow:none;" (click)="saveBasicDetails()">Next</ion-button>
+          <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="saveBasicDetails()">Save</ion-button>
+          <ion-button type="submit" color="light" shape="round" style="--box-shadow:none;" (click)="swipeNext()">Next</ion-button>
         </form>
         </ion-slide>
 
       <!-- Personal details -->
       <ion-slide>
         <form [formGroup]="slideThreeForm">
-        <br>
-        <ion-header>Personal Details</ion-header>
+        <ion-label>Personal Details</ion-label>
         <ion-item>
           <ion-label position="floating">Marital Statue<ion-text color="danger">*</ion-text></ion-label>
           <ion-select okText="Select" cancelText="Cancel" formControlName="maritalStatue" [class.invalid]="!slideThreeForm.controls.maritalStatue.valid && (slideThreeForm.controls.maritalStatue.dirty || submitAttempt)">
@@ -234,6 +233,7 @@
         </ion-item>
         <br>
         <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
+        <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="savePersonalDetails()">Save</ion-button>
         <ion-button  (click)="swipeNext()"  color="light" shape="round" style="--box-shadow:none;">Next</ion-button>
       </form>
       </ion-slide>
@@ -312,6 +312,7 @@
 
         <br>
         <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
+        <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="saveEduDetails()">Save</ion-button>
         <ion-button (click)="swipeNext()" color="light" shape="round" style="--box-shadow:none;">Next</ion-button>
       </form>
       </ion-slide>
@@ -385,6 +386,7 @@
      </ion-item>
         <br>
         <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
+        <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="saveFamilyDetails()">Save</ion-button>
         <ion-button (click)="swipeNext()"  color="light" shape="round" style="--box-shadow:none;">Next</ion-button>
 
        </ion-slide>
@@ -524,7 +526,7 @@
           </ion-item> -->
         <br>
         <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
-        <ion-button  color="light" shape="round" style="--box-shadow:none;">Register</ion-button>
+        <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="savePartnerDetails()">Save</ion-button>
        </ion-slide>
 
 

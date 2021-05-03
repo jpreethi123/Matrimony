@@ -74,9 +74,19 @@ httpOptions: {headers: HttpHeaders}={
     return this.http.get(`http://localhost:5000/auth/getPersonalDetails/${uid}`,this.httpOptions);
   }
 
+  // putPersonalDetails(user)
+  // {
+  //   return this.http.put(`http://localhost:5000/auth/putPersonalDetails`,user,this.httpOptions);
+  // }
+
   // getEduDetails(uid)
   // {
   //   return this.http.get(`http://localhost:5000/auth/getEduDetails/${uid}`,this.httpOptions);
+  // }
+
+  // putEduDetails(user)
+  // {
+  //   return this.http.put(`http://localhost:5000/auth/putEduDetails`,user,this.httpOptions);
   // }
 
   // getPartnerDetails(uid)
@@ -84,9 +94,19 @@ httpOptions: {headers: HttpHeaders}={
   //   return this.http.get(`http://localhost:5000/auth/getPartnerDetails/${uid}`,this.httpOptions);
   // }
 
+  // putPartnerDetails(user)
+  // {
+  //   return this.http.put(`http://localhost:5000/auth/putPartnerDetails`,user,this.httpOptions);
+  // }
+
   // getFamilyDetails(uid)
   // {
   //   return this.http.get(`http://localhost:5000/auth/getFamilyDetails/${uid}`,this.httpOptions);
+  // }
+
+  // putFamilyDetails(user)
+  // {
+  //   return this.http.put(`http://localhost:5000/auth/putFamilyDetails`,user,this.httpOptions);
   // }
 
 

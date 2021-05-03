@@ -257,6 +257,14 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
     });
   }
 
+  savePersonalDetails(){}
+
+  saveEduDetails(){}
+
+  saveFamilyDetails(){}
+
+  savePartnerDetails(){}
+
   getCountries(){
     this.country.allCountries().
     subscribe(
@@ -297,7 +305,7 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
     console.log('port:', event.value);
   }
 
-  async swipeNext(){
+  swipeNext(){
     this.slides.slideNext();
   }
   swipeBack(){
@@ -311,3 +319,6 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
 
 
 }
+
+
+

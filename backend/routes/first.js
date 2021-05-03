@@ -53,11 +53,15 @@ router.get('/getBasicDetails/:uid',authController.getBasicDetails);
 router.put('/putBasicDetails',authController.putBasicDetails);
 
 router.get('/getPersonalDetails/:uid',authController.getPersonalDetails);
+//router.put('/putPersonalDetails',authController.putPersonalDetails);
 
 // router.get('/getEduDetails/:uid',authController.getEduDetails);
+//router.put('/putEduDetails',authController.putEduDetails);
 
 // router.get('/getPartnerDetails/:uid',authController.getPartnerDetails);
+//router.put('/putPartnerDetails',authController.putPartnerDetails);
 
 // router.get('/getFamilyDetails/:uid',authController.getFamilyDetails);
+//router.put('/putFamilyDetails',authController.putFamilyDetails);
 
 module.exports=router;
