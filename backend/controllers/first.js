@@ -22,7 +22,6 @@ exports.signup = async(req,res,next)=>{
   const city=req.body.city;
   const marital_status=req.body.marital_status;
   const mother_tongue=req.body.mother_tongue;
-  const religion=req.body.religion;
   const caste=req.body.caste;
   const height=req.body.height;
   const highest_degree=req.body.highest_degree;
@@ -68,7 +67,6 @@ exports.signup = async(req,res,next)=>{
       uid:uid,
       marital_status:marital_status,
       mother_tongue:mother_tongue,
-      religion:religion,
       caste:caste,
       height:height,
 

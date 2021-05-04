@@ -201,7 +201,6 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
         mothertongue: ['',Validators.required],
         height:['',Validators.required],
         caste:['',Validators.required],
-        religion:['',Validators.required]
       });
 
       this.slideFourForm = this.formBuilder.group({
@@ -530,7 +529,6 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
       marital_status:this.slideThreeForm.get('maritalStatue').value,
       // eslint-disable-next-line @typescript-eslint/naming-convention
       mother_tongue:mother_tongue1.name,
-      religion:this.slideThreeForm.get('religion').value,
       caste:this.slideThreeForm.get('caste').value,
       height:height1.h,
       // eslint-disable-next-line @typescript-eslint/naming-convention
