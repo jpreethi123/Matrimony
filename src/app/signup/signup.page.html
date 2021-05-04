@@ -16,7 +16,7 @@
         <ion-header>Aadhar Scanning</ion-header>
         <br>
         <ion-img *ngIf="uploaded" [src]="image"></ion-img>
-        <ion-button color="light" shape="round" style="--box-shadow:none;" (click)="captureImage()">Capture/Upload Aadhar</ion-button>
+        <ion-button color="light" shape="round" style="--box-shadow:none;" (click)="captureImage()">Capture Aadhar</ion-button>
          <br><br>
         <ion-button (click)="swipeNext()" color="light" shape="round" style="--box-shadow:none;" >Next</ion-button>
       </ion-slide>
@@ -177,13 +177,10 @@
         <ion-item>
           <ion-label position="floating">Mother Tongue<ion-text color="danger">*</ion-text></ion-label>
           <ionic-selectable
-            #selectComponent
-            [(ngModel)]="selected_mt"
-            [items]="motherTongue"
+            [items]="mt"
             itemValueField="id" itemTextField="name"
-            headerColor="primary"
+            headerColor="light"
             [canSearch]="true"
-            (onChange)="portChange($event)"
             searchFailText="nothing found"
             formControlName="mothertongue" [class.invalid]="!slideThreeForm.controls.mothertongue.valid && (slideThreeForm.controls.mothertongue.dirty || submitAttempt)"
             >
@@ -198,34 +195,56 @@
             </ionic-selectable>
           </ion-item>
 
-        <ion-item>
+        <!-- <ion-item>
           <ion-label position="floating">Religion<ion-text color="danger">*</ion-text></ion-label>
           <ion-select value="religion" okText="Select" cancelText="Cancel"
           formControlName="religion" [class.invalid]="!slideThreeForm.controls.religion.valid && (slideThreeForm.controls.religion.dirty || submitAttempt)">
             <ion-select-option value="hindu">Hindu</ion-select-option>
           </ion-select>
-        </ion-item>
+        </ion-item> -->
 
         <ion-item>
           <ion-label position="floating">Caste<ion-text color="danger">*</ion-text></ion-label>
-          <ion-select value="caste" okText="Select" cancelText="Cancel"
-          formControlName="caste" [class.invalid]="!slideThreeForm.controls.caste.valid && (slideThreeForm.controls.caste.dirty || submitAttempt)">
-            <ion-select-option value="marathi">Marathi</ion-select-option>
-          </ion-select>
+          <ionic-selectable
+            [items]="caste"
+            itemValueField="id" itemTextField="name"
+            headerColor="light"
+            [canSearch]="true"
+            searchFailText="nothing found"
+            (onChange)="onChangeCaste($event)"
+            formControlName="caste" [class.invalid]="!slideThreeForm.controls.caste.valid && (slideThreeForm.controls.caste.dirty || submitAttempt)"
+            >
+
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+              Caste
+            </ng-template>
+
+            </ionic-selectable>
         </ion-item>
 
-        <!-- <ion-item>
-          <ion-label>Profile Photo</ion-label>
-          <ion-button (click)="getImages()"  color="light" shape="round" style="--box-shadow:none;">Choose Images</ion-button>
-        </ion-item> -->
+        <ion-item>
+          <ion-label position="floating">Sub-Caste<ion-text color="danger">*</ion-text></ion-label>
+          <ionic-selectable
+            [items]="subcaste"
+            itemValueField="id" itemTextField="name"
+            headerColor="light"
+            [canSearch]="true"
+            searchFailText="nothing found"
+            formControlName="subcaste" [class.invalid]="!slideThreeForm.controls.subcaste.valid && (slideThreeForm.controls.subcaste.dirty || submitAttempt)"
+            >
 
-        <!-- <ion-item>
-          <ion-label position="floating">Weight</ion-label>
-          <ion-range min="40" max="200" color="primary" pin>
-            <ion-label slot="start">40</ion-label>
-            <ion-label slot="end">200</ion-label>
-          </ion-range>
-        </ion-item> -->
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+              Sub-Caste
+            </ng-template>
+
+            </ionic-selectable>
+        </ion-item>
 
         <ion-item>
           <ion-label position="floating">Height<ion-text color="danger">*</ion-text></ion-label>

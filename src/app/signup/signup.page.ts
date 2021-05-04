@@ -33,6 +33,10 @@ export class SignupPage implements OnInit {
   public cityInfo: any[] = [];
   cities = [];
 
+  mt = [];
+  caste = [];
+  subcaste = [];
+
 	public submitAttempt = false;
   username; useruid;usergender: string;userdate;
   date='';date1='';name=[];txt=''; image=''; ocr='';ocr1='';
@@ -48,26 +52,26 @@ export class SignupPage implements OnInit {
   workerReady=false;
 
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  selected_mt = null;
-  motherTongue=[{id:1,name:'Assamese'},{id:2,name:'Bangla'},{id:3,name:'Bodo'},
-  {id:4,name:'Dogri'},{id:5,name:'Gujarati'},{id:6,name:'Hindi'},
-  {id:7,name:'Kashmiri'},{id:8,name:'Kannada'},{id:9,name:'Konkani'},
-  {id:10,name:'Maithili'},{id:11,name:'Malayalam'},{id:12,name:'Manipuri'},
-  {id:13,name:'Marathi'},{id:14,name:'Nepali'},{id:15,name:'Oriya'},
-  {id:16,name:'Punjabi'},{id:17,name:'Tamil'},{id:18,name:'Telugu'},
-  {id:19,name:'Santali'},{id:20,name:'Sindhi'},{id:21,name:'Urdu'}
-  ];
+  // // eslint-disable-next-line @typescript-eslint/naming-convention
+  // selected_mt = null;
+  // motherTongue=[{id:1,name:'Assamese'},{id:2,name:'Bangla'},{id:3,name:'Bodo'},
+  // {id:4,name:'Dogri'},{id:5,name:'Gujarati'},{id:6,name:'Hindi'},
+  // {id:7,name:'Kashmiri'},{id:8,name:'Kannada'},{id:9,name:'Konkani'},
+  // {id:10,name:'Maithili'},{id:11,name:'Malayalam'},{id:12,name:'Manipuri'},
+  // {id:13,name:'Marathi'},{id:14,name:'Nepali'},{id:15,name:'Oriya'},
+  // {id:16,name:'Punjabi'},{id:17,name:'Tamil'},{id:18,name:'Telugu'},
+  // {id:19,name:'Santali'},{id:20,name:'Sindhi'},{id:21,name:'Urdu'}
+  // ];
 
-  selectedpre= null;
-  motherTongue1=[{id:1,name:'Assamese'},{id:2,name:'Bangla'},{id:3,name:'Bodo'},
-  {id:4,name:'Dogri'},{id:5,name:'Gujarati'},{id:6,name:'Hindi'},
-  {id:7,name:'Kashmiri'},{id:8,name:'Kannada'},{id:9,name:'Konkani'},
-  {id:10,name:'Maithili'},{id:11,name:'Malayalam'},{id:12,name:'Manipuri'},
-  {id:13,name:'Marathi'},{id:14,name:'Nepali'},{id:15,name:'Oriya'},
-  {id:16,name:'Punjabi'},{id:17,name:'Tamil'},{id:18,name:'Telugu'},
-  {id:19,name:'Santali'},{id:20,name:'Sindhi'},{id:21,name:'Urdu'}
-  ];
+  // selectedpre= null;
+  // motherTongue1=[{id:1,name:'Assamese'},{id:2,name:'Bangla'},{id:3,name:'Bodo'},
+  // {id:4,name:'Dogri'},{id:5,name:'Gujarati'},{id:6,name:'Hindi'},
+  // {id:7,name:'Kashmiri'},{id:8,name:'Kannada'},{id:9,name:'Konkani'},
+  // {id:10,name:'Maithili'},{id:11,name:'Malayalam'},{id:12,name:'Manipuri'},
+  // {id:13,name:'Marathi'},{id:14,name:'Nepali'},{id:15,name:'Oriya'},
+  // {id:16,name:'Punjabi'},{id:17,name:'Tamil'},{id:18,name:'Telugu'},
+  // {id:19,name:'Santali'},{id:20,name:'Sindhi'},{id:21,name:'Urdu'}
+  // ];
 
   select=null;
 education=[{id:101,name:'B.E/B.Tech'},{id:102,name:'BCA'},{id:103,name:'Bsc IT'},
@@ -93,9 +97,6 @@ education1=[{id:101,name:'B.E/B.Tech'},{id:102,name:'BCA'},{id:103,name:'Bsc IT'
 {id:132,name:'BEd'},{id:133,name:'PhD'},{id:134,name:'Diploma'},{id:135,name:'High School'},
 {id:136,name:'Higher Secondary'}];
 
-
-  // heightRange=['4ft 10','4ft 11','5ft','5ft 1','5ft 2','5ft 3','5ft 4','5ft 5','5ft 6','5ft 7','5ft 8','5ft 9','5ft 9','5ft 10',
-  // '5ft 11','6ft','6ft 1','6ft 2','6ft 3','6ft 4','6ft 5','6ft 6','6ft 7','6ft 8','6ft 9','6ft 10','6ft 11','7ft'];
 
 selectsal=null;
 salary=[{id:1,name:'less than 50000'},{id:2,name:'50000-1 lakh'},{id:3,name:'1 lakh-1.5 lakh'},{id:4,name:'1.5 lakh-2 lakh'},
@@ -213,6 +214,23 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
 
     ngOnInit() {
       this.getCountries();
+
+      this.authService.getMotherTongue().subscribe((msg)=>{
+        // eslint-disable-next-line @typescript-eslint/prefer-for-of
+        for(let i=0;i<msg[0].length;i++){
+          this.mt.push({id:i,name:msg[0][i].mother_tongue});
+        }
+    });
+
+    this.authService.getCaste().subscribe((msg)=>{
+      // eslint-disable-next-line @typescript-eslint/prefer-for-of
+      for(let i=0;i<msg[0].length;i++){
+        this.caste.push({id:i,name:msg[0][i].caste_name});
+      }
+    });
+
+    this.slideThreeForm.controls.subcaste.disable();
+
   }
   getCountries(){
     this.country.allCountries().
@@ -224,6 +242,27 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
       err => console.log(err),
       () => console.log('complete')
     );
+  }
+
+  onChangeCaste(event: {
+    component: IonicSelectableComponent;
+    value: any;
+  }) {
+    this.authService.getSubCaste(event.value.name).subscribe((msg)=>{
+      console.log(msg[0]);
+      if(msg[0].length > 0){
+        this.slideThreeForm.controls.subcaste.enable();
+        //eslint-disable-next-line @typescript-eslint/prefer-for-of
+        for(let i=0;i<msg[0].length;i++){
+          this.subcaste.push({id:i,name:msg[0][i].subcaste_name});
+        }
+      }
+      else{
+        this.slideThreeForm.controls.subcaste.disable();
+        this.slideThreeForm.controls.subcaste.setValue('');
+      }
+    });
+     //console.log(event.value.name);
   }
 
   onChangeCountry(event: {
