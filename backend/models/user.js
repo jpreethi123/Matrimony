@@ -24,6 +24,24 @@ module.exports=class User{
       this.occupation=occupation;
     }
 
+    static getMotherTongue(){
+      return db.execute(
+        'SELECT * FROM mothertongue'
+      );
+    }
+
+    static getCaste(){
+      return db.execute(
+        'SELECT * FROM caste'
+      );
+    }
+
+    static getSubCaste(name){
+      return db.execute(
+        'SELECT subcaste_name FROM subcaste WHERE caste_name=?',[name]
+      );
+    }
+
     static getBasicDetails(uid){
       return db.execute(
         'SELECT * FROM basic_details WHERE uid=?',[uid]

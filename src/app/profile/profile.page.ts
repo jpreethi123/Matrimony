@@ -24,6 +24,8 @@ export class ProfilePage implements OnInit {
   public slideTwoForm: FormGroup;
   public slideThreeForm: FormGroup;
   public slideFourForm: FormGroup;
+  public slideFiveForm: FormGroup;
+  public slideSixForm: FormGroup;
 
   public stateInfo: any[] = [];
   public countryInfo: any[] = [];
@@ -33,26 +35,30 @@ export class ProfilePage implements OnInit {
   public submitAttempt = false;
   userbasicdetails = {};
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  selected_mt = null;
-  motherTongue=[{id:1,name:'Assamese'},{id:2,name:'Bangla'},{id:3,name:'Bodo'},
-  {id:4,name:'Dogri'},{id:5,name:'Gujarati'},{id:6,name:'Hindi'},
-  {id:7,name:'Kashmiri'},{id:8,name:'Kannada'},{id:9,name:'Konkani'},
-  {id:10,name:'Maithili'},{id:11,name:'Malayalam'},{id:12,name:'Manipuri'},
-  {id:13,name:'Marathi'},{id:14,name:'Nepali'},{id:15,name:'Oriya'},
-  {id:16,name:'Punjabi'},{id:17,name:'Tamil'},{id:18,name:'Telugu'},
-  {id:19,name:'Santali'},{id:20,name:'Sindhi'},{id:21,name:'Urdu'}
-  ];
+  mt = [];
+  caste = [];
+  subcaste = [];
 
-  selectedpre= null;
-  motherTongue1=[{id:1,name:'Assamese'},{id:2,name:'Bangla'},{id:3,name:'Bodo'},
-  {id:4,name:'Dogri'},{id:5,name:'Gujarati'},{id:6,name:'Hindi'},
-  {id:7,name:'Kashmiri'},{id:8,name:'Kannada'},{id:9,name:'Konkani'},
-  {id:10,name:'Maithili'},{id:11,name:'Malayalam'},{id:12,name:'Manipuri'},
-  {id:13,name:'Marathi'},{id:14,name:'Nepali'},{id:15,name:'Oriya'},
-  {id:16,name:'Punjabi'},{id:17,name:'Tamil'},{id:18,name:'Telugu'},
-  {id:19,name:'Santali'},{id:20,name:'Sindhi'},{id:21,name:'Urdu'}
-  ];
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  // selected_mt = null;
+  // motherTongue=[{id:1,name:'Assamese'},{id:2,name:'Bangla'},{id:3,name:'Bodo'},
+  // {id:4,name:'Dogri'},{id:5,name:'Gujarati'},{id:6,name:'Hindi'},
+  // {id:7,name:'Kashmiri'},{id:8,name:'Kannada'},{id:9,name:'Konkani'},
+  // {id:10,name:'Maithili'},{id:11,name:'Malayalam'},{id:12,name:'Manipuri'},
+  // {id:13,name:'Marathi'},{id:14,name:'Nepali'},{id:15,name:'Oriya'},
+  // {id:16,name:'Punjabi'},{id:17,name:'Tamil'},{id:18,name:'Telugu'},
+  // {id:19,name:'Santali'},{id:20,name:'Sindhi'},{id:21,name:'Urdu'}
+  // ];
+
+  // selectedpre= null;
+  // motherTongue1=[{id:1,name:'Assamese'},{id:2,name:'Bangla'},{id:3,name:'Bodo'},
+  // {id:4,name:'Dogri'},{id:5,name:'Gujarati'},{id:6,name:'Hindi'},
+  // {id:7,name:'Kashmiri'},{id:8,name:'Kannada'},{id:9,name:'Konkani'},
+  // {id:10,name:'Maithili'},{id:11,name:'Malayalam'},{id:12,name:'Manipuri'},
+  // {id:13,name:'Marathi'},{id:14,name:'Nepali'},{id:15,name:'Oriya'},
+  // {id:16,name:'Punjabi'},{id:17,name:'Tamil'},{id:18,name:'Telugu'},
+  // {id:19,name:'Santali'},{id:20,name:'Sindhi'},{id:21,name:'Urdu'}
+  // ];
 
   select=null;
 education=[{id:101,name:'B.E/B.Tech'},{id:102,name:'BCA'},{id:103,name:'Bsc IT'},
@@ -184,7 +190,7 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
         mothertongue: ['',Validators.required],
         height:['',Validators.required],
         caste:['',Validators.required],
-        religion:['',Validators.required],
+        subcaste:['',Validators.required],
         aboutme:['']
       });
 
@@ -199,15 +205,29 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
   ngOnInit() {
     this.getCountries();
 
+    this.authService.getMotherTongue().subscribe((msg)=>{
+        // eslint-disable-next-line @typescript-eslint/prefer-for-of
+        for(let i=0;i<msg[0].length;i++){
+          this.mt.push({id:i,name:msg[0][i].mother_tongue});
+        }
+    });
+
+    this.authService.getCaste().subscribe((msg)=>{
+      // eslint-disable-next-line @typescript-eslint/prefer-for-of
+      for(let i=0;i<msg[0].length;i++){
+        this.caste.push({id:i,name:msg[0][i].caste_name});
+      }
+    });
+
     this.slideTwoForm.controls.firstName.disable();
     this.slideTwoForm.controls.gender.disable();
     this.slideTwoForm.controls.date.disable();
     this.slideTwoForm.controls.aadhar.disable();
     this.slideTwoForm.controls.phone.disable();
     this.slideTwoForm.controls.email.disable();
+    this.slideThreeForm.controls.subcaste.disable();
 
     this.authService.getBasicDetails(this.uid).subscribe((msg)=>{
-      // console.log(msg);
       this.slideTwoForm.get('firstName').setValue(msg[0][0].name);
       if(msg[0][0].gender === 'Male'){
         this.slideTwoForm.get('gender').setValue('male');
@@ -227,7 +247,6 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
 
      this.authService.getPersonalDetails(this.uid).subscribe((msg)=>{
       this.slideThreeForm.get('maritalStatue').setValue(msg[0][0].marital_status);
-      this.slideThreeForm.get('religion').setValue(msg[0][0].religion);
       this.slideThreeForm.get('caste').setValue(msg[0][0].caste);
       this.slideThreeForm.get('aboutme').setValue(msg[0][0].aboutme);
       //  if(msg[0][0].marital_status === 'unmarried'){
@@ -275,6 +294,27 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
       err => console.log(err),
       () => console.log('complete')
     );
+  }
+
+  onChangeCaste(event: {
+    component: IonicSelectableComponent;
+    value: any;
+  }) {
+    this.authService.getSubCaste(event.value.name).subscribe((msg)=>{
+      console.log(msg[0]);
+      if(msg[0].length > 0){
+        this.slideThreeForm.controls.subcaste.enable();
+        //eslint-disable-next-line @typescript-eslint/prefer-for-of
+        for(let i=0;i<msg[0].length;i++){
+          this.subcaste.push({id:i,name:msg[0][i].subcaste_name});
+        }
+      }
+      else{
+        this.slideThreeForm.controls.subcaste.disable();
+        this.slideThreeForm.controls.subcaste.setValue('');
+      }
+    });
+     //console.log(event.value.name);
   }
 
   onChangeCountry(event: {

@@ -49,6 +49,10 @@ router.post('/signup',
 
 router.post('/login',authController.login);
 
+router.get('/getMotherTongue',authController.getMotherTongue);
+router.get('/getCaste',authController.getCaste);
+router.get('/getSubCaste/:name',authController.getSubCaste);
+
 router.get('/getBasicDetails/:uid',authController.getBasicDetails);
 router.put('/putBasicDetails',authController.putBasicDetails);
 

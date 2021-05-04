@@ -184,6 +184,37 @@ next(err);
 
 };
 
+exports.getMotherTongue=async(req,res,next)=>{
+  try{
+    const user=await User.getMotherTongue();
+    res.status(200).json(user);
+  }
+  catch(err){
+    console.log(err.message);
+  }
+};
+
+exports.getCaste=async(req,res,next)=>{
+  try{
+    const user=await User.getCaste();
+    res.status(200).json(user);
+  }
+  catch(err){
+    console.log(err.message);
+  }
+};
+
+exports.getSubCaste=async(req,res,next)=>{
+  const name=req.params.name;
+  try{
+    const user=await User.getSubCaste(name);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
 exports.getBasicDetails=async(req,res,next)=>{
   const uid=req.params.uid;
   //console.log("uid "+uid);

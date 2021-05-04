@@ -75,10 +75,9 @@
           <ion-item>
             <ion-label position="floating">Country<ion-text color="danger">*</ion-text></ion-label>
             <ionic-selectable
-                #cont
                 [items]="countryInfo"
                 itemValueField= CountryName itemTextField= CountryName
-                headerColor="primary"
+                headerColor="light"
                 [canSearch]="true"
                 (onChange)="onChangeCountry($event)"
                 searchFailText="nothing found"
@@ -97,7 +96,7 @@
                 <ionic-selectable
                 [items]="stateInfo"
                 itemValueField= StateName itemTextField= StateName
-                headerColor="primary"
+                headerColor="light"
                 [canSearch]="true"
                 (onChange)="onChangeState($event)"
                 searchFailText="nothing found"
@@ -117,7 +116,7 @@
                 <ionic-selectable
                 [items]="cities"
                 itemValueField= city itemTextField= city
-                headerColor="primary"
+                headerColor="light"
                 [canSearch]="true"
                 searchFailText="nothing found"
                 formControlName="city"
@@ -155,12 +154,10 @@
         <ion-item>
           <ion-label position="floating">Mother Tongue<ion-text color="danger">*</ion-text></ion-label>
           <ionic-selectable
-            #selectComponent
-            [items]="motherTongue"
+            [items]="mt"
             itemValueField="id" itemTextField="name"
-            headerColor="primary"
+            headerColor="light"
             [canSearch]="true"
-            (onChange)="portChange($event)"
             searchFailText="nothing found"
             formControlName="mothertongue" [class.invalid]="!slideThreeForm.controls.mothertongue.valid && (slideThreeForm.controls.mothertongue.dirty || submitAttempt)"
             >
@@ -175,20 +172,55 @@
             </ionic-selectable>
           </ion-item>
 
-        <ion-item>
+        <!-- <ion-item>
           <ion-label position="floating">Religion<ion-text color="danger">*</ion-text></ion-label>
           <ion-select value="religion" okText="Select" cancelText="Cancel"
           formControlName="religion" [class.invalid]="!slideThreeForm.controls.religion.valid && (slideThreeForm.controls.religion.dirty || submitAttempt)">
             <ion-select-option value="hindu">Hindu</ion-select-option>
           </ion-select>
-        </ion-item>
+        </ion-item> -->
 
         <ion-item>
           <ion-label position="floating">Caste<ion-text color="danger">*</ion-text></ion-label>
-          <ion-select value="caste" okText="Select" cancelText="Cancel"
-          formControlName="caste" [class.invalid]="!slideThreeForm.controls.caste.valid && (slideThreeForm.controls.caste.dirty || submitAttempt)">
-            <ion-select-option value="marathi">Marathi</ion-select-option>
-          </ion-select>
+          <ionic-selectable
+            [items]="caste"
+            itemValueField="id" itemTextField="name"
+            headerColor="light"
+            [canSearch]="true"
+            searchFailText="nothing found"
+            (onChange)="onChangeCaste($event)"
+            formControlName="caste" [class.invalid]="!slideThreeForm.controls.caste.valid && (slideThreeForm.controls.caste.dirty || submitAttempt)"
+            >
+
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+              Caste
+            </ng-template>
+
+            </ionic-selectable>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Sub-Caste<ion-text color="danger">*</ion-text></ion-label>
+          <ionic-selectable
+            [items]="subcaste"
+            itemValueField="id" itemTextField="name"
+            headerColor="light"
+            [canSearch]="true"
+            searchFailText="nothing found"
+            formControlName="subcaste" [class.invalid]="!slideThreeForm.controls.subcaste.valid && (slideThreeForm.controls.subcaste.dirty || submitAttempt)"
+            >
+
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+              Sub-Caste
+            </ng-template>
+
+            </ionic-selectable>
         </ion-item>
 
         <ion-item>
@@ -210,7 +242,7 @@
             #selectComponent
             [items]="heightRange"
             itemValueField="id" itemTextField="h"
-            headerColor="primary"
+            headerColor="light"
             [canSearch]="true"
             (onChange)="portChange($event)"
             searchFailText="nothing found"
@@ -241,15 +273,14 @@
        <!-- Eductional details -->
       <ion-slide>
         <form [formGroup]="slideFourForm">
-        <br>
-       <ion-header>Eduction Details</ion-header>
+       <ion-label>Eduction Details</ion-label>
         <ion-item>
           <ion-label position="floating">Highest Degree<ion-text color="danger">*</ion-text></ion-label>
           <ionic-selectable
             #selectComponent
             [items]="education"
             itemValueField="id" itemTextField="name"
-            headerColor="primary"
+            headerColor="light"
             [canSearch]="true"
             searchFailText="nothing found"
             formControlName="edu" [class.invalid]="!slideFourForm.controls.edu.valid && (slideFourForm.controls.edu.dirty || submitAttempt)"
@@ -270,7 +301,7 @@
             #selectComponent
             [items]="occupation"
             itemValueField="id" itemTextField="name"
-            headerColor="primary"
+            headerColor="light"
             [canSearch]="true"
             searchFailText="nothing found"
             formControlName="occ" [class.invalid]="!slideFourForm.controls.occ.valid && (slideFourForm.controls.occ.dirty || submitAttempt)"
@@ -287,17 +318,11 @@
 
         <ion-item>
           <ion-label position="floating">Salary (Annual)</ion-label>
-          <!-- <ion-select value="Salary" okText="Select" cancelText="Cancel">
-            <ion-select-option value="50"> Below 50,000</ion-select-option>
-            <ion-select-option value="200">50,001 - 2,00,000</ion-select-option>
-            <ion-select-option value="500">2,00,001 - 5,00,000</ion-select-option>
-            <ion-select-option value="501">Above 5,00,000</ion-select-option>
-          </ion-select> -->
           <ionic-selectable
             #selectComponent
             [items]="salary"
             itemValueField="id" itemTextField="name"
-            headerColor="primary"
+            headerColor="light"
             [canSearch]="true"
             searchFailText="nothing found">
 
@@ -319,8 +344,8 @@
 
       <!-- Family details -->
       <ion-slide>
-        <br>
-       <ion-header>Family Details</ion-header>
+        <form [formGroup]="slideFiveForm">
+       <ion-label>Family Details</ion-label>
             <ion-item>
               <ion-label position="floating">Father Name</ion-label>
               <ion-input type="text"></ion-input>
@@ -382,19 +407,20 @@
      </ion-item>
 
      <ion-item>
-       <ion-textarea placeholder="About Family...."></ion-textarea>
+      <ion-label position="floating">About Family</ion-label><br>
+       <ion-textarea></ion-textarea>
      </ion-item>
         <br>
         <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
         <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="saveFamilyDetails()">Save</ion-button>
         <ion-button (click)="swipeNext()"  color="light" shape="round" style="--box-shadow:none;">Next</ion-button>
-
+        </form>
        </ion-slide>
 
       <!-- About Preferred partner -->
       <ion-slide>
-          <br>
-          <ion-header>About Prefered Partner</ion-header>
+        <form [formGroup]="slideSixForm">
+          <ion-label>About Prefered Partner</ion-label>
             <ion-item>
               <ion-label position="floating">Age from</ion-label><br>
              <ion-range min="20" max="60" color="secondary" pin="true">
@@ -419,7 +445,7 @@
               #selectComponent
               [items]="heightRange1"
               itemValueField="id" itemTextField="h"
-              headerColor="primary"
+              headerColor="light"
               [canSearch]="true"
               (onChange)="portChange($event)"
               searchFailText="nothing found">
@@ -434,19 +460,20 @@
               </ionic-selectable>
             </ion-item>
 
-           <ion-item>
+           <!-- <ion-item>
              <ion-label position="floating">Religion</ion-label>
              <ion-select>
                <ion-select-option>Hindu</ion-select-option>
              </ion-select>
-           </ion-item>
+           </ion-item> -->
+
            <ion-item>
              <ion-label position="floating">Mother Tongue</ion-label>
              <ionic-selectable
               #selectComponent
-              [items]="motherTongue1"
+              [items]="mt"
               itemValueField="id" itemTextField="name"
-              headerColor="primary"
+              headerColor="light"
               [canSearch]="true"
               searchFailText="nothing found">
 
@@ -457,15 +484,58 @@
                 Mother Tongue
               </ng-template>
 
-            </ionic-selectable>
-           </ion-item>
+              </ionic-selectable>
+            </ion-item>
+
+              <ion-item>
+                <ion-label position="floating">Caste</ion-label>
+                <ionic-selectable
+                  [items]="caste"
+                  itemValueField="id" itemTextField="name"
+                  headerColor="light"
+                  [canSearch]="true"
+                  searchFailText="nothing found"
+                  formControlName="caste" [class.invalid]="!slideThreeForm.controls.caste.valid && (slideThreeForm.controls.caste.dirty || submitAttempt)"
+                  >
+
+                  <ng-template ionicSelectableCloseButtonTemplate>
+                    <ion-icon name="close-circle"></ion-icon>
+                  </ng-template>
+                  <ng-template ionicSelectableTitleTemplate>
+                    Caste
+                  </ng-template>
+
+                  </ionic-selectable>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="floating">Sub-Caste</ion-label>
+                <ionic-selectable
+                  [items]="subcaste"
+                  itemValueField="id" itemTextField="name"
+                  headerColor="light"
+                  [canSearch]="true"
+                  searchFailText="nothing found"
+                  formControlName="subcaste" [class.invalid]="!slideThreeForm.controls.subcaste.valid && (slideThreeForm.controls.subcaste.dirty || submitAttempt)"
+                  >
+
+                  <ng-template ionicSelectableCloseButtonTemplate>
+                    <ion-icon name="close-circle"></ion-icon>
+                  </ng-template>
+                  <ng-template ionicSelectableTitleTemplate>
+                    Sub-Caste
+                  </ng-template>
+
+                  </ionic-selectable>
+              </ion-item>
+
            <ion-item>
             <ion-label>Highest Degree</ion-label>
             <ionic-selectable
               #selectComponent
               [items]="education1"
               itemValueField="id" itemTextField="name"
-              headerColor="primary"
+              headerColor="light"
               [canSearch]="true"
               searchFailText="nothing found">
 
@@ -485,7 +555,7 @@
               #selectComponent
               [items]="occupation1"
               itemValueField="id" itemTextField="name"
-              headerColor="primary"
+              headerColor="light"
               [canSearch]="true"
               searchFailText="nothing found">
 
@@ -506,7 +576,7 @@
               #selectComponent
               [items]="salary1"
               itemValueField="id" itemTextField="name"
-              headerColor="primary"
+              headerColor="light"
               [canSearch]="true"
               searchFailText="nothing found">
 
@@ -527,7 +597,8 @@
         <br>
         <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
         <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="savePartnerDetails()">Save</ion-button>
-       </ion-slide>
+       </form>
+      </ion-slide>
 
 
 

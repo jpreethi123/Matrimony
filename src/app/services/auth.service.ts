@@ -59,6 +59,21 @@ httpOptions: {headers: HttpHeaders}={
     );
   }
 
+  getMotherTongue()
+  {
+    return this.http.get(`http://localhost:5000/auth/getMotherTongue`,this.httpOptions);
+  }
+
+  getCaste()
+  {
+    return this.http.get(`http://localhost:5000/auth/getCaste`,this.httpOptions);
+  }
+
+  getSubCaste(name)
+  {
+    return this.http.get(`http://localhost:5000/auth/getSubCaste/${name}`,this.httpOptions);
+  }
+
   getBasicDetails(uid)
   {
     return this.http.get(`http://localhost:5000/auth/getBasicDetails/${uid}`,this.httpOptions);
