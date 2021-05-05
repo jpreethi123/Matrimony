@@ -51,6 +51,8 @@ router.post('/login',authController.login);
 router.get('/getMotherTongue',authController.getMotherTongue);
 router.get('/getCaste',authController.getCaste);
 router.get('/getSubCaste/:name',authController.getSubCaste);
+router.get('/geteducation',authController.geteducation);
+router.get('/getoccupation',authController.getoccupation);
 
 router.get('/getBasicDetails/:uid',authController.getBasicDetails);
 router.put('/putBasicDetails',authController.putBasicDetails);

@@ -41,6 +41,18 @@ module.exports=class User{
       );
     }
 
+    static geteducation(){
+      return db.execute(
+        'SELECT * FROM education'
+      );
+    }
+
+    static getoccupation(){
+      return db.execute(
+        'SELECT * FROM occupation'
+      );
+    }
+
     static getBasicDetails(uid){
       return db.execute(
         'SELECT * FROM basic_details WHERE uid=?',[uid]

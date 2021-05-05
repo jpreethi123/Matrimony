@@ -74,6 +74,17 @@ httpOptions: {headers: HttpHeaders}={
     return this.http.get(`http://localhost:5000/auth/getSubCaste/${name}`,this.httpOptions);
   }
 
+
+  geteducation()
+  {
+    return this.http.get(`http://localhost:5000/auth/geteducation`,this.httpOptions);
+  }
+
+  getoccupation()
+  {
+    return this.http.get(`http://localhost:5000/auth/getoccupation`,this.httpOptions);
+  }
+
   getBasicDetails(uid)
   {
     return this.http.get(`http://localhost:5000/auth/getBasicDetails/${uid}`,this.httpOptions);

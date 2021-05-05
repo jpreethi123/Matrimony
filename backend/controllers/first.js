@@ -213,6 +213,29 @@ exports.getSubCaste=async(req,res,next)=>{
   }
 };
 
+exports.geteducation=async(req,res,next)=>{
+  try{
+    const user=await User.geteducation();
+    res.status(200).json(user);
+  }
+  catch(err){
+    console.log(err.message);
+  }
+};
+
+exports.getoccupation=async(req,res,next)=>{
+  try{
+    const user=await User.getoccupation();
+    res.status(200).json(user);
+  }
+  catch(err){
+    console.log(err.message);
+  }
+};
+
+
+
+
 exports.getBasicDetails=async(req,res,next)=>{
   const uid=req.params.uid;
   //console.log("uid "+uid);
