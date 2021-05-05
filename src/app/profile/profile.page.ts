@@ -38,6 +38,8 @@ export class ProfilePage implements OnInit {
   mt = [];
   caste = [];
   subcaste = [];
+  edu = [];
+  occ = [];
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
   // selected_mt = null;
@@ -60,29 +62,29 @@ export class ProfilePage implements OnInit {
   // {id:19,name:'Santali'},{id:20,name:'Sindhi'},{id:21,name:'Urdu'}
   // ];
 
-  select=null;
-education=[{id:101,name:'B.E/B.Tech'},{id:102,name:'BCA'},{id:103,name:'Bsc IT'},
-{id:104,name:'B Arch'},{id:105,name:'ME/MTech'},{id:106,name:'MS'},{id:107,name:'MCA'},
-{id:108,name:'Msc/IT'},{id:109,name:'M Arch'},{id:110,name:'MBBS'},{id:111,name:'BDS'},
-{id:112,name:'BPT'},{id:113,name:'BPharm'},{id:114,name:'BSc Nursing'},{id:115,name:'BAMS'},
-{id:116,name:'BHMS'},{id:117,name:'BUMS'},{id:118,name:'MD/MS'},{id:119,name:'MDS'},
-{id:120,name:'MPT'},{id:121,name:'Mpharm'},{id:122,name:'MVSc'},{id:123,name:'CA'},
-{id:124,name:'BCom'},{id:125,name:'Mcom'},{id:126,name:'BBA'},{id:127,name:'MBA'},
-{id:128,name:'LLB'},{id:129,name:'LLM'},{id:130,name:'BA'},{id:131,name:'BSc'},
-{id:132,name:'BEd'},{id:133,name:'PhD'},{id:134,name:'Diploma'},{id:135,name:'High School'},
-{id:136,name:'Higher Secondary'}];
+//   select=null;
+// education=[{id:101,name:'B.E/B.Tech'},{id:102,name:'BCA'},{id:103,name:'Bsc IT'},
+// {id:104,name:'B Arch'},{id:105,name:'ME/MTech'},{id:106,name:'MS'},{id:107,name:'MCA'},
+// {id:108,name:'Msc/IT'},{id:109,name:'M Arch'},{id:110,name:'MBBS'},{id:111,name:'BDS'},
+// {id:112,name:'BPT'},{id:113,name:'BPharm'},{id:114,name:'BSc Nursing'},{id:115,name:'BAMS'},
+// {id:116,name:'BHMS'},{id:117,name:'BUMS'},{id:118,name:'MD/MS'},{id:119,name:'MDS'},
+// {id:120,name:'MPT'},{id:121,name:'Mpharm'},{id:122,name:'MVSc'},{id:123,name:'CA'},
+// {id:124,name:'BCom'},{id:125,name:'Mcom'},{id:126,name:'BBA'},{id:127,name:'MBA'},
+// {id:128,name:'LLB'},{id:129,name:'LLM'},{id:130,name:'BA'},{id:131,name:'BSc'},
+// {id:132,name:'BEd'},{id:133,name:'PhD'},{id:134,name:'Diploma'},{id:135,name:'High School'},
+// {id:136,name:'Higher Secondary'}];
 
-selectpre=null;
-education1=[{id:101,name:'B.E/B.Tech'},{id:102,name:'BCA'},{id:103,name:'Bsc IT'},
-{id:104,name:'B Arch'},{id:105,name:'ME/MTech'},{id:106,name:'MS'},{id:107,name:'MCA'},
-{id:108,name:'Msc/IT'},{id:109,name:'M Arch'},{id:110,name:'MBBS'},{id:111,name:'BDS'},
-{id:112,name:'BPT'},{id:113,name:'BPharm'},{id:114,name:'BSc Nursing'},{id:115,name:'BAMS'},
-{id:116,name:'BHMS'},{id:117,name:'BUMS'},{id:118,name:'MD/MS'},{id:119,name:'MDS'},
-{id:120,name:'MPT'},{id:121,name:'Mpharm'},{id:122,name:'MVSc'},{id:123,name:'CA'},
-{id:124,name:'BCom'},{id:125,name:'Mcom'},{id:126,name:'BBA'},{id:127,name:'MBA'},
-{id:128,name:'LLB'},{id:129,name:'LLM'},{id:130,name:'BA'},{id:131,name:'BSc'},
-{id:132,name:'BEd'},{id:133,name:'PhD'},{id:134,name:'Diploma'},{id:135,name:'High School'},
-{id:136,name:'Higher Secondary'}];
+// selectpre=null;
+// education1=[{id:101,name:'B.E/B.Tech'},{id:102,name:'BCA'},{id:103,name:'Bsc IT'},
+// {id:104,name:'B Arch'},{id:105,name:'ME/MTech'},{id:106,name:'MS'},{id:107,name:'MCA'},
+// {id:108,name:'Msc/IT'},{id:109,name:'M Arch'},{id:110,name:'MBBS'},{id:111,name:'BDS'},
+// {id:112,name:'BPT'},{id:113,name:'BPharm'},{id:114,name:'BSc Nursing'},{id:115,name:'BAMS'},
+// {id:116,name:'BHMS'},{id:117,name:'BUMS'},{id:118,name:'MD/MS'},{id:119,name:'MDS'},
+// {id:120,name:'MPT'},{id:121,name:'Mpharm'},{id:122,name:'MVSc'},{id:123,name:'CA'},
+// {id:124,name:'BCom'},{id:125,name:'Mcom'},{id:126,name:'BBA'},{id:127,name:'MBA'},
+// {id:128,name:'LLB'},{id:129,name:'LLM'},{id:130,name:'BA'},{id:131,name:'BSc'},
+// {id:132,name:'BEd'},{id:133,name:'PhD'},{id:134,name:'Diploma'},{id:135,name:'High School'},
+// {id:136,name:'Higher Secondary'}];
 
 
 selectsal=null;
@@ -99,48 +101,48 @@ salary1=[{id:1,name:'less than 50000'},{id:2,name:'50000-1 lakh'},{id:3,name:'1 
 {id:13,name:'9 lakh-10 lakh'},{id:14,name:'10 lakh-12 lakh'},{id:15,name:'12 lakh-15 lakh'},{id:16,name:'15 lakh-20 lakh'},
 {id:17,name:'20 lakh-25 lakh'},{id:18,name:'25 lakh-30 lakh'},{id:19,name:'30 lakh-50 lakh'},{id:20,name:'bove 50 lakh'}];
 
-selectocc=null;
-occupation=[{id:201,name:'Banking professional'},{id:202,name:'Chartered Accountant'},{id:203,name:'Company Secretary'},
-{id:204,name:'Bank Employee'},
-{id:205,name:'Actor'},{id:206,name:'Event Manager'},{id:207,name:'Journalist'},{id:208,name:'Media Preofessional'},
-{id:209,name:'Farming'},{id:210,name:'Agriculture Professional'},{id:211,name:'Horticulturist'},{id:212,name:'Air Hostess'},
-{id:213,name:'Pilot'},{id:214,name:'other airline professional'},{id:215,name:'Architect'},{id:216,name:'Interior Design'},
-{id:217,name:'Animator'},{id:218,name:'Web/Ux designers'},{id:219,name:'Beautician'},{id:220,name:'Fashion Designer'},
-{id:221,name:'HairStylist'},{id:222,name:'jewellery designer'},{id:223,name:'IAS/IRS/IES/IFS'},{id:224,name:'IPS'},
-{id:225,name:'Airforce'},{id:226,name:'Army'},{id:227,name:'Navy'},{id:228,name:'Defence services'},
-{id:229,name:'Teacher'},{id:230,name:'Lecturer'},{id:231,name:'Professor'},{id:232,name:'Researceher'},
-{id:233,name:'Software Engineer'},{id:234,name:'Civil Engineer'},{id:235,name:'Mechanical Engineer'},{id:236,name:'Electrical Engineer'},
-{id:237,name:'Non IT Engineer'},{id:238,name:'Chef'},{id:239,name:'Hotel/Hospitality Professional'},{id:240,name:'Software Developer'},
-{id:241,name:'Software Consultant'},{id:242,name:'Lawyer'},{id:243,name:'Legal Assistant'},{id:244,name:'Legal Professional'},
-{id:245,name:'Dentist'},{id:246,name:'Doctor'},{id:247,name:'Medical Transcriptionist'},{id:248,name:'Nurse'},
-{id:249,name:'Pharmacist'},{id:250,name:'Physiotherapist'},{id:251,name:'Surgeon'},{id:252,name:'Psychologist'},
-{id:253,name:'Veterinary Doctor'},{id:254,name:'Therapist'},{id:255,name:'Marketubg Professional'},{id:256,name:'sales professional'},
-{id:257,name:'Biologist'},{id:258,name:'Botanist'},{id:259,name:'Agent/Contractor/broker'},{id:260,name:'Bussiness owner'},
-{id:261,name:'Politician'},{id:262,name:'Sportsman/SportsWomen'},{id:263,name:'Writer'},{id:264,name:'Travel/Transport Professional'},
+// selectocc=null;
+// occupation=[{id:201,name:'Banking professional'},{id:202,name:'Chartered Accountant'},{id:203,name:'Company Secretary'},
+// {id:204,name:'Bank Employee'},
+// {id:205,name:'Actor'},{id:206,name:'Event Manager'},{id:207,name:'Journalist'},{id:208,name:'Media Preofessional'},
+// {id:209,name:'Farming'},{id:210,name:'Agriculture Professional'},{id:211,name:'Horticulturist'},{id:212,name:'Air Hostess'},
+// {id:213,name:'Pilot'},{id:214,name:'other airline professional'},{id:215,name:'Architect'},{id:216,name:'Interior Design'},
+// {id:217,name:'Animator'},{id:218,name:'Web/Ux designers'},{id:219,name:'Beautician'},{id:220,name:'Fashion Designer'},
+// {id:221,name:'HairStylist'},{id:222,name:'jewellery designer'},{id:223,name:'IAS/IRS/IES/IFS'},{id:224,name:'IPS'},
+// {id:225,name:'Airforce'},{id:226,name:'Army'},{id:227,name:'Navy'},{id:228,name:'Defence services'},
+// {id:229,name:'Teacher'},{id:230,name:'Lecturer'},{id:231,name:'Professor'},{id:232,name:'Researceher'},
+// {id:233,name:'Software Engineer'},{id:234,name:'Civil Engineer'},{id:235,name:'Mechanical Engineer'},{id:236,name:'Electrical Engineer'},
+// {id:237,name:'Non IT Engineer'},{id:238,name:'Chef'},{id:239,name:'Hotel/Hospitality Professional'},{id:240,name:'Software Developer'},
+// {id:241,name:'Software Consultant'},{id:242,name:'Lawyer'},{id:243,name:'Legal Assistant'},{id:244,name:'Legal Professional'},
+// {id:245,name:'Dentist'},{id:246,name:'Doctor'},{id:247,name:'Medical Transcriptionist'},{id:248,name:'Nurse'},
+// {id:249,name:'Pharmacist'},{id:250,name:'Physiotherapist'},{id:251,name:'Surgeon'},{id:252,name:'Psychologist'},
+// {id:253,name:'Veterinary Doctor'},{id:254,name:'Therapist'},{id:255,name:'Marketubg Professional'},{id:256,name:'sales professional'},
+// {id:257,name:'Biologist'},{id:258,name:'Botanist'},{id:259,name:'Agent/Contractor/broker'},{id:260,name:'Bussiness owner'},
+// {id:261,name:'Politician'},{id:262,name:'Sportsman/SportsWomen'},{id:263,name:'Writer'},{id:264,name:'Travel/Transport Professional'},
 
-];
+// ];
 
 
-selectoccpre=null;
-occupation1=[{id:201,name:'Banking professional'},{id:202,name:'Chartered Accountant'},{id:203,name:'Company Secretary'},
-{id:204,name:'Bank Employee'},
-{id:205,name:'Actor'},{id:206,name:'Event Manager'},{id:207,name:'Journalist'},{id:208,name:'Media Preofessional'},
-{id:209,name:'Farming'},{id:210,name:'Agriculture Professional'},{id:211,name:'Horticulturist'},{id:212,name:'Air Hostess'},
-{id:213,name:'Pilot'},{id:214,name:'other airline professional'},{id:215,name:'Architect'},{id:216,name:'Interior Design'},
-{id:217,name:'Animator'},{id:218,name:'Web/Ux designers'},{id:219,name:'Beautician'},{id:220,name:'Fashion Designer'},
-{id:221,name:'HairStylist'},{id:222,name:'jewellery designer'},{id:223,name:'IAS/IRS/IES/IFS'},{id:224,name:'IPS'},
-{id:225,name:'Airforce'},{id:226,name:'Army'},{id:227,name:'Navy'},{id:228,name:'Defence services'},
-{id:229,name:'Teacher'},{id:230,name:'Lecturer'},{id:231,name:'Professor'},{id:232,name:'Researceher'},
-{id:233,name:'Software Engineer'},{id:234,name:'Civil Engineer'},{id:235,name:'Mechanical Engineer'},{id:236,name:'Electrical Engineer'},
-{id:237,name:'Non IT Engineer'},{id:238,name:'Chef'},{id:239,name:'Hotel/Hospitality Professional'},{id:240,name:'Software Developer'},
-{id:241,name:'Software Consultant'},{id:242,name:'Lawyer'},{id:243,name:'Legal Assistant'},{id:244,name:'Legal Professional'},
-{id:245,name:'Dentist'},{id:246,name:'Doctor'},{id:247,name:'Medical Transcriptionist'},{id:248,name:'Nurse'},
-{id:249,name:'Pharmacist'},{id:250,name:'Physiotherapist'},{id:251,name:'Surgeon'},{id:252,name:'Psychologist'},
-{id:253,name:'Veterinary Doctor'},{id:254,name:'Therapist'},{id:255,name:'Marketubg Professional'},{id:256,name:'sales professional'},
-{id:257,name:'Biologist'},{id:258,name:'Botanist'},{id:259,name:'Agent/Contractor/broker'},{id:260,name:'Bussiness owner'},
-{id:261,name:'Politician'},{id:262,name:'Sportsman/SportsWomen'},{id:263,name:'Writer'},{id:264,name:'Travel/Transport Professional'},
+// selectoccpre=null;
+// occupation1=[{id:201,name:'Banking professional'},{id:202,name:'Chartered Accountant'},{id:203,name:'Company Secretary'},
+// {id:204,name:'Bank Employee'},
+// {id:205,name:'Actor'},{id:206,name:'Event Manager'},{id:207,name:'Journalist'},{id:208,name:'Media Preofessional'},
+// {id:209,name:'Farming'},{id:210,name:'Agriculture Professional'},{id:211,name:'Horticulturist'},{id:212,name:'Air Hostess'},
+// {id:213,name:'Pilot'},{id:214,name:'other airline professional'},{id:215,name:'Architect'},{id:216,name:'Interior Design'},
+// {id:217,name:'Animator'},{id:218,name:'Web/Ux designers'},{id:219,name:'Beautician'},{id:220,name:'Fashion Designer'},
+// {id:221,name:'HairStylist'},{id:222,name:'jewellery designer'},{id:223,name:'IAS/IRS/IES/IFS'},{id:224,name:'IPS'},
+// {id:225,name:'Airforce'},{id:226,name:'Army'},{id:227,name:'Navy'},{id:228,name:'Defence services'},
+// {id:229,name:'Teacher'},{id:230,name:'Lecturer'},{id:231,name:'Professor'},{id:232,name:'Researceher'},
+// {id:233,name:'Software Engineer'},{id:234,name:'Civil Engineer'},{id:235,name:'Mechanical Engineer'},{id:236,name:'Electrical Engineer'},
+// {id:237,name:'Non IT Engineer'},{id:238,name:'Chef'},{id:239,name:'Hotel/Hospitality Professional'},{id:240,name:'Software Developer'},
+// {id:241,name:'Software Consultant'},{id:242,name:'Lawyer'},{id:243,name:'Legal Assistant'},{id:244,name:'Legal Professional'},
+// {id:245,name:'Dentist'},{id:246,name:'Doctor'},{id:247,name:'Medical Transcriptionist'},{id:248,name:'Nurse'},
+// {id:249,name:'Pharmacist'},{id:250,name:'Physiotherapist'},{id:251,name:'Surgeon'},{id:252,name:'Psychologist'},
+// {id:253,name:'Veterinary Doctor'},{id:254,name:'Therapist'},{id:255,name:'Marketubg Professional'},{id:256,name:'sales professional'},
+// {id:257,name:'Biologist'},{id:258,name:'Botanist'},{id:259,name:'Agent/Contractor/broker'},{id:260,name:'Bussiness owner'},
+// {id:261,name:'Politician'},{id:262,name:'Sportsman/SportsWomen'},{id:263,name:'Writer'},{id:264,name:'Travel/Transport Professional'},
 
-];
+// ];
 
 heightsel=null;
 
@@ -216,6 +218,20 @@ heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'
       // eslint-disable-next-line @typescript-eslint/prefer-for-of
       for(let i=0;i<msg[0].length;i++){
         this.caste.push({id:i,name:msg[0][i].caste_name});
+      }
+    });
+
+    this.authService.geteducation().subscribe((msg)=>{
+      // eslint-disable-next-line @typescript-eslint/prefer-for-of
+       for(let i=0;i<msg[0].length;i++){
+         this.edu.push({id:i,name:msg[0][i].eduname});
+       }
+    });
+
+    this.authService.getoccupation().subscribe((msg)=>{
+      // eslint-disable-next-line @typescript-eslint/prefer-for-of
+      for(let i=0;i<msg[0].length;i++){
+        this.occ.push({id:1,name:msg[0][i].occuname});
       }
     });
 

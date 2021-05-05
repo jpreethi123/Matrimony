@@ -289,8 +289,7 @@
           <ion-label position="floating">Highest Degree<ion-text color="danger">*</ion-text></ion-label>
           <ionic-selectable
             #selectComponent
-            [(ngModel)]="select"
-            [items]="education"
+            [items]="edu"
             itemValueField="id" itemTextField="name"
             headerColor="primary"
             [canSearch]="true"
@@ -311,8 +310,7 @@
           <ion-label position="floating">Occuption<ion-text color="danger">*</ion-text></ion-label>
           <ionic-selectable
             #selectComponent
-            [(ngModel)]="selectocc"
-            [items]="occupation"
+            [items]="occ"
             itemValueField="id" itemTextField="name"
             headerColor="primary"
             [canSearch]="true"
