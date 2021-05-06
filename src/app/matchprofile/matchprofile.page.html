@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>viewprofile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<!-- <ion-card  *ngFor="let user of user1$ | async">
+  <ion-card-content>
+    <img src="./../../assets/icon/profile.png">
+    <ion-card-title>{{user.name}}</ion-card-title>
+
+  </ion-card-content>
+</ion-card> -->
+
+
+<ion-card>
+  <ion-card-content>
+    <ion-row>
+      <img src="./../../assets/icon/profile.png">
+    </ion-row><br>
+
+    <div class="ion-text-center text1">
+      <ion-text>Name</ion-text>
+    </div><br>
+    <ion-row>
+      <ion-button class="row1" color="light" (click)="personal()">Personal</ion-button>
+      <ion-button class="row1" color="light" (click)="education()">Profession</ion-button>
+    </ion-row>
+    <ion-row>
+      <div *ngIf="filledfamily">
+        <ion-button class="row1" color="light" (click)="family()">Family</ion-button>
+
+      </div>
+      <div *ngIf="filledpreference">
+        <ion-button class="row1" color="light" (click)="preference()">Preference</ion-button>
+
+      </div>
+
+
+    </ion-row>
+    <div *ngIf="showpersonal"  class="text2">
+      <ion-text>DOB &nbsp;-&nbsp; </ion-text><br>
+     <ion-text>Age &nbsp;-&nbsp; -</ion-text><br>
+     <ion-text>Religion &nbsp;-&nbsp; </ion-text><br>
+     <ion-text>Caste &nbsp;-&nbsp;</ion-text><br>
+     <ion-text>Subcaste &nbsp;-&nbsp; </ion-text><br>
+     <ion-text>Mother Tongue &nbsp;-&nbsp;</ion-text><br>
+     <ion-text>Height &nbsp;-&nbsp;</ion-text><br>
+    </div>
+
+    <div *ngIf="showedu" class="text2">
+      <ion-text>Education  &nbsp;-&nbsp;</ion-text><br>
+    <ion-text>Occupation  &nbsp;-&nbsp;</ion-text><br>
+    <ion-text>Address   &nbsp;-&nbsp;</ion-text><br>
+    <ion-text>Phone Number   &nbsp;-&nbsp;</ion-text><br>
+
+    </div>
+
+    <div *ngIf="showfamily"  class="text2">
+     <ion-text>Family Status  &nbsp;-&nbsp;</ion-text><br>
+     <ion-text>Family Value  &nbsp;-&nbsp;</ion-text><br>
+     <ion-text>About Family  &nbsp;-&nbsp;</ion-text><br>
+    </div>
+
+    <div *ngIf="showpreference"  class="text2">
+      <ion-text>preferred age &nbsp;-&nbsp;</ion-text><br>
+      <ion-text>Preferred height &nbsp;-&nbsp;</ion-text><br>
+      <ion-text>Preferred religion &nbsp;-&nbsp;</ion-text><br>
+      <ion-text>Preferred degree &nbsp;-&nbsp;</ion-text><br>
+      <ion-text>Preferred Occupation &nbsp;-&nbsp;</ion-text><br>
+     </div>
+
+
+
+
+  </ion-card-content>
+</ion-card>
+</ion-content>
+
+

@@ -313,3 +313,27 @@ exports.getPersonalDetails=async(req,res,next)=>{
 //   }
 // };
 
+exports.fetchAllMale=async(req,res,next)=>{
+  //console.log("uid "+uid);
+  try{
+    const user=await User.fetchAllMale();
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.fetchAllFemale=async(req,res,next)=>{
+  //console.log("uid "+uid);
+  try{
+    const user=await User.fetchAllFemale();
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+
+

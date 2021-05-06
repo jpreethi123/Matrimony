@@ -69,4 +69,9 @@ router.get('/getPersonalDetails/:uid',authController.getPersonalDetails);
 // router.get('/getFamilyDetails/:uid',authController.getFamilyDetails);
 //router.put('/putFamilyDetails',authController.putFamilyDetails);
 
+router.get('/fetchAllMale',authController.fetchAllMale);
+
+router.get('/fetchAllFemale',authController.fetchAllFemale);
+
+
 module.exports=router;

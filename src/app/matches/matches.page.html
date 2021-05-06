@@ -5,11 +5,8 @@
 </ion-header> -->
 
 <ion-content>
-  <ion-item>
-    Matches
-  </ion-item>
 
-  <ion-card class="mainCard">
+  <!-- <ion-card class="mainCard">
     <ion-row justify-content-between>
       <ion-col>
         <img src='./../../assets/rose.jpg' item-left/>
@@ -49,6 +46,43 @@
         <ion-row text-wrap><h2><ion-label>Caste</ion-label></h2></ion-row>
       </ion-col>
     </ion-row>
+  </ion-card> -->
+  <ion-card *ngFor="let match of AllMatches">
+    <ion-card-content>
+      <ion-row justify-content-between>
+        <ion-col size="5.5">
+          <img src="./../../assets/icon/profile.png">
+
+        </ion-col>
+
+
+      <ion-col class="col1">
+        <ion-row text-wrap class="text1">{{match.name}}</ion-row>
+        <ion-row text-wrap class="text2">{{match.occupation}}</ion-row>
+        <ion-row text-wrap class="text3">{{match.age}} years | {{match.height}}</ion-row>
+        <ion-row text-wrap class="text3">{{match.religion}} | {{match.caste}}</ion-row>
+
+
+        <ion-button color="light" (click)="view(match.uid)"class="text4">profile</ion-button>
+
+      </ion-col>
+
+      <!-- <form [formGroup]="submit">
+
+
+
+      <ion-item>
+        <ion-input type="text"  formControlName="userinfo"></ion-input>
+      </ion-item>
+        <ion-button (click)="view()">view profile</ion-button>
+      </form> -->
+    </ion-row>
+
+    </ion-card-content>
+
+
+
+
   </ion-card>
 
   </ion-content>
