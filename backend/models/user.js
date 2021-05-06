@@ -129,4 +129,17 @@ module.exports=class User{
 
       );
     }
+
+    static fetchAllMale(){
+      return db.execute(
+        'SELECT * FROM basic_details,education_details,personal_details WHERE (basic_details.gender="male" OR basic_details.gender="Male")  AND basic_details.uid =education_details.uid AND basic_details.uid=personal_details.uid'
+      );
+    }
+
+    static fetchAllFemale(){
+      return db.execute(
+        'SELECT * FROM basic_details,education_details,personal_details WHERE (basic_details.gender="Female" OR basic_details.gender="female")  AND basic_details.uid =education_details.uid AND basic_details.uid=personal_details.uid'
+      );
+    }
+
 }

@@ -136,4 +136,14 @@ httpOptions: {headers: HttpHeaders}={
   // }
 
 
+  fetchAllMale()
+  {
+    return this.http.get(`http://localhost:5000/auth/fetchAllMale`,this.httpOptions);
+  }
+  fetchAllFemale()
+  {
+    return this.http.get(`http://localhost:5000/auth/fetchAllFemale`,this.httpOptions);
+  }
+
+
 }
