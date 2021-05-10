@@ -245,7 +245,25 @@ exports.getoccupation=async(req,res,next)=>{
   }
 };
 
+exports.getsalaryscale=async(req,res,next)=>{
+  try{
+    const user=await User.getsalaryscale();
+    res.status(200).json(user);
+  }
+  catch(err){
+    console.log(err.message);
+  }
+};
 
+exports.getheightrange=async(req,res,next)=>{
+  try{
+    const user=await User.getheightrange();
+    res.status(200).json(user);
+  }
+  catch(err){
+    console.log(err.message);
+  }
+};
 
 
 exports.getBasicDetails=async(req,res,next)=>{
@@ -289,41 +307,179 @@ exports.getPersonalDetails=async(req,res,next)=>{
   }
 };
 
-// exports.getEduDetails=async(req,res,next)=>{
-//   const uid=req.params.uid;
-//   console.log("uid "+uid);
-//   try{
-//     const user=await User.getEduDetails(uid);
-//     res.status(200).json(user);
-//   }
-//   catch(err){
-//    console.log(err.message);
-//   }
-// };
+exports.putPersonalDetails=async(req,res,next)=>{
+  const basic = {
+   uid: req.body.uid,
+   martialstatu:req.body.martialstatu,
+   mothertongue:req.body.mothertongue,
+   caste:req.body.caste,
+   subcaste:req.body.subcaste,
+   weight:req.body.weight,
+   height:req.body.height,
+   aboutme:req.body.aboutme,
+  }
+  try{
+    const user=await User.putPersonalDetails(basic);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
 
-// exports.getPartnerDetails=async(req,res,next)=>{
-//   const uid=req.params.uid;
-//   console.log("uid "+uid);
-//   try{
-//     const user=await User.getPartnerDetails(uid);
-//     res.status(200).json(user);
-//   }
-//   catch(err){
-//    console.log(err.message);
-//   }
-// };
+exports.getEduDetails=async(req,res,next)=>{
+  const uid=req.params.uid;
+  try{
+    const user=await User.getEduDetails(uid);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
 
-// exports.getFamilyDetails=async(req,res,next)=>{
-//   const uid=req.params.uid;
-//   console.log("uid "+uid);
-//   try{
-//     const user=await User.getFamilyDetails(uid);
-//     res.status(200).json(user);
-//   }
-//   catch(err){
-//    console.log(err.message);
-//   }
-// };
+exports.putEduDetails=async(req,res,next)=>{
+  const basic = {
+   uid: req.body.uid,
+   edu:req.body.edu,
+   occu:req.body.occu,
+   salary:req.body.salary,
+  }
+  try{
+    const user=await User.putEduDetails(basic);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.getPartnerDetails=async(req,res,next)=>{
+  const uid=req.params.uid;
+  try{
+    const user=await User.getPartnerDetails(uid);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.putPartnerDetails=async(req,res,next)=>{
+  const basic = {
+   uid: req.body.uid,
+   age_from: req.body.age_from,
+   age_to:req.body.age_to,
+   height:req.body.height,
+   mother_tongue:req.body.mother_tongue,
+   highest_degree:req.body.edu,
+   occupation:req.body.occu,
+   salary:req.body.salary,
+   caste:req.body.caste,
+   subcaste:req.body.subcaste
+  }
+  try{
+    const user=await User.putPartnerDetails(basic);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.getFamilyDetails=async(req,res,next)=>{
+  const uid=req.params.uid;
+  try{
+    const user=await User.getFamilyDetails(uid);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.putFamilyDetails=async(req,res,next)=>{
+  const basic = {
+   uid: req.body.uid,
+   father_name:req.body.father_name,
+   father_occupation:req.body.father_occupation,
+   mother_name:req.body.mother_name,
+   mother_occupation:req.body.mother_occupation,
+   sibling:req.body.sibling,
+   family_type:req.body.family_type,
+   family_status:req.body.family_status,
+   family_value:req.body.family_value,
+  }
+  try{
+    const user=await User.putFamilyDetails(basic);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.getContactDetails=async(req,res,next)=>{
+  const uid=req.params.uid;
+  try{
+    const user=await User.getContactDetails(uid);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.putContactDetails=async(req,res,next)=>{
+  const basic = {
+   uid: req.body.uid,
+   person_type1:req.body.person_type1,
+   person_type1_num1:req.body.person_type1_num1,
+   person_type1_num2:req.body.person_type1_num2,
+   person_type2:req.body.person_type2,
+   person_type2_num1:req.body.person_type2_num1,
+   person_type2_num2:req.body.person_type2_num2,
+   person_type3:req.body.person_type3,
+   person_type3_num1:req.body.person_type3_num1,
+   person_type3_num2:req.body.person_type3_num2,
+  }
+  try{
+    const user=await User.putContactDetails(basic);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.getOtherDetails=async(req,res,next)=>{
+  const uid=req.params.uid;
+  try{
+    const user=await User.getOtherDetails(uid);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+
+};
+
+exports.putOtherDetails=async(req,res,next)=>{
+  const basic = {
+   uid: req.body.uid,
+   smoke:req.body.smoke,
+   drink:req.body.drink,
+   diet:req.body.diet,
+  }
+  try{
+    const user=await User.putOtherDetails(basic);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
 
 exports.fetchAllMale=async(req,res,next)=>{
   //console.log("uid "+uid);
