@@ -19,9 +19,7 @@ export class MainPage implements OnInit {
   ngOnInit() {
     this.authService.getBasicDetails(this.uid).subscribe((msg)=>{
           this.name = msg[0][0].name;
-          const a = msg[0][0].uid.slice(msg[0][0].uid.length-4);
-          const b = msg[0][0].dob.slice(0,4);
-          this.userid = (a+b);
+          this.userid = (msg[0][0].uid);
     });
   }
 
