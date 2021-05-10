@@ -250,9 +250,8 @@
           <ion-label position="floating">Height<ion-text color="danger">*</ion-text></ion-label>
           <ionic-selectable
             #selectComponent
-            [(ngModel)]="heightsel"
             [items]="heightRange"
-            itemValueField="id" itemTextField="h"
+            itemValueField="id" itemTextField="name"
             headerColor="primary"
             [canSearch]="true"
             (onChange)="portChange($event)"

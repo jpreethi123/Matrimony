@@ -3,7 +3,7 @@ const db=require('../util/database');
 
 module.exports=class User{
   constructor(uid,name,gender,dob,mail,phone_num,password,country,state,city,
-    marital_status,mother_tongue,caste,height,highest_degree,occupation)
+    marital_status,mother_tongue,caste,subcaste,height,highest_degree,occupation)
     {
       this.uid=uid;
       this.name=name;
@@ -18,6 +18,7 @@ module.exports=class User{
       this.marital_status=marital_status;
       this.mother_tongue=mother_tongue;
       this.caste=caste;
+      this.subcaste=subcaste;
       this.height=height;
       this.highest_degree=highest_degree;
       this.occupation=occupation;
@@ -176,8 +177,8 @@ module.exports=class User{
     }
     static savepersonal(user){
       return db.execute(
-        'INSERT INTO personal_details(uid,marital_status,mother_tongue,caste,height) VALUES(?,?,?,?,?)',
-        [user.uid,user.marital_status,user.mother_tongue,user.caste,user.height],
+        'INSERT INTO personal_details(uid,marital_status,mother_tongue,caste,height) VALUES(?,?,?,?,?,?)',
+        [user.uid,user.marital_status,user.mother_tongue,user.caste,user.subcaste,user.height],
 
       );
     }
