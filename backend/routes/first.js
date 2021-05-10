@@ -53,6 +53,8 @@ router.get('/getCaste',authController.getCaste);
 router.get('/getSubCaste/:name',authController.getSubCaste);
 router.get('/geteducation',authController.geteducation);
 router.get('/getoccupation',authController.getoccupation);
+router.get('/getsalaryscale',authController.getsalaryscale);
+router.get('/getheightrange',authController.getheightrange);
 
 router.get('/getBasicDetails/:uid',authController.getBasicDetails);
 router.put('/putBasicDetails',authController.putBasicDetails);
