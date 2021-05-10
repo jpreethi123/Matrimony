@@ -62,14 +62,6 @@
               <ion-input type="text" formControlName="phone"></ion-input>
             </ion-item>
 
-            <!-- <ion-item>
-              <span item-right> <ion-icon name="key"></ion-icon></span>
-              <ion-label position="floating">Password<ion-text color="danger">*</ion-text></ion-label>
-              <ion-input type="password" formControlName="password" [class.invalid]="!slideTwoForm.controls.password.valid && (slideTwoForm.controls.password.dirty || submitAttempt)"></ion-input>
-            </ion-item>
-            <ion-item *ngIf="!slideTwoForm.controls.password.valid  && (slideTwoForm.controls.password.dirty || submitAttempt)">
-              <ion-text color="danger">Please enter valid password min of 8 charachter.</ion-text>
-            </ion-item> -->
           </ion-list>
 
           <ion-item>
@@ -143,11 +135,10 @@
         <ion-label>Personal Details</ion-label>
         <ion-item>
           <ion-label position="floating">Marital Statue<ion-text color="danger">*</ion-text></ion-label>
-          <ion-select okText="Select" cancelText="Cancel" formControlName="maritalStatue" [class.invalid]="!slideThreeForm.controls.maritalStatue.valid && (slideThreeForm.controls.maritalStatue.dirty || submitAttempt)">
-            <ion-select-option value="unmarried">Unmarried</ion-select-option>
-            <ion-select-option value="divorced">Divorced</ion-select-option>
-            <ion-select-option value="separated">Separated</ion-select-option>
-            <ion-select-option value="widow">Widow</ion-select-option>
+          <ion-select  okText="Select" cancelText="Cancel" formControlName="maritalStatue" [class.invalid]="!slideThreeForm.controls.maritalStatue.valid && (slideThreeForm.controls.maritalStatue.dirty || submitAttempt)">
+            <ion-select-option *ngFor="let ms of maritalstatue" value="{{ ms }}">
+              {{ ms }}
+            </ion-select-option>
           </ion-select>
         </ion-item>
 
@@ -172,13 +163,6 @@
             </ionic-selectable>
           </ion-item>
 
-        <!-- <ion-item>
-          <ion-label position="floating">Religion<ion-text color="danger">*</ion-text></ion-label>
-          <ion-select value="religion" okText="Select" cancelText="Cancel"
-          formControlName="religion" [class.invalid]="!slideThreeForm.controls.religion.valid && (slideThreeForm.controls.religion.dirty || submitAttempt)">
-            <ion-select-option value="hindu">Hindu</ion-select-option>
-          </ion-select>
-        </ion-item> -->
 
         <ion-item>
           <ion-label position="floating">Caste<ion-text color="danger">*</ion-text></ion-label>
@@ -203,15 +187,14 @@
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Sub-Caste<ion-text color="danger">*</ion-text></ion-label>
+          <ion-label position="floating">Sub-Caste</ion-label>
           <ionic-selectable
             [items]="subcaste"
             itemValueField="id" itemTextField="name"
             headerColor="light"
             [canSearch]="true"
             searchFailText="nothing found"
-            formControlName="subcaste" [class.invalid]="!slideThreeForm.controls.subcaste.valid && (slideThreeForm.controls.subcaste.dirty || submitAttempt)"
-            >
+            formControlName="subcaste">
 
             <ng-template ionicSelectableCloseButtonTemplate>
               <ion-icon name="close-circle"></ion-icon>
@@ -230,7 +213,7 @@
 
         <ion-item>
           <ion-label position="floating">Weight</ion-label>
-          <ion-range min="40" max="200" color="primary" pin>
+          <ion-range min="40" max="200" color="primary" pin formControlName="weight">
             <ion-label slot="start">40</ion-label>
             <ion-label slot="end">200</ion-label>
           </ion-range>
@@ -241,7 +224,7 @@
           <ionic-selectable
             #selectComponent
             [items]="heightRange"
-            itemValueField="id" itemTextField="h"
+            itemValueField="id" itemTextField="name"
             headerColor="light"
             [canSearch]="true"
             (onChange)="portChange($event)"
@@ -323,7 +306,8 @@
             itemValueField="id" itemTextField="name"
             headerColor="light"
             [canSearch]="true"
-            searchFailText="nothing found">
+            searchFailText="nothing found"
+            formControlName="salary">
 
             <ng-template ionicSelectableCloseButtonTemplate>
               <ion-icon name="close-circle"></ion-icon>
@@ -341,29 +325,131 @@
       </form>
       </ion-slide>
 
-      <!-- Family details -->
+      <!-- Contact Details -->
       <ion-slide>
         <form [formGroup]="slideFiveForm">
+           <ion-label>Contact Details</ion-label>
+           <ion-item>
+            <ion-label position="floating">Person Type1</ion-label>
+            <ion-select  okText="Select" cancelText="Cancel" formControlName="persontype1" (ionChange)="onPersontype1Change($event)">
+              <ion-select-option *ngFor="let pt of personType" value="{{ pt }}">
+                {{ pt }}
+              </ion-select-option>
+            </ion-select>
+           </ion-item>
+
+           <ion-item>
+            <ion-label position="floating">Phone of Person Type1</ion-label>
+            <ion-input type="text" formControlName="p1pt1"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Phone of Person Type1</ion-label>
+            <ion-input type="text" formControlName="p1pt2"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Person Type2</ion-label>
+            <ion-select  okText="Select" cancelText="Cancel" formControlName="persontype2" (ionChange)="onPersontype2Change($event)">
+              <ion-select-option *ngFor="let pt of personType2" value="{{ pt }}">
+                {{ pt }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Phone of Person Type2</ion-label>
+            <ion-input type="text" formControlName="p2pt1"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Phone of Person Type2</ion-label>
+            <ion-input type="text" formControlName="p2pt2"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Person Type3</ion-label>
+            <ion-select  okText="Select" cancelText="Cancel" formControlName="persontype3">
+              <ion-select-option *ngFor="let pt of personType3" value="{{ pt }}">
+                {{ pt }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Phone of Person Type3</ion-label>
+            <ion-input type="text" formControlName="p3pt1"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Phone of Person Type3</ion-label>
+            <ion-input type="text" formControlName="p3pt2"></ion-input>
+          </ion-item>
+          <br>
+        <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
+        <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="saveContactDetails()">Save</ion-button>
+        <ion-button  (click)="swipeNext()"  color="light" shape="round" style="--box-shadow:none;">Next</ion-button>
+        </form>
+      </ion-slide>
+
+      <!-- Family details -->
+      <ion-slide>
+        <form [formGroup]="slideSixForm">
        <ion-label>Family Details</ion-label>
             <ion-item>
               <ion-label position="floating">Father Name</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-input type="text" formControlName="fathername"></ion-input>
             </ion-item>
+
             <ion-item>
              <ion-label position="floating">Father Occupation</ion-label>
-             <ion-input type="text"></ion-input>
-           </ion-item>
+              <ionic-selectable
+                #selectComponent
+                [items]="occ"
+                itemValueField="id" itemTextField="name"
+                headerColor="light"
+                [canSearch]="true"
+                searchFailText="nothing found"
+                formControlName="fatherocc">
+
+                <ng-template ionicSelectableCloseButtonTemplate>
+                  <ion-icon name="close-circle"></ion-icon>
+                </ng-template>
+                <ng-template ionicSelectableTitleTemplate>
+                  Occupation
+                </ng-template>
+                </ionic-selectable>
+            </ion-item>
+
+
            <ion-item>
              <ion-label position="floating">Mother Name</ion-label>
-             <ion-input type="text"></ion-input>
+             <ion-input type="text" formControlName="mothername"></ion-input>
            </ion-item>
+
            <ion-item>
              <ion-label position="floating">Mother Occupation</ion-label>
-             <ion-input type="text"></ion-input>
-           </ion-item>
+              <ionic-selectable
+                #selectComponent
+                [items]="occ"
+                itemValueField="id" itemTextField="name"
+                headerColor="light"
+                [canSearch]="true"
+                searchFailText="nothing found"
+                formControlName="motherocc">
+
+                <ng-template ionicSelectableCloseButtonTemplate>
+                  <ion-icon name="close-circle"></ion-icon>
+                </ng-template>
+                <ng-template ionicSelectableTitleTemplate>
+                  Occupation
+                </ng-template>
+                </ionic-selectable>
+            </ion-item>
+
            <ion-item>
              <ion-label position="floating">Siblings</ion-label>
-             <ion-select >
+             <ion-select formControlName="siblings">
               <ion-select-option>1</ion-select-option>
               <ion-select-option>2</ion-select-option>
               <ion-select-option>3</ion-select-option>
@@ -375,40 +461,37 @@
 
          <ion-item>
            <ion-label position="floating">Family type</ion-label>
-           <ion-select >
+           <ion-select formControlName="familytype">
             <ion-select-option>Joint Family</ion-select-option>
             <ion-select-option>Nuclear Family</ion-select-option>
             <ion-select-option>Others</ion-select-option>
-
            </ion-select>
          </ion-item>
 
        <ion-item>
          <ion-label position="floating">Family Status</ion-label>
-         <ion-select >
+         <ion-select formControlName="familystatus">
           <ion-select-option>Lower Income</ion-select-option>
           <ion-select-option>Middle Class</ion-select-option>
           <ion-select-option>Upper Middle Class</ion-select-option>
           <ion-select-option>Rich</ion-select-option>
-
          </ion-select>
        </ion-item>
 
      <ion-item>
        <ion-label position="floating">Family Value</ion-label>
-       <ion-select >
+       <ion-select formControlName="familyvalue">
         <ion-select-option>Liberal</ion-select-option>
         <ion-select-option>Moderate</ion-select-option>
         <ion-select-option>Orthodox</ion-select-option>
         <ion-select-option>Traditional</ion-select-option>
-
        </ion-select>
      </ion-item>
 
-     <ion-item>
+     <!-- <ion-item>
       <ion-label position="floating">About Family</ion-label><br>
        <ion-textarea></ion-textarea>
-     </ion-item>
+     </ion-item> -->
         <br>
         <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
         <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="saveFamilyDetails()">Save</ion-button>
@@ -416,13 +499,51 @@
         </form>
        </ion-slide>
 
+       <!-- Other Details -->
+      <ion-slide>
+        <form [formGroup]="slideSevenForm">
+          <ion-label>Other Details</ion-label>
+          <ion-item>
+            <ion-label position="floating">Smoke</ion-label>
+            <ion-select  okText="Select" cancelText="Cancel" formControlName="smoke">
+                <ion-select-option *ngFor="let pt of smoke" value="{{ pt }}">
+                  {{ pt }}
+                </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Drink</ion-label>
+            <ion-select  okText="Select" cancelText="Cancel" formControlName="drink">
+              <ion-select-option *ngFor="let pt of drink" value="{{ pt }}">
+                {{ pt }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Diet</ion-label>
+            <ion-select  okText="Select" cancelText="Cancel" formControlName="diet">
+              <ion-select-option *ngFor="let pt of diet" value="{{ pt }}">
+                {{ pt }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <br>
+          <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
+          <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="saveOtherDetails()">Save</ion-button>
+          <ion-button  (click)="swipeNext()"  color="light" shape="round" style="--box-shadow:none;">Next</ion-button>
+        </form>
+      </ion-slide>
+
       <!-- About Preferred partner -->
       <ion-slide>
-        <form [formGroup]="slideSixForm">
+        <form [formGroup]="slideEightForm">
           <ion-label>About Prefered Partner</ion-label>
             <ion-item>
               <ion-label position="floating">Age from</ion-label><br>
-             <ion-range min="20" max="60" color="secondary" pin="true">
+             <ion-range min="20" max="60" color="secondary" pin="true" formControlName="agefrom">
                <ion-label slot="start">20</ion-label>
                <ion-label slot="end">60</ion-label>
              </ion-range>
@@ -430,11 +551,10 @@
             </ion-item>
             <ion-item>
              <ion-label position="floating">Age To</ion-label><br>
-            <ion-range min="20" max="60" color="secondary" pin="true">
+            <ion-range min="20" max="60" color="secondary" pin="true" formControlName="ageto">
               <ion-label slot="start">20</ion-label>
               <ion-label slot="end">60</ion-label>
             </ion-range>
-
            </ion-item>
 
 
@@ -442,12 +562,13 @@
             <ion-label position="floating">Height</ion-label>
             <ionic-selectable
               #selectComponent
-              [items]="heightRange1"
-              itemValueField="id" itemTextField="h"
+              [items]="heightRange"
+              itemValueField="id" itemTextField="name"
               headerColor="light"
               [canSearch]="true"
               (onChange)="portChange($event)"
-              searchFailText="nothing found">
+              searchFailText="nothing found"
+              formControlName="height">
 
               <ng-template ionicSelectableCloseButtonTemplate>
                 <ion-icon name="close-circle"></ion-icon>
@@ -455,16 +576,8 @@
               <ng-template ionicSelectableTitleTemplate>
                 Height
               </ng-template>
-
               </ionic-selectable>
             </ion-item>
-
-           <!-- <ion-item>
-             <ion-label position="floating">Religion</ion-label>
-             <ion-select>
-               <ion-select-option>Hindu</ion-select-option>
-             </ion-select>
-           </ion-item> -->
 
            <ion-item>
              <ion-label position="floating">Mother Tongue</ion-label>
@@ -474,7 +587,8 @@
               itemValueField="id" itemTextField="name"
               headerColor="light"
               [canSearch]="true"
-              searchFailText="nothing found">
+              searchFailText="nothing found"
+              formControlName="mt">
 
               <ng-template ionicSelectableCloseButtonTemplate>
                 <ion-icon name="close-circle"></ion-icon>
@@ -482,7 +596,6 @@
               <ng-template ionicSelectableTitleTemplate>
                 Mother Tongue
               </ng-template>
-
               </ionic-selectable>
             </ion-item>
 
@@ -494,7 +607,7 @@
                   headerColor="light"
                   [canSearch]="true"
                   searchFailText="nothing found"
-                  formControlName="caste" [class.invalid]="!slideThreeForm.controls.caste.valid && (slideThreeForm.controls.caste.dirty || submitAttempt)"
+                  formControlName="caste"
                   >
 
                   <ng-template ionicSelectableCloseButtonTemplate>
@@ -515,7 +628,7 @@
                   headerColor="light"
                   [canSearch]="true"
                   searchFailText="nothing found"
-                  formControlName="subcaste" [class.invalid]="!slideThreeForm.controls.subcaste.valid && (slideThreeForm.controls.subcaste.dirty || submitAttempt)"
+                  formControlName="subcaste"
                   >
 
                   <ng-template ionicSelectableCloseButtonTemplate>
@@ -529,14 +642,15 @@
               </ion-item>
 
            <ion-item>
-            <ion-label>Highest Degree</ion-label>
+            <ion-label position="floating">Highest Degree</ion-label>
             <ionic-selectable
               #selectComponent
               [items]="edu"
               itemValueField="id" itemTextField="name"
               headerColor="light"
               [canSearch]="true"
-              searchFailText="nothing found">
+              searchFailText="nothing found"
+              formControlName="edu">
 
               <ng-template ionicSelectableCloseButtonTemplate>
                 <ion-icon name="close-circle"></ion-icon>
@@ -545,9 +659,8 @@
                 Highest Degree
               </ng-template>
               </ionic-selectable>
-
-
            </ion-item>
+
            <ion-item>
             <ion-label position="floating">Occuption</ion-label>
             <ionic-selectable
@@ -556,7 +669,8 @@
               itemValueField="id" itemTextField="name"
               headerColor="light"
               [canSearch]="true"
-              searchFailText="nothing found">
+              searchFailText="nothing found"
+              formControlName="occ">
 
               <ng-template ionicSelectableCloseButtonTemplate>
                 <ion-icon name="close-circle"></ion-icon>
@@ -573,11 +687,12 @@
             <ion-label position="floating">Salary(Annual)</ion-label>
             <ionic-selectable
               #selectComponent
-              [items]="salary1"
+              [items]="salary"
               itemValueField="id" itemTextField="name"
               headerColor="light"
               [canSearch]="true"
-              searchFailText="nothing found">
+              searchFailText="nothing found"
+              formControlName="salary">
 
               <ng-template ionicSelectableCloseButtonTemplate>
                 <ion-icon name="close-circle"></ion-icon>
@@ -586,13 +701,8 @@
                 salary(Annual)
               </ng-template>
               </ionic-selectable>
-
            </ion-item>
 
-           <!-- <ion-item>
-            <ion-label position="floating">About partner</ion-label>
-            <ion-textarea placeholder="Write about preferred partner"></ion-textarea>
-          </ion-item> -->
         <br>
         <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
         <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="savePartnerDetails()">Save</ion-button>

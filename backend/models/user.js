@@ -53,6 +53,18 @@ module.exports=class User{
       );
     }
 
+    static getsalaryscale(){
+      return db.execute(
+        'SELECT * FROM salaryscale'
+      );
+    }
+
+    static getheightrange(){
+      return db.execute(
+        'SELECT * FROM heightrange'
+      );
+    }
+
     static getBasicDetails(uid){
       return db.execute(
         'SELECT * FROM basic_details WHERE uid=?',[uid]
@@ -71,23 +83,71 @@ module.exports=class User{
       );
     }
 
-    // static getEduDetails(uid){
-    //   return db.execute(
-    //     'SELECT * FROM education_details WHERE uid=?',[uid]
-    //   );
-    // }
+    static putPersonalDetails(basic){
+      return db.execute(
+        'UPDATE personal_details SET marital_status=?,mother_tongue=?,caste=?,subcaste=?,height=?,weight=?,aboutme=? WHERE uid=?',[basic.maritalstatus,basic.mothertongue,basic.caste,basic.subcaste,basic.height,basic.weight,basic.aboutme,basic.uid]
+      );
+    }
 
-    // static getPartnerDetails(uid){
-    //   return db.execute(
-    //     'SELECT * FROM partner_details WHERE uid=?',[uid]
-    //   );
-    // }
+    static getEduDetails(uid){
+      return db.execute(
+        'SELECT * FROM education_details WHERE uid=?',[uid]
+      );
+    }
 
-    // static getFamilyDetails(uid){
-    //   return db.execute(
-    //     'SELECT * FROM family_details WHERE uid=?',[uid]
-    //   );
-    // }
+    static putEduDetails(basic){
+      return db.execute(
+        'UPDATE educational_details SET age_from=?,age_to=?,height=?,mother_tongue=?,highest_degree=?,occupation=?,salary=?,caste=?,subcaste=? WHERE uid=?',[basic.age_from,basic.age_to,basic.height,basic.mother_tongue,basic.highest_degree,basic.occupation,basic.salary,basic.caste,basic.subcaste,basic.uid]
+      );
+    }
+
+    static getPartnerDetails(uid){
+      return db.execute(
+        'SELECT * FROM partner_details WHERE uid=?',[uid]
+      );
+    }
+
+    static putPartnerDetails(basic){
+      return db.execute(
+        'UPDATE educational_details SET highest_degree=?,occupation=?,salary=? WHERE uid=?',[basic.edu,basic.occu,basic.salary,basic.uid]
+      );
+    }
+
+    static getFamilyDetails(uid){
+      return db.execute(
+        'SELECT * FROM family_details WHERE uid=?',[uid]
+      );
+    }
+
+    static putFamilyDetails(basic){
+      return db.execute(
+        'UPDATE educational_details SET father_name=?,father_occupation=?,mother_name=?,mother_occupation=?,sibling=?,family_type=?,family_status=?,family_value=? WHERE uid=?',[basic.father_name,basic.father_occupation,basic.mother_name,basic.mother_occupation,basic.sibling,basic.family_type,basic.family_status,basic.family_value,basic.uid]
+      );
+    }
+
+    static getContactDetails(uid){
+      return db.execute(
+        'SELECT * FROM contact_details WHERE uid=?',[uid]
+      );
+    }
+
+    static putContactDetails(basic){
+      return db.execute(
+        'UPDATE contact_details SET person_type1=?,person_type1_num1=?,person_type1_num2=?,person_type2=?,person_type2_num1=?,person_type2_num2=?,person_type3=?,person_type3_num1=?,person_type3_num2=?, WHERE uid=?',[basic.person_type1,basic.person_type1_num1,basic.person_type1_num2,basic.person_type2,basic.person_type2_num1,basic.person_type2_num2,basic.person_type3,basic.person_type3_num1,basic.person_type3_num2,basic.uid]
+      );
+    }
+
+    static getOtherDetails(uid){
+      return db.execute(
+        'SELECT * FROM other_details WHERE uid=?',[uid]
+      );
+    }
+
+    static putOtherDetails(basic){
+      return db.execute(
+        'UPDATE other_details SET drink=?,smoke=?,diet=? WHERE uid=?',[basic.drink,basic.smoke,basic.diet,basic.uid]
+      );
+    }
 
     static findmail (mail){
       return db.execute(
@@ -128,6 +188,22 @@ module.exports=class User{
         [user.uid,user.highest_degree,user.occupation]
 
       );
+    }
+
+    static savecontact(user){
+      return db.execute('INSERT INTO contact_details VALUES(?,?,?,?,?,?,?,?,?,?)',[user.uid,null,null,null,null,null,null,null,null,null]);
+    }
+
+    static saveother(user){
+      return db.execute('INSERT INTO other_details VALUES(?,?,?,?)',[user.uid,null,null,null]);
+    }
+
+    static savepartner(user){
+      return db.execute('INSERT INTO partner_details VALUES(?,?,?,?,?,?,?,?,?,?)',[user.uid,null,null,null,null,null,null,null,null,null]);
+    }
+
+    static savefamily(user){
+      return db.execute('INSERT INTO family_details VALUES(?,?,?,?,?,?,?,?,?)',[user.uid,null,null,null,null,null,null,null,null]);
     }
 
     static fetchAllMale(){

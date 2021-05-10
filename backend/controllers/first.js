@@ -83,25 +83,35 @@ exports.signup = async(req,res,next)=>{
       const error=new Error('User with this email already exists')
       error.statusCode=402;
       throw error;
-
-
     }
     const user1=await User.finduid(uid);
     if(user1[0].length === 1){
       const error=new Error('User with this uid already exists')
       error.statusCode=410;
       throw error;
-
-
     }
 
-
+    const usercontact={
+      uid:uid
+    }
+    const userfamily={
+      uid:uid
+    }
+    const userother={
+      uid:uid
+    }
+    const userpartner={
+      uid:uid
+    }
 
 
     const result1=await User.savebasic(userbasic);
     const result2=await User.savepersonal(userpersonal);
     const result3=await User.saveeducation(usereducation);
-
+    const r4 = await User.savecontact(usercontact);
+    const r5 = await User.savefamily(userfamily);
+    const r6 = await User.saveother(userother);
+    const r7 = await User.savepartner(userpartner);
 
 
 
