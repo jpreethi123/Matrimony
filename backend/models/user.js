@@ -86,7 +86,7 @@ module.exports=class User{
 
     static putPersonalDetails(basic){
       return db.execute(
-        'UPDATE personal_details SET marital_status=?,mother_tongue=?,caste=?,subcaste=?,height=?,weight=?,aboutme=? WHERE uid=?',[basic.maritalstatus,basic.mothertongue,basic.caste,basic.subcaste,basic.height,basic.weight,basic.aboutme,basic.uid]
+        'UPDATE personal_details SET marital_status=?,mother_tongue=?,caste=?,subcaste=?,height=?,weight=?,aboutme=? WHERE uid=?',[basic.martialstatu,basic.mothertongue,basic.caste,basic.subcaste,basic.height,basic.weight,basic.aboutme,basic.uid]
       );
     }
 
@@ -98,7 +98,7 @@ module.exports=class User{
 
     static putEduDetails(basic){
       return db.execute(
-        'UPDATE educational_details SET age_from=?,age_to=?,height=?,mother_tongue=?,highest_degree=?,occupation=?,salary=?,caste=?,subcaste=? WHERE uid=?',[basic.age_from,basic.age_to,basic.height,basic.mother_tongue,basic.highest_degree,basic.occupation,basic.salary,basic.caste,basic.subcaste,basic.uid]
+        'UPDATE education_details SET highest_degree=?,occupation=?,salary=? WHERE uid=?',[basic.edu,basic.occu,basic.salary,basic.uid]
       );
     }
 
@@ -110,7 +110,7 @@ module.exports=class User{
 
     static putPartnerDetails(basic){
       return db.execute(
-        'UPDATE educational_details SET highest_degree=?,occupation=?,salary=? WHERE uid=?',[basic.edu,basic.occu,basic.salary,basic.uid]
+        'UPDATE partner_details SET age_from=?,age_to=?,height=?,mother_tongue=?,highest_degree=?,occupation=?,salary=?,caste=?,subcaste=? WHERE uid=?',[basic.age_from,basic.age_to,basic.height,basic.mother_tongue,basic.highest_degree,basic.occupation,basic.salary,basic.caste,basic.subcaste,basic.uid]
       );
     }
 
@@ -122,7 +122,7 @@ module.exports=class User{
 
     static putFamilyDetails(basic){
       return db.execute(
-        'UPDATE educational_details SET father_name=?,father_occupation=?,mother_name=?,mother_occupation=?,sibling=?,family_type=?,family_status=?,family_value=? WHERE uid=?',[basic.father_name,basic.father_occupation,basic.mother_name,basic.mother_occupation,basic.sibling,basic.family_type,basic.family_status,basic.family_value,basic.uid]
+        'UPDATE family_details SET father_name=?,father_occupation=?,mother_name=?,mother_occupation=?,sibiling=?,family_type=?,family_status=?,family_value=? WHERE uid=?',[basic.father_name,basic.father_occupation,basic.mother_name,basic.mother_occupation,basic.sibling,basic.family_type,basic.family_status,basic.family_value,basic.uid]
       );
     }
 
@@ -134,7 +134,7 @@ module.exports=class User{
 
     static putContactDetails(basic){
       return db.execute(
-        'UPDATE contact_details SET person_type1=?,person_type1_num1=?,person_type1_num2=?,person_type2=?,person_type2_num1=?,person_type2_num2=?,person_type3=?,person_type3_num1=?,person_type3_num2=?, WHERE uid=?',[basic.person_type1,basic.person_type1_num1,basic.person_type1_num2,basic.person_type2,basic.person_type2_num1,basic.person_type2_num2,basic.person_type3,basic.person_type3_num1,basic.person_type3_num2,basic.uid]
+        'UPDATE contact_details SET person_type1=?,person_type1_num1=?,person_type1_num2=?,person_type2=?,person_type2_num1=?,person_type2_num2=?,person_type3=?,person_type3_num1=?,person_type3_num2=? WHERE uid=?',[basic.person_type1,basic.person_type1_num1,basic.person_type1_num2,basic.person_type2,basic.person_type2_num1,basic.person_type2_num2,basic.person_type3,basic.person_type3_num1,basic.person_type3_num2,basic.uid]
       );
     }
 
@@ -177,16 +177,16 @@ module.exports=class User{
     }
     static savepersonal(user){
       return db.execute(
-        'INSERT INTO personal_details(uid,marital_status,mother_tongue,caste,height) VALUES(?,?,?,?,?,?)',
-        [user.uid,user.marital_status,user.mother_tongue,user.caste,user.subcaste,user.height],
+        'INSERT INTO personal_details(uid,marital_status,mother_tongue,caste,height,weight,aboutme,subcaste) VALUES(?,?,?,?,?,?,?,?)',
+        [user.uid,user.marital_status,user.mother_tongue,user.caste,user.height,user.weight,user.aboutme,user.subcaste],
 
       );
     }
 
     static saveeducation(user){
       return db.execute(
-              'INSERT INTO education_details(uid,highest_degree,occupation) VALUES(?,?,?)',
-        [user.uid,user.highest_degree,user.occupation]
+              'INSERT INTO education_details(uid,highest_degree,occupation,salary) VALUES(?,?,?,?)',
+        [user.uid,user.highest_degree,user.occupation,user.salary]
 
       );
     }

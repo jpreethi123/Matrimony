@@ -9,7 +9,7 @@ import { IonicSelectableComponent } from 'ionic-selectable';
 import { CountriesService } from '../countries.service';
 import { AuthService } from '../services/auth.service';
 import { SigninPage} from '../signin/signin.page';
-
+import { SignupPage } from '../signup/signup.page';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +19,10 @@ import { SigninPage} from '../signin/signin.page';
 export class ProfilePage implements OnInit {
   @ViewChild('mySlider')  slides: IonSlides;
 
-  uid=SigninPage.siginUid;
+  uid='';
+  signup=SigninPage.siginUid;
+  signin=SignupPage.signUpUid;
+
   cont;
 
   public slideTwoForm: FormGroup;
@@ -176,6 +179,13 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
     this.getCountries();
+
+    if(this.signin===''){
+      this.uid = this.signup;
+    }
+    else{
+      this.uid = this.signin;
+    }
 
     this.authService.getMotherTongue().subscribe((msg)=>{
         // eslint-disable-next-line @typescript-eslint/prefer-for-of
@@ -378,17 +388,24 @@ export class ProfilePage implements OnInit {
     else{
       m = this.slideThreeForm.get('mothertongue').value.name;
     }
+    let w='';
+    if(isNaN(this.slideThreeForm.get('weight').value)){
+      w = null;
+    }
+    else{
+      w = this.slideThreeForm.get('weight').value;
+    }
     this.userdetails={
       uid:this.slideTwoForm.get('aadhar').value,
       martialstatu:this.slideThreeForm.get('maritalStatue').value,
       mothertongue:m,
       caste:c,
       subcaste:sc,
-      weight:this.slideThreeForm.get('weight').value,
+      weight:w,
       height:h,
       aboutme:this.slideThreeForm.get('aboutme').value,
     };
-    //console.log(this.userdetails);
+    console.log(this.userdetails);
     // const toast = await this.toastController.create({
     //   color: 'success',
     //   message: 'Your settings have been saved.',
@@ -414,7 +431,7 @@ export class ProfilePage implements OnInit {
       occu:this.slideFourForm.get('occ').value.name,
       salary:sc,
     };
-    //console.log(this.userdetails);
+    console.log(this.userdetails);
     this.authService.putEduDetails(this.userdetails).subscribe((msg)=>{
       console.log(msg);
     });
@@ -435,6 +452,13 @@ export class ProfilePage implements OnInit {
     else{
       m = this.slideSixForm.get('motherocc').value.name;
     }
+    let s = '';
+    if(this.slideSixForm.get('siblings').value === undefined){
+      s = null;
+    }
+    else{
+      s = this.slideSixForm.get('siblings').value;
+    }
     this.userdetails={
       uid:this.slideTwoForm.get('aadhar').value,
       // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -442,18 +466,19 @@ export class ProfilePage implements OnInit {
       father_occupation:f,
       mother_name:this.slideSixForm.get('mothername').value,
       mother_occupation:m,
-      sibling:this.slideSixForm.get('siblings').value,
+      sibling:s,
       family_type:this.slideSixForm.get('familytype').value,
       family_status:this.slideSixForm.get('familystatus').value,
       family_value:this.slideSixForm.get('familyvalue').value
     };
-    //console.log(this.userdetails);
+    console.log(this.userdetails);
     this.authService.putFamilyDetails(this.userdetails).subscribe((msg)=>{
       console.log(msg);
     });
   }
 
   savePartnerDetails(){
+    //console.log(this.slideEightForm.get('edu').value.name);
     let h='';
     if(this.slideEightForm.get('height').value.name === undefined){
        h = null;
@@ -515,7 +540,7 @@ export class ProfilePage implements OnInit {
       caste:c,
       subcaste:sc
     };
-    //console.log(this.userdetails);
+    console.log(this.userdetails);
     this.authService.putPartnerDetails(this.userdetails).subscribe((msg)=>{
       console.log(msg);
     });
@@ -534,7 +559,7 @@ export class ProfilePage implements OnInit {
       person_type3_num1:this.slideFiveForm.get('p3pt1').value,
       person_type3_num2:this.slideFiveForm.get('p3pt2').value,
     };
-    //console.log(this.userdetails);
+    console.log(this.userdetails);
     this.authService.putContactDetails(this.userdetails).subscribe((msg)=>{
       console.log(msg);
     });
@@ -547,6 +572,7 @@ export class ProfilePage implements OnInit {
       drink:this.slideSevenForm.get('drink').value,
       diet:this.slideSevenForm.get('diet').value
     };
+    console.log(this.userdetails);
     this.authService.putOtherDetails(this.userdetails).subscribe((msg)=>{
       console.log(msg);
     });

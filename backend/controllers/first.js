@@ -8,6 +8,7 @@ const User=require('../models/user');
 
 exports.signup = async(req,res,next)=>{
   const errors=validationResult(req);
+  console.log(errors);
   if(!errors.isEmpty()) return;
 
   const uid=req.body.uid;
@@ -71,13 +72,16 @@ exports.signup = async(req,res,next)=>{
       caste:caste,
       subcaste:subcaste,
       height:height,
+      weight:null,
+      aboutme:null
 
     }
 
     const usereducation={
       uid:uid,
       highest_degree:highest_degree,
-      occupation:occupation
+      occupation:occupation,
+      salary:null
 
     }
     const user=await User.findmail(mail);
@@ -318,6 +322,7 @@ exports.putPersonalDetails=async(req,res,next)=>{
    height:req.body.height,
    aboutme:req.body.aboutme,
   }
+  //console.log(basic);
   try{
     const user=await User.putPersonalDetails(basic);
     res.status(200).json(user);
@@ -372,12 +377,13 @@ exports.putPartnerDetails=async(req,res,next)=>{
    age_to:req.body.age_to,
    height:req.body.height,
    mother_tongue:req.body.mother_tongue,
-   highest_degree:req.body.edu,
-   occupation:req.body.occu,
+   highest_degree:req.body.highest_degree,
+   occupation:req.body.occupation,
    salary:req.body.salary,
    caste:req.body.caste,
    subcaste:req.body.subcaste
   }
+  //console.log(basic);
   try{
     const user=await User.putPartnerDetails(basic);
     res.status(200).json(user);
@@ -410,6 +416,7 @@ exports.putFamilyDetails=async(req,res,next)=>{
    family_status:req.body.family_status,
    family_value:req.body.family_value,
   }
+  //console.log(basic);
   try{
     const user=await User.putFamilyDetails(basic);
     res.status(200).json(user);

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { SigninPage } from '../signin/signin.page';
+import { SignupPage } from '../signup/signup.page';
 
 @Component({
   selector: 'app-main',
@@ -10,13 +11,22 @@ import { SigninPage } from '../signin/signin.page';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
-  uid=SigninPage.siginUid;
+
   name='';
   userid='';
+  uid='';
+  signup=SigninPage.siginUid;
+  signin=SignupPage.signUpUid;
 
   constructor(private alertCtrl: AlertController,private router: Router,private authService: AuthService) { }
 
   ngOnInit() {
+    if(this.signin===''){
+      this.uid = this.signup;
+    }
+    else{
+      this.uid = this.signin;
+    }
     this.authService.getBasicDetails(this.uid).subscribe((msg)=>{
           this.name = msg[0][0].name;
           this.userid = (msg[0][0].uid);

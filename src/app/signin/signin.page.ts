@@ -18,7 +18,7 @@ export class SigninPage implements OnInit {
   public submitAttempt = false;
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  static siginUid;
+  static siginUid = '';
 
   constructor(private router: Router,public loadingController: LoadingController,public formBuilder: FormBuilder,
     public alertCtrl: AlertController,private authService: AuthService,private errorHandlerService: ErrorHandlerService) {

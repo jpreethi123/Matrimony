@@ -22,6 +22,8 @@ const { Camera }=Plugins;
 })
 export class SignupPage implements OnInit {
   @ViewChild('mySlider')  slides: IonSlides;
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  static signUpUid='';
   imageResponse: any;
   options: any;
   public slideTwoForm: FormGroup;
@@ -178,7 +180,7 @@ export class SignupPage implements OnInit {
     this.authService.getoccupation().subscribe((msg)=>{
       // eslint-disable-next-line @typescript-eslint/prefer-for-of
       for(let i=0;i<msg[0].length;i++){
-        this.occ.push({id:1,name:msg[0][i].occuname});
+        this.occ.push({id:i,name:msg[0][i].occuname});
       }
     });
 
@@ -481,6 +483,7 @@ export class SignupPage implements OnInit {
     else{
       sc = this.slideThreeForm.get('subcaste').value.name;
     }
+    SignupPage.signUpUid = String(this.slideTwoForm.get('aadhar').value);
     this.userdetails={
       uid:this.slideTwoForm.get('aadhar').value,
       name:this.slideTwoForm.get('firstName').value,
@@ -499,15 +502,16 @@ export class SignupPage implements OnInit {
       mother_tongue:mother_tongue1.name,
       caste:this.slideThreeForm.get('caste').value.name,
       subcaste:sc,
-      height:height1.h,
+      height:height1.name,
       // eslint-disable-next-line @typescript-eslint/naming-convention
       highest_degree:degree.name,
       occupation:occ1.name
 
     };
+    //console.log(this.userdetails);
     this.authService.signup(this.userdetails)
     .subscribe(async (msg)=>{
-      if(msg)
+      if(msg[0].message === 'User registered')
       {
         this.isuser=true;
         const loading=await this.loadingController.create({

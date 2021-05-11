@@ -28,6 +28,7 @@ httpOptions: {headers: HttpHeaders}={
   constructor(private http: HttpClient,private errorHandlerService: ErrorHandlerService,private router: Router) { }
 
   signup(user): Observable<User>{
+    console.log('auth');
     return this.http.post<User>(this.url,user,this.httpOptions).pipe(
       first(),
       catchError(this.errorHandlerService.handleError<User>('signup'))
