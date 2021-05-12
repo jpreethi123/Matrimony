@@ -1,3 +1,4 @@
+import { NotificationsPage } from './../notifications/notifications.page';
 import { SignupPage } from './../signup/signup.page';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth.service';
@@ -10,10 +11,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./matches.page.scss'],
 })
 export class MatchesPage implements OnInit {
+  static viewvalue=0;
   //uid=SigninPage.siginUid;
   signup=SigninPage.siginUid;
   signin=SignupPage.signUpUid;
   uid='';
+
   // eslint-disable-next-line @typescript-eslint/member-ordering
   static matchUid='';
   // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -163,6 +166,8 @@ export class MatchesPage implements OnInit {
 
   }
   view(uid){
+    NotificationsPage.profileuid='';
+    MatchesPage.viewvalue=1;
     MatchesPage.matchUid=uid;
     console.log(MatchesPage.matchUid);
     this.router.navigate(['matchprofile']);
