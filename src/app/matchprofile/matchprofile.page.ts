@@ -12,6 +12,8 @@ export class MatchprofilePage implements OnInit {
   uidfrommatch=MatchesPage.matchUid;
   uidfromnofi=NotificationsPage.profileuid;
  // matchuid=MatchesPage.matchUid;
+ valuefrommatch=MatchesPage.viewvalue;
+ valuefromnoti=NotificationsPage.viewnoti;
  matchuid;
   showpersonal=1;
   showfamily=0;
@@ -53,7 +55,9 @@ export class MatchprofilePage implements OnInit {
     {
       this.matchuid=this.uidfrommatch;
     }
-    console.log(this.matchuid);
+    console.log('uid value',this.matchuid);
+    console.log('valuefrommatch',this.valuefrommatch);
+    console.log('valuefromnoti',this.valuefromnoti);
     this.authService.getBasicDetails(this.matchuid).subscribe((msg)=>{
       const d=new Date();
       const date=msg[0][0].dob.substring(0,4);

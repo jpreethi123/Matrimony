@@ -1,3 +1,4 @@
+import { MatchesPage } from './../matches/matches.page';
 import { Router } from '@angular/router';
 import { SignupPage } from './../signup/signup.page';
 import { SigninPage } from './../signin/signin.page';
@@ -11,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationsPage implements OnInit {
   static profileuid='';
+  static viewnoti=0;
   signup=SigninPage.siginUid;
   signin=SignupPage.signUpUid;
   uid;
@@ -54,7 +56,9 @@ export class NotificationsPage implements OnInit {
 
   }
   show(id){
+    MatchesPage.matchUid='';
     console.log(id);
+    NotificationsPage.viewnoti=1;
     NotificationsPage.profileuid=id;
     this.router.navigate(['matchprofile']);
   }
