@@ -176,5 +176,37 @@ httpOptions: {headers: HttpHeaders}={
     return this.http.get(`http://localhost:5000/auth/fetchAllFemale`,this.httpOptions);
   }
 
+  requests(request){
+    return this.http.post(`http://localhost:5000/auth/requests/${request.from}/${request.to}`,request,this.httpOptions);
+  }
+
+  showrequests(to){
+    return this.http.get(`http://localhost:5000/auth/fetchrequests/${to}`,this.httpOptions);
+  }
+
+  onerequest(from){
+    return this.http.get(`http://localhost:5000/auth/onerequest/${from}`,this.httpOptions);
+
+  }
+
+
+  savelikes(request)
+  {
+    return this.http.post(`http://localhost:5000/auth/likes/${request.from}/${request.to}`,request,this.httpOptions);
+
+  }
+
+  fetchlikes(to)
+  {
+    return this.http.get(`http://localhost:5000/auth/fetchlikes/${to}`,this.httpOptions);
+
+  }
+
+  onelike(from)
+  {
+    return this.http.get(`http://localhost:5000/auth/onelike/${from}`,this.httpOptions);
+
+  }
+
 
 }

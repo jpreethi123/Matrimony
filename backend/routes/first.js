@@ -83,4 +83,21 @@ router.get('/fetchAllMale',authController.fetchAllMale);
 router.get('/fetchAllFemale',authController.fetchAllFemale);
 
 
+
+router.post('/requests/:from/:to',authController.saverequest);
+
+router.get('/fetchrequests/:to',authController.fetchrequests);
+
+router.get('/onerequest/:from',authController.onerequest);
+
+
+router.post('/likes/:from/:to',authController.savelikes);
+
+router.get('/fetchlikes/:to',authController.fetchlikes);
+
+router.get('/onelike/:from',authController.onelike);
+
+
+
+
 module.exports=router;

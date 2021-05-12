@@ -512,3 +512,96 @@ exports.fetchAllFemale=async(req,res,next)=>{
 
 
 
+
+exports.saverequest=async(req,res,next)=>{
+  const from=req.params.from;
+  const to=req.params.to;
+  try{
+      const user=await User.saverequest(from,to);
+      console.log(user);
+      res.status(200).json({meessage:'inserted'});
+
+
+  }catch(err){
+      console.log(err);
+  }
+};
+
+exports.fetchrequests=async(req,res,next)=>{
+  const to=req.params.to;
+  try{
+      const userinfo=await User.showrequests(to);
+      res.status(200).json(userinfo);
+  }catch(err){
+      if(!err.statusCode){
+          err.statusCode=500;
+      }
+      next(err);
+
+}
+};
+
+exports.onerequest=async(req,res,next)=>{
+  const from=req.params.from;
+  try{
+      const userinfo=await User.onerequest(from);
+      res.status(200).json(userinfo);
+  }catch(err){
+      if(!err.statusCode){
+          err.statusCode=500;
+      }
+      next(err);
+
+}
+
+};
+
+
+exports.savelikes=async(req,res,next)=>{
+  const from=req.params.from;
+  const to=req.params.to;
+  try{
+      const user=await User.savelikes(from,to);
+      console.log(user);
+      res.status(200).json({message:'inserted'});
+
+
+  }catch(err){
+      console.log(err);
+  }
+};
+
+
+
+exports.fetchlikes=async(req,res,next)=>{
+  const to=req.params.to;
+  try{
+      const userinfo=await User.showlikes(to);
+      res.status(200).json(userinfo);
+  }catch(err){
+      if(!err.statusCode){
+          err.statusCode=500;
+      }
+      next(err);
+
+}
+};
+
+exports.onelike=async(req,res,next)=>{
+  const from=req.params.from;
+  try{
+      const userinfo=await User.onelike(from);
+      res.status(200).json(userinfo);
+  }catch(err){
+      if(!err.statusCode){
+          err.statusCode=500;
+      }
+      next(err);
+
+}
+
+};
+
+
+
+

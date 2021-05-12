@@ -52,6 +52,12 @@
       <ion-row justify-content-between>
         <ion-col size="5.5">
           <img src="./../../assets/icon/profile.png">
+          <!-- <ion-row>
+            <button color="light" class="icon"> <ion-icon class="icon1" name="heart-outline"></ion-icon></button>
+          </ion-row>
+          <ion-row>
+            <ion-button class="text4">send interest</ion-button>
+          </ion-row>  -->
 
         </ion-col>
 
@@ -60,23 +66,40 @@
         <ion-row text-wrap class="text1">{{match.name}}</ion-row>
         <ion-row text-wrap class="text2">{{match.occupation}}</ion-row>
         <ion-row text-wrap class="text3">{{match.age}} years | {{match.height}}</ion-row>
-        <ion-row text-wrap class="text3">{{match.religion}} | {{match.caste}}</ion-row>
+        <ion-row text-wrap class="text3">{{match.caste}}</ion-row>
 
 
-        <ion-button color="light" (click)="view(match.uid)"class="text4">profile</ion-button>
+        <!-- <ion-button color="light" (click)="view(match.uid)"class="text4">profile</ion-button> -->
 
       </ion-col>
 
-      <!-- <form [formGroup]="submit">
 
-
-
-      <ion-item>
-        <ion-input type="text"  formControlName="userinfo"></ion-input>
-      </ion-item>
-        <ion-button (click)="view()">view profile</ion-button>
-      </form> -->
     </ion-row>
+
+          <!-- <ion-row class="a">
+            <button color="light" class="icon"> <ion-icon class="icon1" name="heart-outline"></ion-icon></button>
+            <ion-button  color="light" class="text5">interest</ion-button>
+            <ion-button color="light" (click)="view(match.uid)"class="text4">profile</ion-button>
+          </ion-row> -->
+          <ion-row class="a">
+            <div *ngIf="match.like===0">
+              <button color="light" class="icon" (click)="changeicon(match.uid)"> <ion-icon class="icon1" name="heart-outline"></ion-icon></button>
+            </div>
+            <div *ngIf="match.like===1">
+              <button color="light" class="icon"> <ion-icon class="icon1" name="heart"></ion-icon></button>
+            </div>
+
+            <div *ngIf="match.flag===0">
+              <ion-button color="light" (click)="interest(match.uid)" class="text5">interest</ion-button>
+            </div>
+            <div *ngIf="match.flag===1">
+              <ion-button color="light" class="text5">sent</ion-button>
+            </div>
+            <ion-button color="light" (click)="view(match.uid)"class="text4">profile</ion-button>
+
+
+
+          </ion-row>
 
     </ion-card-content>
 

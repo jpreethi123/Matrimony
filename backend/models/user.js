@@ -219,4 +219,47 @@ module.exports=class User{
       );
     }
 
+
+
+    static saverequest(from,to){
+      return db.execute(
+          'INSERT INTO request(send_from,send_to) VALUES(?,?)',
+          [from,to]
+      );
+  }
+
+  static showrequests(to){
+    return db.execute(
+        'SELECT * FROM request WHERE send_to=?',[to]
+    );
+}
+
+static onerequest(from){
+  return db.execute(
+      'SELECT send_to FROM request WHERE send_from=?',[from]
+  );
+}
+
+static savelikes(from,to){
+  return db.execute(
+      'INSERT INTO likes(send_from,send_to) VALUES(?,?)',
+      [from,to]
+  );
+
+ }
+
+ static showlikes(to){
+  return db.execute(
+      'SELECT * FROM likes WHERE send_to=?',[to]
+  );
+}
+
+static onelike(from){
+  return db.execute(
+      'SELECT send_to FROM likes WHERE send_from=?',[from]
+  );
+}
+
+
+
 }
