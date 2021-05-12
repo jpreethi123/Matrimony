@@ -24,15 +24,15 @@
     </ion-row><br>
 
     <div class="ion-text-center text1">
-      <ion-text>Name</ion-text>
+      <ion-text>{{Details.name}}</ion-text>
     </div><br>
     <ion-row>
-      <ion-button class="row1" color="light" (click)="personal()">Personal</ion-button>
-      <ion-button class="row1" color="light" (click)="education()">Profession</ion-button>
+      <ion-button class="row1" color="light" (click)="personal()">Personal Details</ion-button>
+      <ion-button class="row1" color="light" (click)="education()">Other Details</ion-button>
     </ion-row>
     <ion-row>
       <div *ngIf="filledfamily">
-        <ion-button class="row1" color="light" (click)="family()">Family</ion-button>
+        <ion-button class="row1" color="light" (click)="family()">Family Details</ion-button>
 
       </div>
       <div *ngIf="filledpreference">
@@ -43,39 +43,42 @@
 
     </ion-row>
     <div *ngIf="showpersonal"  class="text2">
-      <ion-text>DOB &nbsp;-&nbsp; </ion-text><br>
-     <ion-text>Age &nbsp;-&nbsp; -</ion-text><br>
-     <ion-text>Religion &nbsp;-&nbsp; </ion-text><br>
-     <ion-text>Caste &nbsp;-&nbsp;</ion-text><br>
-     <ion-text>Subcaste &nbsp;-&nbsp; </ion-text><br>
-     <ion-text>Mother Tongue &nbsp;-&nbsp;</ion-text><br>
-     <ion-text>Height &nbsp;-&nbsp;</ion-text><br>
+     <ion-text>Age &nbsp;- &nbsp; {{Details.age}}</ion-text><br>
+     <ion-text>Caste &nbsp;-&nbsp;{{Details.caste}}</ion-text><br>
+     <ion-text *ngIf="Details.subcaste">Subcaste &nbsp;-&nbsp;{{Details.subcaste}} <br></ion-text>
+     <ion-text>Marital Status &nbsp;-&nbsp;{{Details.marital}}</ion-text><br>
+     <ion-text>Mother Tongue&nbsp;-&nbsp;{{Details.mother_tongue}}</ion-text><br>
+     <ion-text>Height &nbsp;-&nbsp;{{Details.height}}</ion-text><br>
+     <ion-text>Phone Number &nbsp;-&nbsp;{{Details.phone}}</ion-text><br>
+     <ion-text>Address &nbsp;-&nbsp;{{Details.city}},&nbsp; {{Details.state}} ,&nbsp; {{Details.country}}</ion-text><br>
+
     </div>
 
     <div *ngIf="showedu" class="text2">
-      <ion-text>Education  &nbsp;-&nbsp;</ion-text><br>
-    <ion-text>Occupation  &nbsp;-&nbsp;</ion-text><br>
-    <ion-text>Address   &nbsp;-&nbsp;</ion-text><br>
-    <ion-text>Phone Number   &nbsp;-&nbsp;</ion-text><br>
+      <ion-text>Education  &nbsp;-&nbsp;{{Details.degree}}</ion-text><br>
+      <ion-text> Occupation  &nbsp;-&nbsp;{{Details.occu}}</ion-text><br>
+      <ion-text *ngIf="Details.contact">Contact Person &nbsp;-&nbsp;{{Details.contact}} <br></ion-text>
+      <ion-text *ngIf="Details.contact_phone">Contact Person Number &nbsp;-&nbsp;{{Details.contact_phone}} <br></ion-text>
+      <ion-text *ngIf="Details.diet">Type of diet &nbsp;-&nbsp;{{Details.diet}} <br></ion-text>
+      <ion-text *ngIf="Details.drink">Drinking habit &nbsp;-&nbsp;{{Details.drink}} <br></ion-text>
+      <ion-text *ngIf="Details.smoke">Smoking habit &nbsp;-&nbsp;{{Details.smoke}} <br></ion-text>
 
     </div>
 
     <div *ngIf="showfamily"  class="text2">
-     <ion-text>Family Status  &nbsp;-&nbsp;</ion-text><br>
-     <ion-text>Family Value  &nbsp;-&nbsp;</ion-text><br>
-     <ion-text>About Family  &nbsp;-&nbsp;</ion-text><br>
+      <ion-text *ngIf="Details.family_status">Family Status&nbsp;-&nbsp;{{Details.family_status}} <br></ion-text>
+      <ion-text *ngIf="Details.family_value">Family Value&nbsp;-&nbsp;{{Details.family_value}} <br></ion-text>
+      <ion-text *ngIf="Details.family_type">family Type&nbsp;-&nbsp;{{Details.family_type}} <br></ion-text>
     </div>
 
     <div *ngIf="showpreference"  class="text2">
-      <ion-text>preferred age &nbsp;-&nbsp;</ion-text><br>
-      <ion-text>Preferred height &nbsp;-&nbsp;</ion-text><br>
-      <ion-text>Preferred religion &nbsp;-&nbsp;</ion-text><br>
-      <ion-text>Preferred degree &nbsp;-&nbsp;</ion-text><br>
-      <ion-text>Preferred Occupation &nbsp;-&nbsp;</ion-text><br>
+      <ion-text *ngIf="Details.preagefrom && Details.preageto">Preferred Age&nbsp;-&nbsp;{{Details.preagefrom}}-{{Details.preageto}} <br></ion-text>
+      <ion-text *ngIf="Details.preheight">Preferred height &nbsp;-&nbsp;{{Details.preheight}} <br></ion-text>
+      <ion-text *ngIf="Details.predegree">Preferred Degree &nbsp;-&nbsp;{{Details.predegree}} <br></ion-text>
+      <ion-text *ngIf="Details.preoccu">Preferred Occupation&nbsp;-&nbsp;{{Details.preoccu}} <br></ion-text>
+      <ion-text *ngIf="Details.precaste">Preferred Caste&nbsp;-&nbsp;{{Details.precaste}} <br></ion-text>
+
      </div>
-
-
-
 
   </ion-card-content>
 </ion-card>

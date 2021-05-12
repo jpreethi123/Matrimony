@@ -511,7 +511,7 @@ export class SignupPage implements OnInit {
     //console.log(this.userdetails);
     this.authService.signup(this.userdetails)
     .subscribe(async (msg)=>{
-      if(msg[0].message === 'User registered')
+      if(msg)
       {
         this.isuser=true;
         const loading=await this.loadingController.create({
@@ -524,6 +524,7 @@ export class SignupPage implements OnInit {
         this.router.navigate(['main']);
         return (await loading).present();
       }
+      console.log('isuser value',this.isuser);
 
     });
     if(this.isuser===false)
