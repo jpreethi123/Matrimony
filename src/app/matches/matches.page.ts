@@ -101,6 +101,7 @@ export class MatchesPage implements OnInit {
       else if(MatchesPage.gender === 'Female' || MatchesPage.gender === 'female')
       {
         this.authService.fetchAllMale().subscribe((user)=>{
+          console.log(user);
           //this.AllMatches=user[0];
           // eslint-disable-next-line @typescript-eslint/prefer-for-of
           for(let i=0;i<user[0].length;i++)

@@ -3,10 +3,343 @@
     <ion-title>search</ion-title>
   </ion-toolbar>
 </ion-header> -->
+  <!-- <ion-item>
+    <ion-label>E-Mail</ion-label>
+    <ion-input type="text" placeholder="Email"></ion-input>
+  </ion-item> -->
 
-<ion-content>
-  <ion-item>
+  <ion-content>
+
     Search
+
+  <br><br>
+  <form [formGroup]="searchForm">
+  <ion-item>
+    <ion-label position="floating">Marital Statue</ion-label>
+    <ionic-selectable
+      #selectComponent
+      item-content
+      [items]="maritalstatue"
+      itemValueField="id" itemTextField="name"
+      headerColor="light"
+      [canSearch]="true"
+      searchFailText="nothing found"
+      formControlName="maritalStatue"
+      [isMultiple]="true"
+      (onSelect)="toggleMS($event)">
+
+      <!-- <ng-template ionicSelectableValueTemplate let-maritalstatue="value">
+				<div class="ionic-selectable-value-item">
+					{{formatmaritalstatue(maritalstatue)}}
+				</div>
+			</ng-template> -->
+      <ng-template ionicSelectableCloseButtonTemplate>
+        <ion-icon name="close-circle"></ion-icon>
+      </ng-template>
+      <ng-template ionicSelectableTitleTemplate>
+        Marital Statue
+      </ng-template>
+      </ionic-selectable>
   </ion-item>
 
+  <ion-item>
+    <ion-label position="floating">Age From</ion-label><br>
+    <ion-range min="20" max="60" color="secondary" pin="true" formControlName="agefrom">
+     <ion-label slot="start">20</ion-label>
+     <ion-label slot="end">60</ion-label>
+    </ion-range>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Age To</ion-label><br>
+    <ion-range min="21" max="60" color="secondary" pin="true" formControlName="ageto">
+     <ion-label slot="start">21</ion-label>
+     <ion-label slot="end">60</ion-label>
+    </ion-range>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Height From</ion-label>
+    <ionic-selectable
+      #selectComponent
+      [items]="heightRange"
+      itemValueField="id" itemTextField="name"
+      headerColor="light"
+      [canSearch]="true"
+      searchFailText="nothing found"
+      formControlName="heightfrom">
+
+      <ng-template ionicSelectableCloseButtonTemplate>
+        <ion-icon name="close-circle"></ion-icon>
+      </ng-template>
+      <ng-template ionicSelectableTitleTemplate>
+        Height
+      </ng-template>
+      </ionic-selectable>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Height To</ion-label>
+      <ionic-selectable
+        #selectComponent
+        [items]="heightRange"
+        itemValueField="id" itemTextField="name"
+        headerColor="light"
+        [canSearch]="true"
+        searchFailText="nothing found"
+        formControlName="heightto">
+
+        <ng-template ionicSelectableCloseButtonTemplate>
+          <ion-icon name="close-circle"></ion-icon>
+        </ng-template>
+        <ng-template ionicSelectableTitleTemplate>
+          Height
+        </ng-template>
+        </ionic-selectable>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Caste</ion-label>
+        <ionic-selectable
+          #selectComponentCaste
+          [items]="caste"
+          itemValueField="id" itemTextField="name"
+          headerColor="light"
+          [canSearch]="true"
+          searchFailText="nothing found"
+          (onChange)="onChangeCaste($event)"
+          formControlName="caste"
+          [isMultiple]="true"
+          (onSelect)="toggleCaste($event)">
+
+          <ng-template ionicSelectableCloseButtonTemplate>
+            <ion-icon name="close-circle"></ion-icon>
+          </ng-template>
+          <ng-template ionicSelectableTitleTemplate>
+            Caste
+          </ng-template>
+
+          </ionic-selectable>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Sub-Caste</ion-label>
+        <ionic-selectable
+        #selectComponentSubcaste
+          [items]="subcaste"
+          itemValueField="id" itemTextField="name"
+          headerColor="light"
+          [canSearch]="true"
+          searchFailText="nothing found"
+          formControlName="subCaste"
+          [isMultiple]="true"
+          (onSelect)="toggleSubcaste($event)">
+
+          <ng-template ionicSelectableCloseButtonTemplate>
+            <ion-icon name="close-circle"></ion-icon>
+          </ng-template>
+          <ng-template ionicSelectableTitleTemplate>
+            Sub-Caste
+          </ng-template>
+
+          </ionic-selectable>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Country</ion-label>
+        <ionic-selectable
+            [items]="countryInfo"
+            itemValueField= CountryName itemTextField= CountryName
+            headerColor="light"
+            [canSearch]="true"
+            (onChange)="onChangeCountry($event)"
+            searchFailText="nothing found"
+            formControlName="country"
+            [isMultiple]="true"
+            >
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+             Country
+            </ng-template>
+            </ionic-selectable>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">State</ion-label>
+            <ionic-selectable
+            [items]="stateInfo"
+            itemValueField= StateName itemTextField= StateName
+            headerColor="light"
+            [canSearch]="true"
+            (onChange)="onChangeState($event)"
+            searchFailText="nothing found"
+            formControlName="state"
+            [isMultiple]="true"
+            >
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+              State
+            </ng-template>
+            </ionic-selectable>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">City</ion-label>
+            <ionic-selectable
+            [items]="cities"
+            itemValueField= city itemTextField= city
+            headerColor="light"
+            [canSearch]="true"
+            searchFailText="nothing found"
+            formControlName="city"
+            [isMultiple]="true"
+            >
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+             City
+            </ng-template>
+            </ionic-selectable>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Highest Degree</ion-label>
+            <ionic-selectable
+            #selectComponentHD
+              [items]="edu"
+              itemValueField="id" itemTextField="name"
+              headerColor="light"
+              [canSearch]="true"
+              searchFailText="nothing found"
+              formControlName="edu"
+              [isMultiple]="true"
+              (onSelect)="toggleHD($event)">
+
+              <ng-template ionicSelectableCloseButtonTemplate>
+                <ion-icon name="close-circle"></ion-icon>
+              </ng-template>
+              <ng-template ionicSelectableTitleTemplate>
+                Highest Degree
+              </ng-template>
+              </ionic-selectable>
+         </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Occuption</ion-label>
+          <ionic-selectable
+            #selectComponentOcc
+            [items]="occ"
+            itemValueField="id" itemTextField="name"
+            headerColor="light"
+            [canSearch]="true"
+            searchFailText="nothing found"
+            formControlName="occ"
+            [isMultiple]="true"
+            (onSelect)="toggleOcc($event)">
+
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+              Occupation
+            </ng-template>
+            </ionic-selectable>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Smoke</ion-label>
+          <ionic-selectable
+            #selectComponentSmoke
+            item-content
+            [items]="smoke"
+            itemValueField="id" itemTextField="name"
+            headerColor="light"
+            [canSearch]="true"
+            searchFailText="nothing found"
+            formControlName="smoke"
+            [isMultiple]="true"
+            (onSelect)="toggleSmoke($event)">
+
+            <!-- <ng-template ionicSelectableValueTemplate let-maritalstatue="value">
+              <div class="ionic-selectable-value-item">
+                {{formatmaritalstatue(maritalstatue)}}
+              </div>
+            </ng-template> -->
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+             Smoke
+            </ng-template>
+          </ionic-selectable>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Drink</ion-label>
+          <ionic-selectable
+            #selectComponentDrink
+            item-content
+            [items]="drink"
+            itemValueField="id" itemTextField="name"
+            headerColor="light"
+            [canSearch]="true"
+            searchFailText="nothing found"
+            formControlName="drink"
+            [isMultiple]="true"
+            (onSelect)="toggleDrink($event)">
+
+            <!-- <ng-template ionicSelectableValueTemplate let-maritalstatue="value">
+              <div class="ionic-selectable-value-item">
+                {{formatmaritalstatue(maritalstatue)}}
+              </div>
+            </ng-template> -->
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+              Drink
+            </ng-template>
+          </ionic-selectable>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Diet</ion-label>
+          <ionic-selectable
+            #selectComponentDiet
+            item-content
+            [items]="diet"
+            itemValueField="id" itemTextField="name"
+            headerColor="light"
+            [canSearch]="true"
+            searchFailText="nothing found"
+            formControlName="diet"
+            [isMultiple]="true"
+            (onSelect)="toggleDiet($event)">
+
+            <!-- <ng-template ionicSelectableValueTemplate let-maritalstatue="value">
+              <div class="ionic-selectable-value-item">
+                {{formatmaritalstatue(maritalstatue)}}
+              </div>
+            </ng-template> -->
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            <ng-template ionicSelectableTitleTemplate>
+              Diet
+            </ng-template>
+          </ionic-selectable>
+        </ion-item>
+
+        <br>
+        <ion-button type="submit" color="light" shape="round" style="--box-shadow:none;" (click)="clearAll()">Clear All</ion-button>
+        <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="search()">Search</ion-button>
+        <ion-button type="submit"color="light" shape="round" style="--box-shadow:none;" (click)="saveSearch()">Save</ion-button>
+
+    </form>
   </ion-content>
+
+
+

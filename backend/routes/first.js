@@ -78,18 +78,24 @@ router.put('/putContactDetails',authController.putContactDetails);
 router.get('/getOtherDetails/:uid',authController.getOtherDetails);
 router.put('/putOtherDetails',authController.putOtherDetails);
 
+router.get('/getSearchDetails/:uid',authController.getSearchDetails);
+router.put('/putSearchDetails',authController.putSearchDetails);
+
+router.put('/getSearch',authController.getSearch);
+
+router.get('/fetchSearchResult/:uid',authController.fetchSearchResult);
+
+router.get('/getGender/:uid',authController.getGender);
+
 router.get('/fetchAllMale',authController.fetchAllMale);
 
 router.get('/fetchAllFemale',authController.fetchAllFemale);
-
-
 
 router.post('/requests/:from/:to',authController.saverequest);
 
 router.get('/fetchrequests/:to',authController.fetchrequests);
 
 router.get('/onerequest/:from',authController.onerequest);
-
 
 router.post('/likes/:from/:to',authController.savelikes);
 

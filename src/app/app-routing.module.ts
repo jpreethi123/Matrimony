@@ -30,7 +30,11 @@ const routes: Routes = [
   {
     path: 'matchprofile',
     loadChildren: () => import('./matchprofile/matchprofile.module').then( m => m.MatchprofilePageModule)
+  },  {
+    path: 'searchresult',
+    loadChildren: () => import('./searchresult/searchresult.module').then( m => m.SearchresultPageModule)
   },
+
 
 
 ];

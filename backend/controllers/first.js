@@ -487,6 +487,102 @@ exports.putOtherDetails=async(req,res,next)=>{
   }
 };
 
+exports.putSearchDetails=async(req,res,next)=>{
+  const basic = {
+    uid: req.body.uid,
+    marital_statue:req.body.marital_statue,
+    age_from:req.body.age_from,
+    age_to:req.body.age_to,
+    height_from:req.body.height_from,
+    height_to:req.body.height_to,
+    caste:req.body.caste,
+    subcaste:req.body.subcaste,
+    country:req.body.country,
+    state:req.body.state,
+    city:req.body.city,
+    highest_degree:req.body.highest_degree,
+    occupation:req.body.occupation,
+    drink:req.body.drink,
+    smoke:req.body.smoke,
+    diet:req.body.diet
+  }
+  //console.log(basic);
+  try{
+    const user=await User.putSearchDetails(basic);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.getSearchDetails=async(req,res,next)=>{
+  const uid=req.params.uid;
+  try{
+    const user=await User.getSearchDetails(uid);
+    //console.log(user);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.getSearch=async(req,res,next)=>{
+  console.log(req.body);
+  const basic = {
+    marital_statue:req.body.marital_statue,
+    age_from:req.body.age_from,
+    age_to:req.body.age_to,
+    height_from:req.body.height_from,
+    height_to:req.body.height_to,
+    caste:req.body.caste,
+    subcaste:req.body.subcaste,
+    country:req.body.country,
+    state:req.body.state,
+    city:req.body.city,
+    highest_degree:req.body.highest_degree,
+    occupation:req.body.occupation,
+    drink:req.body.drink,
+    smoke:req.body.smoke,
+    diet:req.body.diet,
+    gender:req.body.gender
+  }
+  //console.log(basic);
+  try{
+    const user=await User.getSearch(basic);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.getGender=async(req,res,next)=>{
+  const uid=req.params.uid;
+  try{
+    const user=await User.getGender(uid);
+    //console.log(user);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
+exports.fetchSearchResult=async(req,res,next)=>{
+  const uid=req.params.uid;
+  console.log(uid);
+  try{
+    const user=await User.fetchSearchResult(uid);
+    //console.log(user);
+    res.status(200).json(user);
+  }
+  catch(err){
+   console.log(err.message);
+  }
+};
+
 
 exports.fetchAllMale=async(req,res,next)=>{
   //console.log("uid "+uid);

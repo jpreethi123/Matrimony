@@ -83,10 +83,10 @@
           </ion-row> -->
           <ion-row class="a">
             <div *ngIf="match.like===0">
-              <button color="light" class="icon" (click)="changeicon(match.uid)"> <ion-icon class="icon1" name="heart-outline"></ion-icon></button>
+              <button class="icon" (click)="changeicon(match.uid)"> <ion-icon class="icon1" name="heart-outline"></ion-icon></button>
             </div>
             <div *ngIf="match.like===1">
-              <button color="light" class="icon"> <ion-icon class="icon1" name="heart"></ion-icon></button>
+              <button class="icon" > <ion-icon class="icon1" name="heart"></ion-icon></button>
             </div>
 
             <div *ngIf="match.flag===0">

@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="search"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Search Result</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-label>{{no}}</ion-label>
+
+  <ion-card *ngFor="let match of AllMatches">
+    <ion-card-content>
+      <ion-row justify-content-between>
+        <ion-col size="5.5">
+          <img src="./../../assets/icon/profile.png">
+        </ion-col>
+
+
+      <ion-col class="col1">
+        <ion-row text-wrap class="text1">{{match.name}}</ion-row>
+        <ion-row text-wrap class="text2">{{match.occupation}}</ion-row>
+        <ion-row text-wrap class="text3">{{match.age}} years | {{match.height}}</ion-row>
+        <ion-row text-wrap class="text3">{{match.caste}}</ion-row>
+
+
+      </ion-col>
+
+
+    </ion-row>
+
+          <ion-row class="a">
+            <div *ngIf="match.like===0">
+              <button  class="icon" (click)="changeicon(match.uid)"> <ion-icon class="icon1" name="heart-outline"></ion-icon></button>
+            </div>
+            <div *ngIf="match.like===1">
+              <button  class="icon"> <ion-icon class="icon1" name="heart"></ion-icon></button>
+            </div>
+
+            <div *ngIf="match.flag===0">
+              <ion-button color="light" (click)="interest(match.uid)" class="text5">interest</ion-button>
+            </div>
+            <div *ngIf="match.flag===1">
+              <ion-button color="light" class="text5">sent</ion-button>
+            </div>
+            <ion-button color="light" (click)="view(match.uid)" class="text4">profile</ion-button>
+
+
+
+          </ion-row>
+
+    </ion-card-content>
+
+
+
+
+  </ion-card>
+
+  </ion-content>

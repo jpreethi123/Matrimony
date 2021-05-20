@@ -9,7 +9,7 @@ ion-slides {
 } -->
 
 <ion-content >
-<ion-item>
+
   <ion-slides #slidesRef (ionSlideDidChange)="onSlideMoved($event)" [options]="slideOpts" pager=true>
     <br><br>
     <ion-slide>
@@ -25,13 +25,14 @@ ion-slides {
     </ion-slide>
 
   </ion-slides>
-</ion-item>
+
 <ion-card style="box-shadow: none ;margin-bottom: 0%;">
+  <!-- border-radius: 50%;background-color:lavender;height: 18%;width: 125%;margin-left: -12%; -->
   <ion-card-content>
     <!-- <ion-button  color="light" shape="round" style="--box-shadow:none;margin-left: 30%;" routerLink='/signup'>Sign up</ion-button><br> -->
 
-    <ion-button  color="light" shape="round" style="--box-shadow:none; margin-left: 30%;" routerLink='/signin'>Sign in</ion-button><br>
-    <ion-label style="margin-left: 20%;">Don't have an account?</ion-label><a routerLink='/signup'>Sign Up</a>
+    <ion-button  color="light" shape="round" style="--box-shadow:none; margin-left: 25%;" routerLink='/signin'>Sign in</ion-button><br>
+    <ion-label style="font-size: small;color: black;">Don't have an account?</ion-label><a routerLink='/signup' style="font-size: small;">Sign Up</a>
   </ion-card-content>
 </ion-card>
 </ion-content>

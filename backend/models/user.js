@@ -150,6 +150,93 @@ module.exports=class User{
       );
     }
 
+    static getSearchDetails(uid){
+      return db.execute(
+        'SELECT * FROM search_details WHERE uid=?',[uid]
+      );
+    }
+
+    static putSearchDetails(basic){
+      return db.execute(
+        'UPDATE search_details SET marital_statue=?,age_from=?,age_to=?,height_from=?,height_to=?,caste=?,subcaste=?,country=?,state=?,city=?,highest_degree=?,occupation=?,drink=?,smoke=?,diet=? WHERE uid=?',
+        [basic.marital_statue,basic.age_from,basic.age_to,basic.height_from,basic.height_to,basic.caste,basic.subcaste,basic.country,basic.state,basic.city,basic.highest_degree,basic.occupation,basic.drink,basic.smoke,basic.diet,basic.uid]
+      );
+    }
+
+    static savesearch(basic){
+      'INSERT INTO search_details VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+        [basic.uid,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]
+    }
+
+    static getGender(uid){
+      return db.execute(
+        'SELECT gender FROM basic_details WHERE uid=?',[uid]
+      );
+    }
+
+    static getSearch(basic){
+      let whereclause = `where 1=1 AND b.gender = '${basic.gender}' `;
+
+      if(basic.age_from != null && basic.age_to != null){
+        whereclause += `AND (YEAR(CURDATE()) - YEAR(b.dob) >= ${basic.age_from} AND YEAR(CURDATE()) - YEAR(b.dob) <= ${basic.age_to}) `
+      }
+      if(basic.age_from != null && basic.age_to == null){
+        whereclause += `AND (YEAR(CURDATE()) - YEAR(b.dob) >= ${basic.age_from}) `
+      }
+      if(basic.age_from == null && basic.age_to != null){
+        whereclause += `AND YEAR(CURDATE()) - YEAR(b.dob) <= ${basic.age_to}) `
+      }
+      if(basic.height_from != null && basic.height_to != null){
+        whereclause += `AND (p.height between ${basic.height_from} and ${basic.height_to}) `
+      }
+      if(basic.height_from != null && basic.height_to == null){
+        whereclause += `AND p.height >= ${basic.height_from} `
+      }
+      if(basic.height_from == null && basic.height_to != null){
+        whereclause += `AND p.height <= ${basic.height_to} `
+      }
+      if(basic.marital_statue != null  && basic.marital_statue != 'any,'){
+        whereclause += `AND find_in_set(p.marital_status,'${basic.marital_statue}') `
+      }
+      if(basic.caste != null && basic.caste != 'Any,'){
+        whereclause += `AND find_in_set(p.caste,'${basic.caste}') `
+      }
+      if(basic.subcaste != null && basic.subcaste != 'Any,'){
+        whereclause += `AND find_in_set(p.subcaste,'${basic.subcaste}') `
+      }
+      if(basic.country != null && basic.country != 'Any,'){
+        whereclause += `AND find_in_set(b.country,'${basic.country}') `
+      }
+      if(basic.state != null && basic.state != 'Any,'){
+        whereclause += `AND find_in_set(b.state,'${basic.state}') `
+      }
+      if(basic.city != null && basic.city != 'Any,'){
+        whereclause += `AND find_in_set(b.city,'${basic.city}') `
+      }
+      if(basic.highest_degree != null && basic.highest_degree != 'Any,'){
+        whereclause += `AND find_in_set(e.highest_degree,'${basic.highest_degree}') `
+      }
+      if(basic.occupation != null && basic.occupation != 'Any,'){
+        whereclause += `AND find_in_set(e.occupation,'${basic.occupation}') `
+      }
+      if(basic.drink != null && basic.drink != 'Any,'){
+        whereclause += `AND find_in_set(o.drink,'${basic.drink}') `
+      }
+      if(basic.smoke != null && basic.smoke != 'Any,'){
+        whereclause += `AND find_in_set(o.smoke,'${basic.smoke}') `
+      }
+      if(basic.diet != null && basic.diet != 'Any,'){
+        whereclause += `AND find_in_set(o.diet,'${basic.diet}') `
+      }
+
+      let str = 'SELECT b.uid FROM basic_details b inner join personal_details p on b.uid=p.uid ' +
+      'inner join education_details e on b.uid=e.uid ' +
+      'inner join other_details o on b.uid=o.uid ' + whereclause;
+
+      //console.log(str);
+      return db.execute(str);
+    }
+
     static findmail (mail){
       return db.execute(
         'SELECT * FROM basic_details WHERE mail=?',[mail]
@@ -219,7 +306,11 @@ module.exports=class User{
       );
     }
 
-
+    static fetchSearchResult(uid){
+      return db.execute(
+        'SELECT b.uid,b.name,b.dob,e.occupation,p.caste,p.height FROM basic_details b inner join personal_details p on b.uid=p.uid inner join education_details e on b.uid=e.uid where b.uid = ?',[uid]
+      );
+    }
 
     static saverequest(from,to){
       return db.execute(

@@ -166,6 +166,32 @@ httpOptions: {headers: HttpHeaders}={
     return this.http.put(`http://localhost:5000/auth/putOtherDetails`,user,this.httpOptions);
   }
 
+  getSearchDetails(uid)
+  {
+    return this.http.get(`http://localhost:5000/auth/getSearchDetails/${uid}`,this.httpOptions);
+  }
+
+  putSearchDetails(user)
+  {
+    return this.http.put(`http://localhost:5000/auth/putSearchDetails`,user,this.httpOptions);
+  }
+
+  getSearch(user)
+  {
+    return this.http.put(`http://localhost:5000/auth/getSearch`,user,this.httpOptions);
+  }
+
+  getGender(uid)
+  {
+    return this.http.get(`http://localhost:5000/auth/getGender/${uid}`,this.httpOptions);
+  }
+
+  fetchSearchResult(uid)
+  {
+    console.log(uid);
+    return this.http.get(`http://localhost:5000/auth/fetchSearchResult/${uid}`,this.httpOptions);
+  }
+
 
   fetchAllMale()
   {

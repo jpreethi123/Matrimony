@@ -1,6 +1,7 @@
 import { NotificationsPage } from './../notifications/notifications.page';
 import { AuthService } from './../services/auth.service';
 import { MatchesPage } from './../matches/matches.page';
+import { SearchresultPage } from './../searchresult/searchresult.page';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class MatchprofilePage implements OnInit {
   uidfrommatch=MatchesPage.matchUid;
   uidfromnofi=NotificationsPage.profileuid;
+  uidfromsearch = SearchresultPage.matchUid;
  // matchuid=MatchesPage.matchUid;
  valuefrommatch=MatchesPage.viewvalue;
  valuefromnoti=NotificationsPage.viewnoti;
@@ -47,13 +49,16 @@ export class MatchprofilePage implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    if(this.uidfrommatch==='')
+    if(this.uidfrommatch !== '')
     {
-      this.matchuid=this.uidfromnofi;
+      this.matchuid=this.uidfrommatch;
+    }
+    else if(this.uidfromsearch !== ''){
+      this.matchuid=this.uidfromsearch;
     }
     else
     {
-      this.matchuid=this.uidfrommatch;
+      this.matchuid=this.uidfromnofi;
     }
     console.log('uid value',this.matchuid);
     console.log('valuefrommatch',this.valuefrommatch);
