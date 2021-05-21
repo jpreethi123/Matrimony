@@ -47,6 +47,7 @@ export class ProfilePage implements OnInit {
   edu = [];
   occ = [];
   heightRange=[];
+  height_to_num = {};
   salary=[];
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -58,42 +59,6 @@ export class ProfilePage implements OnInit {
   smoke=['Non-Smoker', 'Occasional Smoker', 'Regular Smoker'];
   drink=['Non-Drinker', 'Light / Social Drinker', 'Regular Drinker'];
   diet=['Veg', 'Non-Veg Occasional',' Non-Veg Frequent', 'Eggetarian', 'Others (Jain / Vegan)'];
-
-// selectsal=null;
-// salary=[{id:1,name:'less than 50000'},{id:2,name:'50000-1 lakh'},{id:3,name:'1 lakh-1.5 lakh'},{id:4,name:'1.5 lakh-2 lakh'},
-// {id:5,name:'2 lakh-2.5 lakh'},{id:6,name:'2.5 lakh-3 lakh'},{id:7,name:'3 lakh- 4 lakh'},{id:8,name:'4 lakh-5 lakh'},
-// {id:9,name:'5 lakh-6 lakh'},{id:10,name:'6 lakh-7 lakh'},{id:11,name:'7 lakh-8 lakh'},{id:12,name:'8 lakh-9 lakh'},
-// {id:13,name:'9 lakh-10 lakh'},{id:14,name:'10 lakh-12 lakh'},{id:15,name:'12 lakh-15 lakh'},{id:16,name:'15 lakh-20 lakh'},
-// {id:17,name:'20 lakh-25 lakh'},{id:18,name:'25 lakh-30 lakh'},{id:19,name:'30 lakh-50 lakh'},{id:20,name:'above 50 lakh'}];
-
-// selectsalpre=null;
-// salary1=[{id:1,name:'less than 50000'},{id:2,name:'50000-1 lakh'},{id:3,name:'1 lakh-1.5 lakh'},{id:4,name:'1.5 lakh-2 lakh'},
-// {id:5,name:'2 lakh-2.5 lakh'},{id:6,name:'2.5 lakh-3 lakh'},{id:7,name:'3 lakh- 4 lakh'},{id:8,name:'4 lakh-5 lakh'},
-// {id:9,name:'5 lakh-6 lakh'},{id:10,name:'6 lakh-7 lakh'},{id:11,name:'7 lakh-8 lakh'},{id:12,name:'8 lakh-9 lakh'},
-// {id:13,name:'9 lakh-10 lakh'},{id:14,name:'10 lakh-12 lakh'},{id:15,name:'12 lakh-15 lakh'},{id:16,name:'15 lakh-20 lakh'},
-// {id:17,name:'20 lakh-25 lakh'},{id:18,name:'25 lakh-30 lakh'},{id:19,name:'30 lakh-50 lakh'},{id:20,name:'bove 50 lakh'}];
-
-
-// heightsel=null;
-
-// heightRange=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'},{id:5,h:'4ft 9'},
-// {id:6,h:'4ft 10'},{id:7,h:'4ft 11'},{id:8,h:'5ft'},{id:9,h:'5ft 1'},{id:10,h:'5ft 2'},
-// {id:11,h:'5ft 3'},{id:12,h:'5ft 4'},{id:13,h:'5ft 5'},{id:14,h:'5ft 6'},{id:15,h:'5ft 7'},
-// {id:16,h:'5ft 8'},{id:17,h:'5ft 9'},{id:18,h:'5ft 10'},{id:19,h:'5ft 11'},{id:20,h:'6ft'},
-// {id:21,h:'6ft 1'},{id:22,h:'6ft 2'},{id:23,h:'6ft 3'},{id:24,h:'6ft 4'},{id:25,h:'6ft 5'},
-// {id:26,h:'6ft 6'},{id:27,h:'6ft 7'},{id:28,h:'6ft 8'},{id:29,h:'6ft 9'},{id:30,h:'6ft 10'},
-// {id:31,h:'6ft 11'},{id:32,h:'7ft'}];
-
-
-// heightselpre=null;
-
-// heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'},{id:5,h:'4ft 9'},
-// {id:6,h:'4ft 10'},{id:7,h:'4ft 11'},{id:8,h:'5ft'},{id:9,h:'5ft 1'},{id:10,h:'5ft 2'},
-// {id:11,h:'5ft 3'},{id:12,h:'5ft 4'},{id:13,h:'5ft 5'},{id:14,h:'5ft 6'},{id:15,h:'5ft 7'},
-// {id:16,h:'5ft 8'},{id:17,h:'5ft 9'},{id:18,h:'5ft 10'},{id:19,h:'5ft 11'},{id:20,h:'6ft'},
-// {id:21,h:'6ft 1'},{id:22,h:'6ft 2'},{id:23,h:'6ft 3'},{id:24,h:'6ft 4'},{id:25,h:'6ft 5'},
-// {id:26,h:'6ft 6'},{id:27,h:'6ft 7'},{id:28,h:'6ft 8'},{id:29,h:'6ft 9'},{id:30,h:'6ft 10'},
-// {id:31,h:'6ft 11'},{id:32,h:'7ft'}];
 
 
   constructor(private imagePicker: ImagePicker,private router: Router,public loadingController: LoadingController,
@@ -226,6 +191,7 @@ export class ProfilePage implements OnInit {
       // eslint-disable-next-line @typescript-eslint/prefer-for-of
       for(let i=0;i<msg[0].length;i++){
         this.heightRange.push({id:i,name:msg[0][i].height});
+        this.height_to_num[msg[0][i-1].height] = msg[0][i-1].height_in_num;
       }
     });
 
@@ -264,7 +230,8 @@ export class ProfilePage implements OnInit {
       this.slideThreeForm.get('caste').setValue({name:msg[0][0].caste});
       this.slideThreeForm.get('subcaste').setValue({name:msg[0][0].subcaste});
       this.slideThreeForm.get('aboutme').setValue(msg[0][0].aboutme);
-      this.slideThreeForm.get('height').setValue({name:msg[0][0].height});
+      const hf = Object.keys(this.height_to_num).find(key => this.height_to_num[key] === msg[0][0].height);
+      this.slideThreeForm.get('height').setValue({name:hf});
       this.slideThreeForm.get('weight').setValue(msg[0][0].weight);
      });
 
@@ -291,7 +258,8 @@ export class ProfilePage implements OnInit {
     this.authService.getPartnerDetails(this.uid).subscribe((msg)=>{
       this.slideEightForm.get('agefrom').setValue(msg[0][0].age_from);
       this.slideEightForm.get('ageto').setValue(msg[0][0].age_to);
-      this.slideEightForm.get('height').setValue({name:msg[0][0].height});
+      const hf = Object.keys(this.height_to_num).find(key => this.height_to_num[key] === msg[0][0].height);
+      this.slideEightForm.get('height').setValue({name:hf});
       this.slideEightForm.get('mt').setValue({name:msg[0][0].mother_tongue});
       this.slideEightForm.get('edu').setValue({name:msg[0][0].highest_degree});
       this.slideEightForm.get('occ').setValue({name:msg[0][0].occupation});
@@ -379,7 +347,7 @@ export class ProfilePage implements OnInit {
        h = null;
     }
     else{
-      h = this.slideThreeForm.get('height').value.name;
+      h = this.height_to_num[this.slideThreeForm.get('height').value.name];
     }
     let m='';
     if(this.slideThreeForm.get('mothertongue').value.name === undefined){
@@ -484,7 +452,7 @@ export class ProfilePage implements OnInit {
        h = null;
     }
     else{
-      h = this.slideEightForm.get('height').value.name;
+      h = this.height_to_num[this.slideEightForm.get('height').value.name];
     }
     let m='';
     if(this.slideEightForm.get('mt').value.name === undefined){

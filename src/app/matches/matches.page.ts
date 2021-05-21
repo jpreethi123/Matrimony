@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { NotificationsPage } from './../notifications/notifications.page';
 import { SignupPage } from './../signup/signup.page';
 import { Router } from '@angular/router';
@@ -16,6 +17,8 @@ export class MatchesPage implements OnInit {
   signup=SigninPage.siginUid;
   signin=SignupPage.signUpUid;
   uid='';
+
+  height_to_num = {};
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   static matchUid='';
@@ -38,6 +41,12 @@ export class MatchesPage implements OnInit {
 
     console.log('date',d.getFullYear());
 
+    this.authService.getheightrange().subscribe((msg)=>{
+      for(let i=1;i<msg[0].length+1;i++){
+        this.height_to_num[msg[0][i-1].height] = msg[0][i-1].height_in_num;
+      }
+    });
+
     this.authService.getBasicDetails(this.uid).subscribe((msg)=>{
       MatchesPage.gender=msg[0][0].gender;
       console.log(MatchesPage.gender);
@@ -56,6 +65,7 @@ export class MatchesPage implements OnInit {
             user[0][i].age=d.getFullYear()-num;
             user[0][i].flag=0;
             user[0][i].like=0;
+            user[0][i].height = Object.keys(this.height_to_num).find(key => this.height_to_num[key] === user[0][i].height);
             console.log('each user',user[0][i]);
             this.AllMatches.push(user[0][i]);
             console.log('female matches',this.AllMatches);
@@ -113,6 +123,7 @@ export class MatchesPage implements OnInit {
             user[0][i].age=d.getFullYear()-num;
             user[0][i].flag=0;
             user[0][i].like=0;
+            user[0][i].height = Object.keys(this.height_to_num).find(key => this.height_to_num[key] === user[0][i].height);
             this.AllMatches.push(user[0][i]);
             this.authService.onerequest(this.uid).subscribe((msg1)=>{
               console.log('one request',msg1);

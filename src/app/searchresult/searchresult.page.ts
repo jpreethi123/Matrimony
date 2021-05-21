@@ -24,6 +24,7 @@ export class SearchresultPage implements OnInit {
 
   static matchUid='';
   no = '';
+  height_to_num = {};
 
   constructor(private authService: AuthService,public router: Router) { }
 
@@ -36,6 +37,12 @@ export class SearchresultPage implements OnInit {
     }
 
     const d=new Date();
+
+    this.authService.getheightrange().subscribe((msg)=>{
+      for(let i=1;i<msg[0].length+1;i++){
+        this.height_to_num[msg[0][i-1].height] = msg[0][i-1].height_in_num;
+      }
+    });
 
     //console.log('date',d.getFullYear());
 
@@ -57,6 +64,7 @@ export class SearchresultPage implements OnInit {
                 user[0][i].age=d.getFullYear()-num;
                 user[0][i].flag=0;
                 user[0][i].like=0;
+                user[0][i].height = Object.keys(this.height_to_num).find(key => this.height_to_num[key] === user[0][i].height);
                 console.log('each user',user[0][i]);
                 this.AllMatches.push(user[0][i]);
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { NotificationsPage } from './../notifications/notifications.page';
 import { AuthService } from './../services/auth.service';
 import { MatchesPage } from './../matches/matches.page';
@@ -42,7 +43,7 @@ export class MatchprofilePage implements OnInit {
 
   };
 
-
+  height_to_num = {};
 
 
 
@@ -60,6 +61,12 @@ export class MatchprofilePage implements OnInit {
     {
       this.matchuid=this.uidfromnofi;
     }
+
+    this.authService.getheightrange().subscribe((msg)=>{
+      for(let i=1;i<msg[0].length+1;i++){
+        this.height_to_num[msg[0][i-1].height] = msg[0][i-1].height_in_num;
+      }
+    });
     console.log('uid value',this.matchuid);
     console.log('valuefrommatch',this.valuefrommatch);
     console.log('valuefromnoti',this.valuefromnoti);
@@ -76,7 +83,8 @@ export class MatchprofilePage implements OnInit {
 
     });
     this.authService.getPersonalDetails(this.matchuid).subscribe((msg)=>{
-      this.Details.height=msg[0][0].height;this.Details.marital=msg[0][0].marital_status;
+      this.Details.height=Object.keys(this.height_to_num).find(key => this.height_to_num[key] === msg[0][0].height);
+      this.Details.marital=msg[0][0].marital_status;
       this.Details.caste=msg[0][0].caste;this.Details.subcaste=msg[0][0].subcaste;
       this.Details.mother_tongue=msg[0][0].mother_tongue;
 
@@ -127,7 +135,7 @@ export class MatchprofilePage implements OnInit {
       }
       if(msg[0][0].height!==null)
       {
-        this.Details.height=msg[0][0].height;
+        this.Details.height=Object.keys(this.height_to_num).find(key => this.height_to_num[key] === msg[0][0].height);
 
       }
       if(msg[0][0].caste!==null)

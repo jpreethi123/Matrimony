@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, LoadingController } from '@ionic/angular';
@@ -42,6 +43,7 @@ export class SignupPage implements OnInit {
   edu=[];
   occ=[];
   heightRange=[];
+  height_to_num = {};
 
 	public submitAttempt = false;
   username; useruid;usergender: string;userdate;
@@ -56,67 +58,6 @@ export class SignupPage implements OnInit {
 
   worker: Tesseract.Worker;
   workerReady=false;
-
-
-  // // eslint-disable-next-line @typescript-eslint/naming-convention
-  // selected_mt = null;
-  // motherTongue=[{id:1,name:'Assamese'},{id:2,name:'Bangla'},{id:3,name:'Bodo'},
-  // {id:4,name:'Dogri'},{id:5,name:'Gujarati'},{id:6,name:'Hindi'},
-  // {id:7,name:'Kashmiri'},{id:8,name:'Kannada'},{id:9,name:'Konkani'},
-  // {id:10,name:'Maithili'},{id:11,name:'Malayalam'},{id:12,name:'Manipuri'},
-  // {id:13,name:'Marathi'},{id:14,name:'Nepali'},{id:15,name:'Oriya'},
-  // {id:16,name:'Punjabi'},{id:17,name:'Tamil'},{id:18,name:'Telugu'},
-  // {id:19,name:'Santali'},{id:20,name:'Sindhi'},{id:21,name:'Urdu'}
-  // ];
-
-  // selectedpre= null;
-  // motherTongue1=[{id:1,name:'Assamese'},{id:2,name:'Bangla'},{id:3,name:'Bodo'},
-  // {id:4,name:'Dogri'},{id:5,name:'Gujarati'},{id:6,name:'Hindi'},
-  // {id:7,name:'Kashmiri'},{id:8,name:'Kannada'},{id:9,name:'Konkani'},
-  // {id:10,name:'Maithili'},{id:11,name:'Malayalam'},{id:12,name:'Manipuri'},
-  // {id:13,name:'Marathi'},{id:14,name:'Nepali'},{id:15,name:'Oriya'},
-  // {id:16,name:'Punjabi'},{id:17,name:'Tamil'},{id:18,name:'Telugu'},
-  // {id:19,name:'Santali'},{id:20,name:'Sindhi'},{id:21,name:'Urdu'}
-  // ];
-
-
-// selectsal=null;
-// salary=[{id:1,name:'less than 50000'},{id:2,name:'50000-1 lakh'},{id:3,name:'1 lakh-1.5 lakh'},{id:4,name:'1.5 lakh-2 lakh'},
-// {id:5,name:'2 lakh-2.5 lakh'},{id:6,name:'2.5 lakh-3 lakh'},{id:7,name:'3 lakh- 4 lakh'},{id:8,name:'4 lakh-5 lakh'},
-// {id:9,name:'5 lakh-6 lakh'},{id:10,name:'6 lakh-7 lakh'},{id:11,name:'7 lakh-8 lakh'},{id:12,name:'8 lakh-9 lakh'},
-// {id:13,name:'9 lakh-10 lakh'},{id:14,name:'10 lakh-12 lakh'},{id:15,name:'12 lakh-15 lakh'},{id:16,name:'15 lakh-20 lakh'},
-// {id:17,name:'20 lakh-25 lakh'},{id:18,name:'25 lakh-30 lakh'},{id:19,name:'30 lakh-50 lakh'},{id:20,name:'bove 50 lakh'}];
-
-// selectsalpre=null;
-// salary1=[{id:1,name:'less than 50000'},{id:2,name:'50000-1 lakh'},{id:3,name:'1 lakh-1.5 lakh'},{id:4,name:'1.5 lakh-2 lakh'},
-// {id:5,name:'2 lakh-2.5 lakh'},{id:6,name:'2.5 lakh-3 lakh'},{id:7,name:'3 lakh- 4 lakh'},{id:8,name:'4 lakh-5 lakh'},
-// {id:9,name:'5 lakh-6 lakh'},{id:10,name:'6 lakh-7 lakh'},{id:11,name:'7 lakh-8 lakh'},{id:12,name:'8 lakh-9 lakh'},
-// {id:13,name:'9 lakh-10 lakh'},{id:14,name:'10 lakh-12 lakh'},{id:15,name:'12 lakh-15 lakh'},{id:16,name:'15 lakh-20 lakh'},
-// {id:17,name:'20 lakh-25 lakh'},{id:18,name:'25 lakh-30 lakh'},{id:19,name:'30 lakh-50 lakh'},{id:20,name:'bove 50 lakh'}];
-
-
-
-// heightsel=null;
-
-// heightRange=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'},{id:5,h:'4ft 9'},
-// {id:6,h:'4ft 10'},{id:7,h:'4ft 11'},{id:8,h:'5ft'},{id:9,h:'5ft 1'},{id:10,h:'5ft 2'},
-// {id:11,h:'5ft 3'},{id:12,h:'5ft 4'},{id:13,h:'5ft 5'},{id:14,h:'5ft 6'},{id:15,h:'5ft 7'},
-// {id:16,h:'5ft 8'},{id:17,h:'5ft 9'},{id:18,h:'5ft 10'},{id:19,h:'5ft 11'},{id:20,h:'6ft'},
-// {id:21,h:'6ft 1'},{id:22,h:'6ft 2'},{id:23,h:'6ft 3'},{id:24,h:'6ft 4'},{id:25,h:'6ft 5'},
-// {id:26,h:'6ft 6'},{id:27,h:'6ft 7'},{id:28,h:'6ft 8'},{id:29,h:'6ft 9'},{id:30,h:'6ft 10'},
-// {id:31,h:'6ft 11'},{id:32,h:'7ft'}];
-
-
-// heightselpre=null;
-
-// heightRange1=[{id:1,h:'4ft 5'},{id:2,h:'4ft 6'},{id:3,h:'4ft 7'},{id:4,h:'4ft 8'},{id:5,h:'4ft 9'},
-// {id:6,h:'4ft 10'},{id:7,h:'4ft 11'},{id:8,h:'5ft'},{id:9,h:'5ft 1'},{id:10,h:'5ft 2'},
-// {id:11,h:'5ft 3'},{id:12,h:'5ft 4'},{id:13,h:'5ft 5'},{id:14,h:'5ft 6'},{id:15,h:'5ft 7'},
-// {id:16,h:'5ft 8'},{id:17,h:'5ft 9'},{id:18,h:'5ft 10'},{id:19,h:'5ft 11'},{id:20,h:'6ft'},
-// {id:21,h:'6ft 1'},{id:22,h:'6ft 2'},{id:23,h:'6ft 3'},{id:24,h:'6ft 4'},{id:25,h:'6ft 5'},
-// {id:26,h:'6ft 6'},{id:27,h:'6ft 7'},{id:28,h:'6ft 8'},{id:29,h:'6ft 9'},{id:30,h:'6ft 10'},
-// {id:31,h:'6ft 11'},{id:32,h:'7ft'}];
-
 
   constructor(private imagePicker: ImagePicker,private router: Router,public loadingController: LoadingController,
     public formBuilder: FormBuilder,public alertCtrl: AlertController,private country: CountriesService,private authService: AuthService) {
@@ -188,6 +129,7 @@ export class SignupPage implements OnInit {
       // eslint-disable-next-line @typescript-eslint/prefer-for-of
       for(let i=0;i<msg[0].length;i++){
         this.heightRange.push({id:i,name:msg[0][i].height});
+        this.height_to_num[msg[0][i-1].height] = msg[0][i-1].height_in_num;
       }
     });
 
@@ -502,7 +444,7 @@ export class SignupPage implements OnInit {
       mother_tongue:mother_tongue1.name,
       caste:this.slideThreeForm.get('caste').value.name,
       subcaste:sc,
-      height:height1.name,
+      height:Object.keys(this.height_to_num).find(key => this.height_to_num[key] === height1.name),
       // eslint-disable-next-line @typescript-eslint/naming-convention
       highest_degree:degree.name,
       occupation:occ1.name
