@@ -1,16 +1,32 @@
-//.background{
+// .background{
 //   --background:url('../../assets/fingure\ ring.jpg') no-repeat center center fixed;
 //   background-size: cover;
 
 
- //}
+//  }
+
+
+ion-text{
+  font-size: 75%;
+}
+
+div{
+  background-image: url(./../../assets/icon/Android.png);
+  background-size: 100% 100%;
+}
 
  ion-card{
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
   overflow: visible;
+  border-radius: 0% 40% 40% 0;
 
 }
 
+ion-button{
+  background-color: #ff6e40;
+  border-radius: 15px 15px 15px 15px;
+  margin-right: 10%;
+}
 
 .text1{
   text-align: center;
@@ -31,6 +47,11 @@ ion-input{
   // border-radius: 5px;
   font-size:medium;
  }
+
+ ion-item{
+  border: 2px solid #ff6e40;
+  border-radius: 30px;
+}
 
 .btn1{
 

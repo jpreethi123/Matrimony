@@ -1,7 +1,36 @@
 .t2{
-  background: linear-gradient(to bottom, #ff0066 0%, #cc00ff 100%);
+  background: #070E52;
+  color: white;
+
+  //linear-gradient(to bottom, #ff0066 0%, #cc00ff 100%);
  }
 
  .p1{
    font-size: 11px;
  }
+
+ ion-label,.icon{
+  color: white;
+ }
+
+ ion-tab-bar {
+
+	--background: #070E52;
+	// box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.4);
+	// border-radius: 16px !important;
+
+	// height: 40px;
+	// width: 95%;
+	// padding-top: 5px;
+	// padding-bottom: 5px;
+
+	// bottom: 20px;
+	// position: relative;
+	// margin: 0 auto !important;
+	// border-top: none;
+}
+
+// ion-tab-button {
+
+//     border-radius: 16px !important;
+// }

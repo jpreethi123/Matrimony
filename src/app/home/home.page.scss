@@ -3,10 +3,20 @@ ion-slides {
   --bullet-background-active: black;
   height: 75%;
   margin-top: 5%;
+  background-color: #f5f0e1;
 }
 
 ion-slide{
   height: 100%;
+}
+
+ion-button{
+  background-color: #ff6e40;
+  border-radius: 0 15px 0 15px;
+}
+
+ion-content{
+  --background: #f5f0e1;
 }
 
 // .btn{

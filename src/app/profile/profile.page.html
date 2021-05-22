@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar style="--background: #070E52;color: white;">
     <!-- <ion-buttons slot="start">
       <ion-back-button defaultHref="main"></ion-back-button>
     </ion-buttons> -->
@@ -18,8 +18,8 @@
         <ion-label>Basic Details</ion-label>
           <ion-list>
             <ion-item>
-              <ion-label position="floating">Name</ion-label>
-              <ion-input type="text" formControlName="firstName"></ion-input>
+              <!-- <ion-label position="floating">Name</ion-label> -->
+              <ion-input type="text" placeholder="Name" formControlName="firstName"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -40,26 +40,26 @@
             </ion-item>
 
             <ion-item>
-              <ion-label position="floating">Date</ion-label>
-              <ion-input type="text" formControlName="date"></ion-input>
+              <!-- <ion-label position="floating">Date</ion-label> -->
+              <ion-input type="text" placeholder="Date" formControlName="date"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label position="floating">Aadhar Number</ion-label>
-              <ion-input type="text" formControlName="aadhar"></ion-input>
+              <!-- <ion-label position="floating">Aadhar Number</ion-label> -->
+              <ion-input type="text" placeholder="Aadhar Number" formControlName="aadhar"></ion-input>
             </ion-item>
 
 
             <ion-item>
               <!-- <span item-right><ion-icon name="person"></ion-icon></span> -->
-              <ion-label position="floating">Email</ion-label>
-              <ion-input type="text" formControlName="email"></ion-input>
+              <!-- <ion-label position="floating">Email</ion-label> -->
+              <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
             </ion-item>
 
             <ion-item>
               <!-- <span item-right><ion-icon name="phone-portrait"></ion-icon></span> -->
-              <ion-label position="floating">Phone Number</ion-label>
-              <ion-input type="text" formControlName="phone"></ion-input>
+              <!-- <ion-label position="floating">Phone Number</ion-label> -->
+              <ion-input type="text" placeholder="Phone Number" formControlName="phone"></ion-input>
             </ion-item>
 
           </ion-list>
@@ -69,7 +69,7 @@
             <ionic-selectable
                 [items]="countryInfo"
                 itemValueField= CountryName itemTextField= CountryName
-                headerColor="light"
+                headercolor="#ff6e40"
                 [canSearch]="true"
                 (onChange)="onChangeCountry($event)"
                 searchFailText="nothing found"
@@ -88,7 +88,7 @@
                 <ionic-selectable
                 [items]="stateInfo"
                 itemValueField= StateName itemTextField= StateName
-                headerColor="light"
+                headercolor="#ff6e40"
                 [canSearch]="true"
                 (onChange)="onChangeState($event)"
                 searchFailText="nothing found"
@@ -108,7 +108,7 @@
                 <ionic-selectable
                 [items]="cities"
                 itemValueField= city itemTextField= city
-                headerColor="light"
+                headercolor="#ff6e40"
                 [canSearch]="true"
                 searchFailText="nothing found"
                 formControlName="city"
@@ -123,9 +123,9 @@
                 </ionic-selectable>
               </ion-item>
           <br>
-          <ion-button routerLink="/main"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
-          <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="saveBasicDetails()">Save</ion-button>
-          <ion-button type="submit" color="light" shape="round" style="--box-shadow:none;" (click)="swipeNext()">Next</ion-button>
+          <ion-button routerLink="/main"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
+          <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveBasicDetails()">Save</ion-button>
+          <ion-button type="submit" color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="swipeNext()">Next</ion-button>
         </form>
         </ion-slide>
 
@@ -147,7 +147,7 @@
           <ionic-selectable
             [items]="mt"
             itemValueField="id" itemTextField="name"
-            headerColor="light"
+            headercolor="#ff6e40"
             [canSearch]="true"
             searchFailText="nothing found"
             formControlName="mothertongue" [class.invalid]="!slideThreeForm.controls.mothertongue.valid && (slideThreeForm.controls.mothertongue.dirty || submitAttempt)"
@@ -169,7 +169,7 @@
           <ionic-selectable
             [items]="caste"
             itemValueField="id" itemTextField="name"
-            headerColor="light"
+            headercolor="#ff6e40"
             [canSearch]="true"
             searchFailText="nothing found"
             (onChange)="onChangeCaste($event)"
@@ -191,7 +191,7 @@
           <ionic-selectable
             [items]="subcaste"
             itemValueField="id" itemTextField="name"
-            headerColor="light"
+            headercolor="#ff6e40"
             [canSearch]="true"
             searchFailText="nothing found"
             formControlName="subcaste">
@@ -206,10 +206,10 @@
             </ionic-selectable>
         </ion-item>
 
-        <ion-item>
+        <!-- <ion-item>
           <ion-label>Profile Photo</ion-label>
-          <ion-button color="light" shape="round" style="--box-shadow:none;">Choose Images</ion-button>
-        </ion-item>
+          <ion-button color="#ff6e40" shape="round" style="--box-shadow:none;">Choose Images</ion-button>
+        </ion-item> -->
 
         <ion-item>
           <ion-label position="floating">Weight</ion-label>
@@ -225,7 +225,7 @@
             #selectComponent
             [items]="heightRange"
             itemValueField="id" itemTextField="name"
-            headerColor="light"
+            headercolor="#ff6e40"
             [canSearch]="true"
             (onChange)="portChange($event)"
             searchFailText="nothing found"
@@ -247,9 +247,9 @@
           <ion-textarea placeholder="Write about yourself" formControlName="aboutme"></ion-textarea>
         </ion-item>
         <br>
-        <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
-        <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="savePersonalDetails()">Save</ion-button>
-        <ion-button  (click)="swipeNext()"  color="light" shape="round" style="--box-shadow:none;">Next</ion-button>
+        <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
+        <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="savePersonalDetails()">Save</ion-button>
+        <ion-button  (click)="swipeNext()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button>
       </form>
       </ion-slide>
 
@@ -262,7 +262,7 @@
           <ionic-selectable
             [items]="edu"
             itemValueField="id" itemTextField="name"
-            headerColor="light"
+            headercolor="#ff6e40"
             [canSearch]="true"
             searchFailText="nothing found"
             formControlName="edu" [class.invalid]="!slideFourForm.controls.edu.valid && (slideFourForm.controls.edu.dirty || submitAttempt)"
@@ -283,7 +283,7 @@
             #selectComponent
             [items]="occ"
             itemValueField="id" itemTextField="name"
-            headerColor="light"
+            headercolor="#ff6e40"
             [canSearch]="true"
             searchFailText="nothing found"
             formControlName="occ" [class.invalid]="!slideFourForm.controls.occ.valid && (slideFourForm.controls.occ.dirty || submitAttempt)"
@@ -304,7 +304,7 @@
             #selectComponent
             [items]="salary"
             itemValueField="id" itemTextField="name"
-            headerColor="light"
+            headercolor="#ff6e40"
             [canSearch]="true"
             searchFailText="nothing found"
             formControlName="salary">
@@ -319,9 +319,9 @@
         </ion-item>
 
         <br>
-        <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
-        <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="saveEduDetails()">Save</ion-button>
-        <ion-button (click)="swipeNext()" color="light" shape="round" style="--box-shadow:none;">Next</ion-button>
+        <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
+        <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveEduDetails()">Save</ion-button>
+        <ion-button (click)="swipeNext()" color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button>
       </form>
       </ion-slide>
 
@@ -386,9 +386,9 @@
             <ion-input type="text" formControlName="p3pt2"></ion-input>
           </ion-item>
           <br>
-        <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
-        <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="saveContactDetails()">Save</ion-button>
-        <ion-button  (click)="swipeNext()"  color="light" shape="round" style="--box-shadow:none;">Next</ion-button>
+        <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
+        <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveContactDetails()">Save</ion-button>
+        <ion-button  (click)="swipeNext()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button>
         </form>
       </ion-slide>
 
@@ -407,7 +407,7 @@
                 #selectComponent
                 [items]="occ"
                 itemValueField="id" itemTextField="name"
-                headerColor="light"
+                headercolor="#ff6e40"
                 [canSearch]="true"
                 searchFailText="nothing found"
                 formControlName="fatherocc">
@@ -433,7 +433,7 @@
                 #selectComponent
                 [items]="occ"
                 itemValueField="id" itemTextField="name"
-                headerColor="light"
+                headercolor="#ff6e40"
                 [canSearch]="true"
                 searchFailText="nothing found"
                 formControlName="motherocc">
@@ -493,9 +493,9 @@
        <ion-textarea></ion-textarea>
      </ion-item> -->
         <br>
-        <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
-        <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="saveFamilyDetails()">Save</ion-button>
-        <ion-button (click)="swipeNext()"  color="light" shape="round" style="--box-shadow:none;">Next</ion-button>
+        <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
+        <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveFamilyDetails()">Save</ion-button>
+        <ion-button (click)="swipeNext()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button>
         </form>
        </ion-slide>
 
@@ -531,9 +531,9 @@
           </ion-item>
 
           <br>
-          <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
-          <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="saveOtherDetails()">Save</ion-button>
-          <ion-button  (click)="swipeNext()"  color="light" shape="round" style="--box-shadow:none;">Next</ion-button>
+          <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
+          <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveOtherDetails()">Save</ion-button>
+          <ion-button  (click)="swipeNext()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button>
         </form>
       </ion-slide>
 
@@ -564,7 +564,7 @@
               #selectComponent
               [items]="heightRange"
               itemValueField="id" itemTextField="name"
-              headerColor="light"
+              headercolor="#ff6e40"
               [canSearch]="true"
               (onChange)="portChange($event)"
               searchFailText="nothing found"
@@ -585,7 +585,7 @@
               #selectComponent
               [items]="mt"
               itemValueField="id" itemTextField="name"
-              headerColor="light"
+              headercolor="#ff6e40"
               [canSearch]="true"
               searchFailText="nothing found"
               formControlName="mt">
@@ -604,7 +604,7 @@
                 <ionic-selectable
                   [items]="caste"
                   itemValueField="id" itemTextField="name"
-                  headerColor="light"
+                  headercolor="#ff6e40"
                   [canSearch]="true"
                   searchFailText="nothing found"
                   formControlName="caste"
@@ -625,7 +625,7 @@
                 <ionic-selectable
                   [items]="subcaste"
                   itemValueField="id" itemTextField="name"
-                  headerColor="light"
+                  headercolor="#ff6e40"
                   [canSearch]="true"
                   searchFailText="nothing found"
                   formControlName="subcaste"
@@ -647,7 +647,7 @@
               #selectComponent
               [items]="edu"
               itemValueField="id" itemTextField="name"
-              headerColor="light"
+              headercolor="#ff6e40"
               [canSearch]="true"
               searchFailText="nothing found"
               formControlName="edu">
@@ -667,7 +667,7 @@
               #selectComponent
               [items]="occ"
               itemValueField="id" itemTextField="name"
-              headerColor="light"
+              headercolor="#ff6e40"
               [canSearch]="true"
               searchFailText="nothing found"
               formControlName="occ">
@@ -689,7 +689,7 @@
               #selectComponent
               [items]="salary"
               itemValueField="id" itemTextField="name"
-              headerColor="light"
+              headercolor="#ff6e40"
               [canSearch]="true"
               searchFailText="nothing found"
               formControlName="salary">
@@ -704,8 +704,8 @@
            </ion-item>
 
         <br>
-        <ion-button (click)="swipeBack()"  color="light" shape="round" style="--box-shadow:none;">Back</ion-button>
-        <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="savePartnerDetails()">Save</ion-button>
+        <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
+        <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="savePartnerDetails()">Save</ion-button>
        </form>
       </ion-slide>
 
