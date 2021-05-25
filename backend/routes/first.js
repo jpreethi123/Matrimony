@@ -103,6 +103,11 @@ router.get('/fetchlikes/:to',authController.fetchlikes);
 
 router.get('/onelike/:from',authController.onelike);
 
+router.post('/chatrequests',authController.savechatrequest);
+router.get('/showchatrequests/:uid',authController.showchatrequests);
+router.put('/acceptchatrequest',authController.acceptchatrequest);
+router.delete('/deletechatrequest/:uid',authController.deletechatrequest);
+router.get('/getchatrequest/:uid',authController.getchatrequest);
 
 
 

@@ -9,4 +9,11 @@
     Chat
   </ion-item>
 
+  <ion-list *ngFor="let chat of chatList">
+    <ion-item button (click)="chats(chat.email,chat.name)">
+      <!-- <ion-icon name="home" slot="start"></ion-icon> -->
+      <ion-label >{{chat.name}}</ion-label>
+    </ion-item>
+  </ion-list>
+
   </ion-content>

@@ -351,6 +351,36 @@ static onelike(from){
   );
 }
 
+static savechatrequest(basic){
+  return db.execute(
+      'INSERT INTO chatrequest(send_from,send_to,status) VALUES(?,?,?)',
+      [basic.from,basic.to,basic.status]
+  );
+}
+
+static showchatrequests(to){
+  return db.execute(
+      'SELECT * FROM chatrequest WHERE send_to=?',[to]
+  );
+}
+
+static acceptchatrequest(user){
+  return db.execute(
+      'UPDATE chatrequest SET status=? WHERE send_from=?',[user.status,user.send_from]
+  );
+}
+
+static deletechatrequest(from){
+  return db.execute(
+      'DELETE FROM chatrequest WHERE send_from=?',[from]
+  );
+}
+
+static getchatrequest(from){
+  return db.execute(
+      'SELECT * FROM chatrequest WHERE send_from=? or send_to=?',[from,from]
+  );
+}
 
 
 }

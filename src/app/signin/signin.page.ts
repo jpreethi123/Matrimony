@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import { ErrorHandlerService } from './../services/error-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -5,6 +6,7 @@ import { LoadingController } from '@ionic/angular';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from './../services/auth.service';
+import { ChatserviceService } from './../chatservice.service';
 
 
 
@@ -19,9 +21,11 @@ export class SigninPage implements OnInit {
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   static siginUid = '';
+  static email = '';
 
-  constructor(private router: Router,public loadingController: LoadingController,public formBuilder: FormBuilder,
-    public alertCtrl: AlertController,private authService: AuthService,private errorHandlerService: ErrorHandlerService) {
+  constructor(private router: Router,public loading: LoadingController,public formBuilder: FormBuilder,
+    public alertCtrl: AlertController,private authService: AuthService,private errorHandlerService: ErrorHandlerService,
+    private chatService: ChatserviceService) {
     this.submit=this.formBuilder.group({
       email:['', Validators.compose([Validators.minLength(10), Validators.pattern('^[a-z0-9_.+-]+@[a-z0-9-]+.[a-z]+$'),
       Validators.required])],
@@ -62,7 +66,27 @@ async login(): Promise<void>{
     if(msg)
     {
       SigninPage.siginUid = String(msg.userId);
-    console.log(msg);
+      SigninPage.email = mail;
+      //console.log(msg);
+      this.chatService
+      .signIn(this.submit.value)
+      .then(
+        (user) => {
+          //console.log(user.user.uid);
+          //loading.dismiss();
+          //this.router.navigateByUrl('/chat', { replaceUrl: true });
+        },
+        async (err) => {
+          //loading.dismiss();
+          const alert = await this.alertCtrl.create({
+            header: 'Sign up failed',
+            message: err.message,
+            buttons: ['OK'],
+          });
+
+          await alert.present();
+        }
+      );
     }
     else
     {
@@ -78,3 +102,5 @@ async login(): Promise<void>{
 }
 
 }
+
+

@@ -1,9 +1,11 @@
+/* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { SigninPage } from '../signin/signin.page';
 import { SignupPage } from '../signup/signup.page';
+import { ChatserviceService } from './../chatservice.service';
 
 @Component({
   selector: 'app-main',
@@ -18,7 +20,7 @@ export class MainPage implements OnInit {
   signup=SigninPage.siginUid;
   signin=SignupPage.signUpUid;
 
-  constructor(private alertCtrl: AlertController,private router: Router,private authService: AuthService) { }
+  constructor(private alertCtrl: AlertController,private router: Router,private authService: AuthService,private chatService: ChatserviceService) { }
 
   ngOnInit() {
     if(this.signin===''){
@@ -47,7 +49,9 @@ export class MainPage implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this.router.navigate(['signin']);
+              this.chatService.signOut().then(() => {
+                this.router.navigate(['signin']);
+              });
           }
         }
       ]

@@ -698,6 +698,66 @@ exports.onelike=async(req,res,next)=>{
 
 };
 
+exports.savechatrequest=async(req,res,next)=>{
+  const basic = {
+   from: req.body.from,
+   to: req.body.to,
+   status: req.body.status
+  }
+  try{
+      const user=await User.savechatrequest(basic);
+      console.log(user);
+      res.status(200).json({meessage:'inserted'});
+
+
+  }catch(err){
+      console.log(err);
+  }
+};
+
+exports.showchatrequests=async(req,res,next)=>{
+  const uid=req.params.uid;
+  try{
+      const userinfo=await User.showchatrequests(uid);
+      res.status(200).json(userinfo);
+  }catch(err){
+    console.log(err.message);
+  }
+};
+
+exports.acceptchatrequest=async(req,res,next)=>{
+  const user = {
+    status: req.body.status,
+    send_from: req.body.send_from
+  }
+  try{
+      const userinfo=await User.acceptchatrequest(user);
+      res.status(200).json(userinfo);
+  }catch(err){
+    console.log(err.message);
+  }
+};
+
+
+exports.deletechatrequest=async(req,res,next)=>{
+  const uid=req.params.uid;
+  try{
+      const userinfo=await User.deletechatrequest(uid);
+      res.status(200).json(userinfo);
+  }catch(err){
+    console.log(err.message);
+  }
+};
+
+exports.getchatrequest=async(req,res,next)=>{
+  const uid=req.params.uid;
+  try{
+      const userinfo=await User.getchatrequest(uid);
+      res.status(200).json(userinfo);
+  }catch(err){
+    console.log(err.message);
+  }
+};
 
 
 

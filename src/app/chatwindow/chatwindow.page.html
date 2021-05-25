@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="chat"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{name1}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-grid>
+    <ion-row *ngFor="let message of messages | async">
+      <ion-col size="9" class="message"
+        [offset]="message.myMsg ? 3 : 0"
+        [ngClass]="{ 'my-message': message.myMsg, 'other-message': !message.myMsg }">
+        <!-- <b style="font-size: small;">{{ message.fromName }}</b><br> -->
+        <span>{{ message.msg }}
+        </span>
+        <div class="time ion-text-right"><br>{{ message.createdAt?.toMillis() | date:'short' }}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar >
+    <ion-row class="ion-align-items-center">
+      <ion-col size="10">
+        <ion-textarea placeholder="Type a message..." autofocus="true" autoGrow="true" class="message-input" rows="1" maxLength="500" [(ngModel)]="newMsg" >
+        </ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button color="white" (click)="sendMessage()">
+          <ion-icon name="navigate-outline" color="black"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+

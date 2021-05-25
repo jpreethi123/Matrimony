@@ -234,5 +234,25 @@ httpOptions: {headers: HttpHeaders}={
 
   }
 
+  chatrequests(request){
+    return this.http.post(`http://localhost:5000/auth/chatrequests`,request,this.httpOptions);
+  }
+
+  showchatrequests(uid){
+    return this.http.get(`http://localhost:5000/auth/showchatrequests/${uid}`,this.httpOptions);
+  }
+
+  acceptchatrequest(user){
+    return this.http.put(`http://localhost:5000/auth/acceptchatrequest`,user,this.httpOptions);
+  }
+
+  deletechatrequest(uid){
+    return this.http.delete(`http://localhost:5000/auth/deletechatrequest/${uid}`,this.httpOptions);
+  }
+
+  getchatrequest(uid){
+    return this.http.get(`http://localhost:5000/auth/getchatrequest/${uid}`,this.httpOptions);
+  }
+
 
 }

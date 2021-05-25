@@ -96,7 +96,15 @@
               <ion-button color="light" class="text5">sent</ion-button>
             </div>
             <ion-button color="light" (click)="view(match.uid)"class="text4">profile</ion-button>
-
+            <div *ngIf="match.chatreq===0">
+              <ion-button color="light" (click)="chatrequest(match.uid)"class="text4">Chat Request</ion-button>
+            </div>
+            <div *ngIf="match.chatreq===1">
+              <ion-button color="light" lass="text4">Chat Request sent</ion-button>
+            </div>
+            <div *ngIf="match.chatreq===2">
+              <ion-button color="light" lass="text4">Chat</ion-button>
+            </div>
 
 
           </ion-row>

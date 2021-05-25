@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/prefer-for-of */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { NotificationsPage } from './../notifications/notifications.page';
 import { SignupPage } from './../signup/signup.page';
@@ -20,12 +23,11 @@ export class MatchesPage implements OnInit {
 
   height_to_num = {};
 
-  // eslint-disable-next-line @typescript-eslint/member-ordering
   static matchUid='';
-  // eslint-disable-next-line @typescript-eslint/member-ordering
   static gender;
   // eslint-disable-next-line @typescript-eslint/naming-convention
   AllMatches=[];
+  static allMatch = [];
   comparemale=[{id:1,name:'male'},{id:2,name:'Male'}];
 
   constructor(private authService: AuthService,public router: Router) { }
@@ -65,6 +67,7 @@ export class MatchesPage implements OnInit {
             user[0][i].age=d.getFullYear()-num;
             user[0][i].flag=0;
             user[0][i].like=0;
+            user[0][i].chatreq=0;
             user[0][i].height = Object.keys(this.height_to_num).find(key => this.height_to_num[key] === user[0][i].height);
             console.log('each user',user[0][i]);
             this.AllMatches.push(user[0][i]);
@@ -104,6 +107,24 @@ export class MatchesPage implements OnInit {
               }
 
             });
+
+            this.authService.getchatrequest(this.uid).subscribe((msg3) => {
+              for(let j=0;j<msg3[0].length;j++)
+              {
+                for(let p=0;p<this.AllMatches.length;p++)
+                {
+                  if((this.AllMatches[p].uid === msg3[0][j].send_to || this.AllMatches[p].uid === msg3[0][j].send_from)  && msg3[0][j].status === 'accepted')
+                  {
+                    this.AllMatches[p].chatreq=2;
+                  }
+                  if((this.AllMatches[p].uid === msg3[0][j].send_to || this.AllMatches[p].uid === msg3[0][j].send_from) && msg3[0][j].status === 'pending')
+                  {
+                    this.AllMatches[p].chatreq=1;
+                  }
+                }
+              }
+            });
+
           }
 
         });
@@ -123,6 +144,7 @@ export class MatchesPage implements OnInit {
             user[0][i].age=d.getFullYear()-num;
             user[0][i].flag=0;
             user[0][i].like=0;
+            user[0][i].chatreq=0;
             user[0][i].height = Object.keys(this.height_to_num).find(key => this.height_to_num[key] === user[0][i].height);
             this.AllMatches.push(user[0][i]);
             this.authService.onerequest(this.uid).subscribe((msg1)=>{
@@ -147,10 +169,8 @@ export class MatchesPage implements OnInit {
             });
 
             this.authService.onelike(this.uid).subscribe((msg2)=>{
-              // eslint-disable-next-line @typescript-eslint/prefer-for-of
               for(let j=0;j<msg2[0].length;j++)
               {
-                // eslint-disable-next-line @typescript-eslint/prefer-for-of
                 for(let p=0;p<this.AllMatches.length;p++)
                 {
                   if(this.AllMatches[p].uid === msg2[0][j].send_to)
@@ -160,6 +180,23 @@ export class MatchesPage implements OnInit {
                 }
               }
 
+            });
+
+            this.authService.getchatrequest(this.uid).subscribe((msg3) => {
+              for(let j=0;j<msg3[0].length;j++)
+              {
+                for(let p=0;p<this.AllMatches.length;p++)
+                {
+                  if((this.AllMatches[p].uid === msg3[0][j].send_to || this.AllMatches[p].uid === msg3[0][j].send_from) && msg3[0][j].status === 'accepted')
+                  {
+                    this.AllMatches[p].chatreq=2;
+                  }
+                  if((this.AllMatches[p].uid === msg3[0][j].send_to || this.AllMatches[p].uid === msg3[0][j].send_from) && msg3[0][j].status === 'pending')
+                  {
+                    this.AllMatches[p].chatreq=1;
+                  }
+                }
+              }
             });
 
 
@@ -173,10 +210,12 @@ export class MatchesPage implements OnInit {
 
     });
 
-
+  MatchesPage.allMatch = this.AllMatches;
+  console.log('All ',MatchesPage.allMatch);
 
 
   }
+
   view(uid){
     NotificationsPage.profileuid='';
     MatchesPage.viewvalue=1;
@@ -226,10 +265,31 @@ export class MatchesPage implements OnInit {
 
   }
 
+  chatrequest(uidreq){
+    for(let i=0;i<this.AllMatches.length;i++)
+      {
+        if(this.AllMatches[i].uid===uidreq)
+        {
+          this.AllMatches[i].chatreq=1;
+          break;
+        }
+      }
+
+    const req={
+      from:this.uid,
+      to:uidreq,
+      status:'pending'
+    };
+    this.authService.chatrequests(req).subscribe((msg)=>{
+      console.log(msg);
+    });
+
+  }
+
   interest(uidreq)
   {
     console.log('matches length',this.AllMatches.length);
-      // eslint-disable-next-line @typescript-eslint/prefer-for-of
+
       for(let i=0;i<this.AllMatches.length;i++)
       {
         if(this.AllMatches[i].uid===uidreq)
