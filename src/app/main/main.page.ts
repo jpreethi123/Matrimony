@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -19,20 +20,38 @@ export class MainPage implements OnInit {
   uid='';
   signup=SigninPage.siginUid;
   signin=SignupPage.signUpUid;
+  displayImage = '';
 
   constructor(private alertCtrl: AlertController,private router: Router,private authService: AuthService,private chatService: ChatserviceService) { }
 
+  ionViewDidEnter(){
+    console.log('view');
+   if(this.signin===''){
+     this.uid = this.signup;
+   }
+   else{
+     this.uid = this.signin;
+   }
+
+   this.authService.getSetProfileId(this.uid).subscribe((msg)=>{
+     console.log('id',msg);
+     if(msg[0].length !== 0){
+       this.authService.getProfilePhoto(this.uid,msg[0][0]['setProfile']).subscribe((msg1)=>{
+           this.displayImage = 'data:image/jpeg;base64,' + msg1.body['message'];
+       });
+     }
+     else {
+       this.displayImage = './../../assets/icon/profile.png';
+     }
+   });
+
+   this.authService.getBasicDetails(this.uid).subscribe((msg)=>{
+         this.name = msg[0][0].name;
+         this.userid = (msg[0][0].uid);
+   });
+ }
   ngOnInit() {
-    if(this.signin===''){
-      this.uid = this.signup;
-    }
-    else{
-      this.uid = this.signin;
-    }
-    this.authService.getBasicDetails(this.uid).subscribe((msg)=>{
-          this.name = msg[0][0].name;
-          this.userid = (msg[0][0].uid);
-    });
+
   }
 
   async presentConfirm() {

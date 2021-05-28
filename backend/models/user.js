@@ -382,5 +382,54 @@ static getchatrequest(from){
   );
 }
 
+static image(uid){
+  return db.execute(
+      'SELECT * FROM images where uid=?',[uid]
+  );
+}
+
+static deleteImage(id){
+  return db.execute(
+      'delete FROM images where imgId=?',[id]
+  );
+}
+
+static imageCount(uid){
+  return db.execute(
+      'select count(?) FROM images',[uid]
+  );
+}
+
+
+static uploadblob(user){
+return db.execute(
+    'INSERT INTO images VALUES(?,?,?)',
+    [user.img,user.uid,0]
+);
+}
+
+static insertSetP(user){
+return db.execute(
+  'insert into setProfile values(?,?)',[user.uid,null]
+)
+}
+
+static getSetProfileId(uid){
+return db.execute(
+  'select setProfile from setProfile where uid=?',[uid]
+)
+}
+
+static updateSetProfile(user){
+return db.execute(
+  'update setProfile set setProfile=? where uid=?',[user.setProfile,user.uid]
+)
+}
+
+static getProfilePhoto(uid,id){
+  return db.execute(
+    'select data from images where uid=? and imgId=?',[uid,id]
+  )
+}
 
 }

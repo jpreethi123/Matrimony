@@ -109,6 +109,12 @@ router.put('/acceptchatrequest',authController.acceptchatrequest);
 router.delete('/deletechatrequest/:uid',authController.deletechatrequest);
 router.get('/getchatrequest/:uid',authController.getchatrequest);
 
-
+router.get('/image/:uid',authController.image);
+router.post('/uploadblob',authController.uploadblob);
+router.delete('/deleteImage/:id',authController.deleteImage);
+router.put('/updateSetProfile',authController.updateSetProfile);
+router.get('/imageCount/:uid',authController.imageCount);
+router.get('/getProfilePhoto/:uid/:id',authController.getProfilePhoto);
+router.get('/getSetProfileId/:uid',authController.getSetProfileId);
 
 module.exports=router;

@@ -62,11 +62,12 @@ export class NotificationsPage implements OnInit {
     this.authService.showchatrequests(this.uid).subscribe((msg)=>{
       for(let i=0;i<msg[0].length;i++)
       {
-        const req=msg[0][i].send_from;
+        if(msg[0][i].status !== 'accepted'){
+          const req=msg[0][i].send_from;
         this.authService.getBasicDetails(req).subscribe((msg1)=>{
           this.chat.push({id:req,name:msg1[0][0].name});
         });
-
+        }
       }
     });
 

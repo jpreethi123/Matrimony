@@ -38,6 +38,10 @@ const routes: Routes = [
     path: 'chatwindow',
     loadChildren: () => import('./chatwindow/chatwindow.module').then( m => m.ChatwindowPageModule)
   },
+  {
+    path: 'imgupload',
+    loadChildren: () => import('./imgupload/imgupload.module').then( m => m.ImguploadPageModule)
+  },
 
 
 

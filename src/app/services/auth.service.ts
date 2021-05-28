@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable quote-props */
+/* eslint-disable @typescript-eslint/member-ordering */
 import { Injectable } from '@angular/core';
 import { User } from './../models/User';
 import {Router} from '@angular/router';
@@ -24,6 +27,10 @@ httpOptions: {headers: HttpHeaders}={
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+httpOptionsFile: {headers: HttpHeaders}={
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  headers: new HttpHeaders({'Accept':'application/json', 'enctype': 'multipart/form-data' })
+};
 
   constructor(private http: HttpClient,private errorHandlerService: ErrorHandlerService,private router: Router) { }
 
@@ -252,6 +259,35 @@ httpOptions: {headers: HttpHeaders}={
 
   getchatrequest(uid){
     return this.http.get(`http://localhost:5000/auth/getchatrequest/${uid}`,this.httpOptions);
+  }
+
+  insertimageblob(user){
+    return this.http.post('http://localhost:5000/auth/uploadblob',user,this.httpOptionsFile);
+  }
+
+  getImages(uid) {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    return this.http.get(`http://localhost:5000/auth/image/${uid}`,{responseType: "json",observe:"response"});
+  }
+
+  deleteImage(id){
+    return this.http.delete(`http://localhost:5000/auth/deleteImage/${id}`,this.httpOptions);
+  }
+
+  updateSetProfile(user){
+    return this.http.put('http://localhost:5000/auth/updateSetProfile',user,this.httpOptions);
+  }
+
+  imageCount(uid){
+    return this.http.get(`http://localhost:5000/auth/imageCount/${uid}`,this.httpOptions);
+  }
+
+  getProfilePhoto(uid,id){
+    return this.http.get(`http://localhost:5000/auth/getProfilePhoto/${uid}/${id}`,{responseType: "json",observe:"response"});
+  }
+
+  getSetProfileId(uid){
+    return this.http.get(`http://localhost:5000/auth/getSetProfileId/${uid}`,this.httpOptions);
   }
 
 

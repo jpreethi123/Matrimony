@@ -1,0 +1,140 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="main"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Photo Upload</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <ion-item *ngIf="Error === 0">
+  <ion-label>No Image has been uploaded</ion-label>
+</ion-item>
+  <form enctype="multipart/form-data">
+  <ion-row>
+    <ion-col
+      size="6"
+      *ngFor="let img of image"
+    >
+       <img [src]="img.image" width="150" height="150"/>
+       <br><br>
+      <ion-fab vertical="bottom" horizontal="start">
+        <ion-fab-button
+          color="success"
+          size="small"
+          (click)="setProfile(img.id)"
+          >
+          <ion-label>Set</ion-label>
+          <!-- <ion-icon name="checkmark-outline"></ion-icon> -->
+        </ion-fab-button>
+      </ion-fab>
+      <ion-fab vertical="bottom" horizontal="end">
+        <ion-fab-button
+          color="danger"
+          size="small"
+          (click)="deleteImage(img.id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-col>
+  </ion-row>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="selectImage()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</form>
+</ion-content>
+
+<!-- <ion-content>
+
+  <form enctype="multipart/form-data">
+    <ion-item>
+      <ion-label position="floating">UID</ion-label>
+      <ion-input type="text" [(ngModel)]="useruid" name="useruid"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Profile Photo</ion-label>
+      <ion-button color="light" shape="round" style="--box-shadow:none;" (click)="selectImage()">Choose Images</ion-button>
+    </ion-item>
+    <br> -->
+      <!-- <ion-item>
+       <input type="file" (change)="onFileChange($event)" name="image"/>
+
+    </ion-item>
+    <ion-item>
+     <button ion-button color="secondary" (click)="getImage1()">Get Image</button>
+   </ion-item>
+    <ion-item>
+      <ion-button expand="full" (click)="upload()">Upload</ion-button>
+    </ion-item>
+    <ion-item >
+      <ion-label>'./../../../backend/uploads/{{i.image_name}}'</ion-label><br>
+      <img [src]="img_name" width="200px">
+    </ion-item> -->
+    <!-- <ion-item *ngFor="let i of image">
+      <img [src]="i" width="200px">
+    </ion-item>
+
+  </form>
+
+</ion-content> -->
+
+<!--
+<ion-content>
+  <ion-row>
+    <ion-col
+      size="6"
+      *ngFor="let img of images; let i = index;"
+      class="ion-text-center"
+    >
+      <ion-label>
+        {{ img.name }}
+        <p>{{ img.createdAt | date:'short' }}</p>
+      </ion-label>
+
+      <img [src]="img.url" />
+      <ion-fab vertical="bottom" horizontal="end">
+        <ion-fab-button
+          color="danger"
+          size="small"
+          (click)="deleteImage(img, i)"
+        >
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-col>
+  </ion-row>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <input
+      type="file"
+      #fileInput
+      (change)="uploadFile($event)"
+      hidden="true"
+      accept="image/*"
+    />
+    <ion-fab-button (click)="selectImageSource()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content> -->
+
+<!-- <ion-content padding>
+  <ion-item>
+     <p>{{imageURI}}</p>
+    <button ion-button color="secondary" (click)="getImage()">Get Image</button>
+  </ion-item>
+  <ion-item>
+    <h4>Image Preview</h4>
+    <img src="{{imageFileName}}" *ngIf="imageFileName" alt="Ionic File" width="300" />
+  </ion-item>
+  <ion-item>
+    <button ion-button (click)="uploadFile()">Upload</button>
+  </ion-item>
+</ion-content> -->

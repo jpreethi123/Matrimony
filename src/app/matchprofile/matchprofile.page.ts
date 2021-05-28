@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { NotificationsPage } from './../notifications/notifications.page';
 import { AuthService } from './../services/auth.service';
@@ -24,6 +25,7 @@ export class MatchprofilePage implements OnInit {
   showpreference=0;
   filledpreference=0;
   filledfamily=0;
+  displayImage;
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Details={
     name:'',
@@ -61,6 +63,17 @@ export class MatchprofilePage implements OnInit {
     {
       this.matchuid=this.uidfromnofi;
     }
+
+    this.authService.getSetProfileId(this.matchuid).subscribe((msgs)=>{
+      if(msgs[0].length !== 0){
+        this.authService.getProfilePhoto(this.matchuid,msgs[0][0]['setProfile']).subscribe((msg1)=>{
+            this.displayImage = 'data:image/jpeg;base64,' + msg1.body['message'];
+        });
+      }
+      else {
+       this.displayImage = './../../assets/icon/profile.png';
+      }
+    });
 
     this.authService.getheightrange().subscribe((msg)=>{
       for(let i=1;i<msg[0].length+1;i++){
