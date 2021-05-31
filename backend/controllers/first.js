@@ -764,7 +764,7 @@ exports.image=async(req,res,next)=>{
   try{
     let imgdata = [];
     const user=await User.image(uid);
-    //console.log(user[0]);
+    //console.log(user);
     for(let i=0;i<user[0].length;i++){
       const c = Buffer.from(user[0][i]['data'],"utf8")
       const bb = c.toString("utf8");
@@ -849,10 +849,13 @@ exports.getProfilePhoto = async(req,res,next) => {
   const id = req.params.id;
   try{
     const img=await User.getProfilePhoto(uid,id);
-    //console.log(img);
-      const c = Buffer.from(img[0][0]['data'],"utf8")
-      const bb = c.toString("utf8");
-      res.status(200).json({message:bb});
+      //console.log(img[0].length);
+      if(img[0].length === 0){ res.status(200).json({message:'no'});}
+      else{
+        const c = Buffer.from(img[0][0]['data'],"utf8")
+        const bb = c.toString("utf8");
+        res.status(200).json({message:bb});
+      }
 
   }catch(err){
     console.log(err.message);
@@ -863,7 +866,13 @@ exports.getSetProfileId = async(req,res,next) => {
   const uid=req.params.uid;
   try{
       const id=await User.getSetProfileId(uid);
-      res.status(200).json(id);
+      if(id[0].length === 0){
+        res.status(200).json({id:null});
+      }
+      else{
+        res.status(200).json({id:id[0][0]['setProfile']});
+      }
+      //res.status(200).json(id);
   }catch(err){
     console.log(err.message);
   }
