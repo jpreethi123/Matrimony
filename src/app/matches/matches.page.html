@@ -50,8 +50,8 @@
   <ion-card *ngFor="let match of AllMatches">
     <ion-card-content>
       <ion-row justify-content-between>
-        <ion-col size="5.5">
-          <img [src]="match.displayImage">
+        <ion-col size ="4">
+          <img  class="i2" [src]="match.displayImage">
           <!-- <ion-row>
             <button color="light" class="icon"> <ion-icon class="icon1" name="heart-outline"></ion-icon></button>
           </ion-row>
@@ -62,13 +62,11 @@
         </ion-col>
 
 
-      <ion-col class="col1">
+      <ion-col>
         <ion-row text-wrap class="text1">{{match.name}}</ion-row>
         <ion-row text-wrap class="text2">{{match.occupation}}</ion-row>
         <ion-row text-wrap class="text3">{{match.age}} years | {{match.height}}</ion-row>
         <ion-row text-wrap class="text3">{{match.caste}}</ion-row>
-
-
         <!-- <ion-button color="light" (click)="view(match.uid)"class="text4">profile</ion-button> -->
 
       </ion-col>
@@ -82,28 +80,32 @@
             <ion-button color="light" (click)="view(match.uid)"class="text4">profile</ion-button>
           </ion-row> -->
           <ion-row class="a">
+            <button color="#ff6e40" class="icon tooltip" (click)="view(match.uid)" > <ion-icon class="icon1" name="person"></ion-icon><span class="tooltiptext">Visit Profile</span></button>
             <div *ngIf="match.like===0">
-              <button class="icon" (click)="changeicon(match.uid)"> <ion-icon class="icon1" name="heart-outline"></ion-icon></button>
+              <!-- <button class="icon" (click)="changeicon(match.uid)"> <ion-icon class="icon1" name="heart-outline"></ion-icon></button> -->
+              <button color="#ff6e40" class="icon tooltip" (click)="changeicon(match.uid)" > <ion-icon class="icon1" name="heart-outline"></ion-icon><span class="tooltiptext">Send Like</span></button>
+
             </div>
             <div *ngIf="match.like===1">
-              <button class="icon" > <ion-icon class="icon1" name="heart"></ion-icon></button>
+              <button  color="#ff6e40" class="icon tooltip" > <ion-icon class="icon1" name="heart"></ion-icon><span class="tooltiptext">Like Sent</span></button>
             </div>
 
             <div *ngIf="match.flag===0">
-              <ion-button color="#ff6e40" (click)="interest(match.uid)" class="text5">interest</ion-button>
+              <!-- <ion-button color="#ff6e40" (click)="interest(match.uid)" class="text5">interest</ion-button> -->
+              <button color="#ff6e40" class="icon tooltip" (click)="interest(match.uid)" > <ion-icon class="icon1" name="star-outline"></ion-icon><span class="tooltiptext">Send Interest</span></button>
             </div>
             <div *ngIf="match.flag===1">
-              <ion-button color="#ff6e40" class="text5">sent</ion-button>
+              <button color="#ff6e40" class="icon tooltip"><ion-icon class="icon1" name="star"></ion-icon><span class="tooltiptext">Interest Sent</span></button>
             </div>
-            <ion-button color="#ff6e40" (click)="view(match.uid)"class="text4">profile</ion-button>
+            <!-- <ion-button color="#ff6e40" (click)="view(match.uid)"class="text4">profile</ion-button> -->
             <div *ngIf="match.chatreq===0">
-              <ion-button color="#ff6e40" (click)="chatrequest(match.uid)"class="text4">Chat Request</ion-button>
+              <button color="#ff6e40" (click)="chatrequest(match.uid)"class="text4"><span><ion-icon  name="chatbubbles-outline" ></ion-icon></span>Request</button>
             </div>
             <div *ngIf="match.chatreq===1">
-              <ion-button color="#ff6e40" class="text4">Chat Request sent</ion-button>
+              <button color="#ff6e40" class="text4"><ion-icon name="chatbubbles-outline" ></ion-icon>Request sent</button>
             </div>
             <div *ngIf="match.chatreq===2">
-              <ion-button color="#ff6e40" class="text4">Chat</ion-button>
+              <button color="#ff6e40" class="text4"><ion-icon name="chatbubbles-outline" ></ion-icon>Chat</button>
             </div>
 
 

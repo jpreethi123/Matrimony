@@ -10,6 +10,7 @@ import { AuthService } from './../services/auth.service';
 import { SigninPage } from './../signin/signin.page';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-matches',
   templateUrl: './matches.page.html',
@@ -350,6 +351,10 @@ export class MatchesPage implements OnInit {
     this.authService.requests(req).subscribe((msg)=>{
       console.log(msg);
     });
+  }
+  view1()
+  {
+    console.log('check profile');
   }
 
 

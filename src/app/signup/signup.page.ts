@@ -90,7 +90,7 @@ export class SignupPage implements OnInit {
         edu:['',Validators.required],
         occ:['',Validators.required]
       });
-      this.loadWorker();
+      //this.loadWorker();
    }
 
 
@@ -245,94 +245,94 @@ export class SignupPage implements OnInit {
   }
 
   async slidetwoform(){
-    this.useruid=this.slideTwoForm.get('aadhar').value;
-    this.username=this.slideTwoForm.get('firstName').value;
-    this.usergender=this.slideTwoForm.get('gender').value;
-    this.userdate=this.slideTwoForm.get('date').value;
+  //   this.useruid=this.slideTwoForm.get('aadhar').value;
+  //   this.username=this.slideTwoForm.get('firstName').value;
+  //   this.usergender=this.slideTwoForm.get('gender').value;
+  //   this.userdate=this.slideTwoForm.get('date').value;
 
-    const result=await this.worker.recognize(this.image);
+  //   const result=await this.worker.recognize(this.image);
 
-    this.ocrResult=result.data.text;
-    this.ocr=result.data.text;
-    while(this.i<this.ocr.length)
-    {
-      if(this.ocr.charAt(this.i)==='\n')
-      {
-        if(this.ocr1!=='' && this.ocr1!=='\n')
-        {
-        this.str[this.j]=this.ocr1;
-        this.j=this.j+1;
-        }
-        this.ocr1='';
-      }
-      else
-      {
-        this.ocr1=this.ocr1+this.ocr.charAt(this.i);
-      }
-      this.i=this.i+1;
+  //   this.ocrResult=result.data.text;
+  //   this.ocr=result.data.text;
+  //   while(this.i<this.ocr.length)
+  //   {
+  //     if(this.ocr.charAt(this.i)==='\n')
+  //     {
+  //       if(this.ocr1!=='' && this.ocr1!=='\n')
+  //       {
+  //       this.str[this.j]=this.ocr1;
+  //       this.j=this.j+1;
+  //       }
+  //       this.ocr1='';
+  //     }
+  //     else
+  //     {
+  //       this.ocr1=this.ocr1+this.ocr.charAt(this.i);
+  //     }
+  //     this.i=this.i+1;
 
-    }
-    while(this.k<this.str.length)
-    {
-      console.log('line ',this.k,' ',this.str[this.k]);
-      this.opresult=this.opresult+this.str[this.k]+'\n';
-      this.k=this.k+1;
+  //   }
+  //   while(this.k<this.str.length)
+  //   {
+  //     console.log('line ',this.k,' ',this.str[this.k]);
+  //     this.opresult=this.opresult+this.str[this.k]+'\n';
+  //     this.k=this.k+1;
 
-    }
+  //   }
 
-    this.gen=this.usergender.toUpperCase();
-    this.name=this.username.split(' ');
+  //   this.gen=this.usergender.toUpperCase();
+  //   this.name=this.username.split(' ');
 
-    if(this.usergender==='Male')
-    {
-      if((this.opresult.includes('Female')||this.opresult.includes('FEMALE')))
-      {
-        this.isgender=false;
-      }
-    }
+  //   if(this.usergender==='Male')
+  //   {
+  //     if((this.opresult.includes('Female')||this.opresult.includes('FEMALE')))
+  //     {
+  //       this.isgender=false;
+  //     }
+  //   }
 
-    console.log('gender '+this.isgender);
-    for(this.p=0;this.p<this.name.length;this.p=this.p+1)
-    {
-      this.txt=this.name[this.p].charAt(0).toUpperCase() +this.name[this.p].substr(1).toLowerCase();
-      if((!this.opresult.includes(this.txt))&& (this.name[this.p]!==' '))
-      {
+  //   console.log('gender '+this.isgender);
+  //   for(this.p=0;this.p<this.name.length;this.p=this.p+1)
+  //   {
+  //     this.txt=this.name[this.p].charAt(0).toUpperCase() +this.name[this.p].substr(1).toLowerCase();
+  //     if((!this.opresult.includes(this.txt))&& (this.name[this.p]!==' '))
+  //     {
 
-        this.hasname=false;
-        console.log(this.name[this.p]);
-        break;
-      }
+  //       this.hasname=false;
+  //       console.log(this.name[this.p]);
+  //       break;
+  //     }
 
-    }
+  //   }
 
-    this.date=this.userdate.substring(8,10)+'/'+this.userdate.substring(5,7)+'/'+this.userdate.substring(0,4);
-    this.date1=this.userdate.substring(0,4);
-    console.log('my details : '+this.useruid+' '+this.username+' '+ this.usergender+' '+this.userdate+' '+this.date);
-    if(!this.slideTwoForm.valid)
-    {
-      const alert = await this.alertCtrl.create({
-        message: 'Please enter all details',
-        buttons: ['OK']
-      });
-      await alert.present();
+  //   this.date=this.userdate.substring(8,10)+'/'+this.userdate.substring(5,7)+'/'+this.userdate.substring(0,4);
+  //   this.date1=this.userdate.substring(0,4);
+  //   console.log('my details : '+this.useruid+' '+this.username+' '+ this.usergender+' '+this.userdate+' '+this.date);
+  //   if(!this.slideTwoForm.valid)
+  //   {
+  //     const alert = await this.alertCtrl.create({
+  //       message: 'Please enter all details',
+  //       buttons: ['OK']
+  //     });
+  //     await alert.present();
 
-    }
+  //   }
 
-   else if(this.hasname && (this.opresult.includes(this.useruid) && this.useruid.length===14) &&
-     ( this.isgender && (((this.opresult).includes(this.usergender)) || ((this.opresult).includes(this.gen))) )&&
-     ((this.opresult.includes('Birth') && this.opresult.includes(this.date1) ) ||
-      (this.opresult.includes('DOB') && this.opresult.includes(this.date))))
-    {
+  //  else if(this.hasname && (this.opresult.includes(this.useruid) && this.useruid.length===14) &&
+  //    ( this.isgender && (((this.opresult).includes(this.usergender)) || ((this.opresult).includes(this.gen))) )&&
+  //    ((this.opresult.includes('Birth') && this.opresult.includes(this.date1) ) ||
+  //     (this.opresult.includes('DOB') && this.opresult.includes(this.date))))
+  //   {
 
       this.slides.slideNext();
-    }
-    else{
-      const alert = await this.alertCtrl.create({
-        message: 'enter details as per Aadhar',
-        buttons: ['OK']
-      });
-      await alert.present();
-    }
+    // }
+    // else{
+    //   const alert = await this.alertCtrl.create({
+    //     message: 'enter details as per Aadhar',
+    //     buttons: ['OK']
+    //   });
+    //   await alert.present();
+    // }
 
 
   }
@@ -374,39 +374,39 @@ export class SignupPage implements OnInit {
 
 
 
-  async loadWorker(){
-    this.worker = createWorker({
-      logger: progress =>{
-        console.log(progress);
+  // async loadWorker(){
+  //   this.worker = createWorker({
+  //     logger: progress =>{
+  //       console.log(progress);
 
-      }
-    });
+  //     }
+  //   });
 
-    await this.worker.load();
-    await this.worker.loadLanguage('eng');
+  //   await this.worker.load();
+  //   await this.worker.loadLanguage('eng');
 
-    await this.worker.initialize('eng');
+  //   await this.worker.initialize('eng');
 
-     this.workerReady=true;
-  }
-
-
-
-  async captureImage() {
-
-    const image=await Camera.getPhoto({
-      quality:90,
-      allowEditing:true,
-      resultType:CameraResultType.DataUrl,
-      source:CameraSource.Camera
-
-    });
-    this.uploaded=true;
-    console.log('image ',image);
-    this.image=image.dataUrl;
+  //    this.workerReady=true;
+  // }
 
 
-  }
+
+  // async captureImage() {
+
+  //   const image=await Camera.getPhoto({
+  //     quality:90,
+  //     allowEditing:true,
+  //     resultType:CameraResultType.DataUrl,
+  //     source:CameraSource.Camera
+
+  //   });
+  //   this.uploaded=true;
+  //   console.log('image ',image);
+  //   this.image=image.dataUrl;
+
+
+  // }
 
   async usersignup(): Promise<void>{
     const country1=this.slideTwoForm.get('country').value;
