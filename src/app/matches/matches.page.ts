@@ -63,7 +63,7 @@ export class MatchesPage implements OnInit {
           for(let i=0;i<user[0].length;i++)
           {
             this.authService.getSetProfileId(user[0][i].uid).subscribe((msgs)=>{
-              console.log('idmsg',msgs['id']);
+              console.log('idmsg',msgs);
 
                   if(msgs['id'] !== null ){
                     this.authService.getProfilePhoto(user[0][i].uid,msgs['id']).subscribe((msg1)=>{
@@ -153,14 +153,17 @@ export class MatchesPage implements OnInit {
           for(let i=0;i<user[0].length;i++)
           {
             this.authService.getSetProfileId(user[0][i].uid).subscribe((msgs)=>{
-              if(msgs[0].length !== 0){
-                this.authService.getProfilePhoto(user[0][i].uid,msgs[0][0]['setProfile']).subscribe((msg1)=>{
-                    user[0][i].displayImage = 'data:image/jpeg;base64,' + msg1.body['message'];
-                });
-              }
-              else {
-                user[0][i].displayImage = './../../assets/icon/profile.png';
-              }
+              console.log('idmsg',msgs);
+
+                  if(msgs['id'] !== null ){
+                    this.authService.getProfilePhoto(user[0][i].uid,msgs['id']).subscribe((msg1)=>{
+                        user[0][i].displayImage = 'data:image/jpeg;base64,' + msg1.body['message'];
+                    });
+                  }
+                  else {
+                    user[0][i].displayImage = './../../assets/icon/profile.png';
+                  }
+
             });
             const date=user[0][i].dob.substring(0,4);
             // eslint-disable-next-line radix

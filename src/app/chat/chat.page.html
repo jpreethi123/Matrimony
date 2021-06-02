@@ -5,15 +5,25 @@
 </ion-header> -->
 
 <ion-content>
-  <ion-item>
+  <!-- <ion-item>
     Chat
-  </ion-item>
+  </ion-item> -->
 
-  <ion-list *ngFor="let chat of chatList">
-    <ion-item button (click)="chats(chat.email,chat.name)">
-      <!-- <ion-icon name="home" slot="start"></ion-icon> -->
-      <ion-label >{{chat.name}}</ion-label>
-    </ion-item>
-  </ion-list>
-
+  <div class="chats">
+    <ion-list *ngFor="let chat of chatList">
+      <ion-item button (click)="chats(chat.email,chat.name)">
+        <ion-avatar slot="start">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&w=128&h=128&q=60&facepad=1.5" />
+        </ion-avatar>
+        <ion-label class="ion-test-nowrap">
+          <h2>{{chat.name}}</h2>
+          <p>Typing.....</p>
+        </ion-label>
+        <div class="info-div">
+          <ion-badge>1</ion-badge>
+           <p>10:14</p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
   </ion-content>

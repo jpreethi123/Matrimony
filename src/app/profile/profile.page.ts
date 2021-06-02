@@ -191,7 +191,7 @@ export class ProfilePage implements OnInit {
       // eslint-disable-next-line @typescript-eslint/prefer-for-of
       for(let i=0;i<msg[0].length;i++){
         this.heightRange.push({id:i,name:msg[0][i].height});
-        this.height_to_num[msg[0][i-1].height] = msg[0][i-1].height_in_num;
+        this.height_to_num[msg[0][i].height] = msg[0][i].height_in_num;
       }
     });
 

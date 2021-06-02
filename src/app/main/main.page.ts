@@ -25,7 +25,14 @@ export class MainPage implements OnInit {
   constructor(private alertCtrl: AlertController,private router: Router,private authService: AuthService,private chatService: ChatserviceService) { }
 
   ionViewDidEnter(){
+    if(this.signin===''){
+      this.uid = this.signup;
+    }
+    else{
+      this.uid = this.signin;
+    }
    this.authService.getSetProfileId(this.uid).subscribe((msg)=>{
+    console.log('main',msg);
      if(msg['id'] !== null){
        this.authService.getProfilePhoto(this.uid,msg['id']).subscribe((msg1)=>{
            this.displayImage = 'data:image/jpeg;base64,' + msg1.body['message'];
@@ -45,6 +52,17 @@ export class MainPage implements OnInit {
     else{
       this.uid = this.signin;
     }
+    this.authService.getSetProfileId(this.uid).subscribe((msg)=>{
+      console.log('main',msg);
+      if(msg['id'] !== null){
+        this.authService.getProfilePhoto(this.uid,msg['id']).subscribe((msg1)=>{
+            this.displayImage = 'data:image/jpeg;base64,' + msg1.body['message'];
+        });
+      }
+      else {
+        this.displayImage = './../../assets/icon/profile.png';
+      }
+    });
     this.authService.getBasicDetails(this.uid).subscribe((msg)=>{
       this.name = msg[0][0]['name'];
       this.userid = msg[0][0]['uid'];

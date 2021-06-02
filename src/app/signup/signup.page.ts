@@ -129,7 +129,7 @@ export class SignupPage implements OnInit {
       // eslint-disable-next-line @typescript-eslint/prefer-for-of
       for(let i=0;i<msg[0].length;i++){
         this.heightRange.push({id:i,name:msg[0][i].height});
-        this.height_to_num[msg[0][i-1].height] = msg[0][i-1].height_in_num;
+        this.height_to_num[msg[0][i].height] = msg[0][i].height_in_num;
       }
     });
 
@@ -189,41 +189,6 @@ export class SignupPage implements OnInit {
     // this.cities = [Object.assign({}, this.cityInfo)];
     //console.log(this.cities);
   }
-
-  getImages() {
-    this.options = {
-      // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
-      // selection of a single image, the plugin will return it.
-      //maximumImagesCount: 3,
-
-      // max width and height to allow the images to be.  Will keep aspect
-      // ratio no matter what.  So if both are 800, the returned image
-      // will be at most 800 pixels wide and 800 pixels tall.  If the width is
-      // 800 and height 0 the image will be 800 pixels wide if the source
-      // is at least that wide.
-      width: 200,
-      //height: 200,
-
-      // quality of resized image, defaults to 100
-      quality: 25,
-
-      // output type, defaults to FILE_URIs.
-      // available options are
-      // window.imagePicker.OutputType.FILE_URI (0) or
-      // window.imagePicker.OutputType.BASE64_STRING (1)
-      outputType: 1
-    };
-    this.imageResponse = [];
-    this.imagePicker.getPictures(this.options).then((results) => {
-      // eslint-disable-next-line @typescript-eslint/prefer-for-of
-      for(let i = 0; i < results.length; i++) {
-        this.imageResponse.push('data:image/jpeg;base64,' + results[i]);
-      }
-    }, (err) => {
-      alert(err);
-    });
-  }
-
 
   async swipeNext(){
     if(this.image === '')
@@ -466,19 +431,19 @@ export class SignupPage implements OnInit {
         this.router.navigate(['main']);
         return (await loading).present();
       }
-      console.log('isuser value',this.isuser);
+      //console.log('isuser value',this.isuser);
 
     });
-    if(this.isuser===false)
-      {
-        const alert = await this.alertCtrl.create({
-          message: 'User with this Mail ID/UID already exists',
-          buttons: ['OK']
-        });
-        await alert.present();
-      }
-    console.log('console msg',this.isuser);
-    console.log('entire details are: ',this.userdetails);
+    // if(this.isuser===false)
+    //   {
+    //     const alert = await this.alertCtrl.create({
+    //       message: 'User with this Mail ID/UID already exists',
+    //       buttons: ['OK']
+    //     });
+    //     await alert.present();
+    //   }
+    // console.log('console msg',this.isuser);
+    // console.log('entire details are: ',this.userdetails);
 
   }
 

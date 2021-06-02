@@ -1,30 +1,162 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="chat"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{name1}}</ion-title>
+    <div class="header">
+      <div class="info">
+        <ion-avatar>
+          <img src='./../../assets/icon/favicon.png'>
+        </ion-avatar>
+        <span class="details">
+          <h1>{{name1}}</h1>
+        </span>
+      </div>
+    </div>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content class="ion-padding">
+<div class="header ion-padding">
+  <div class="info">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="chat"></ion-back-button>
+    </ion-buttons>
+    <ion-avatar>
+      <img src='./../../assets/icon/favicon.png'>
+    </ion-avatar>
+    <span class="details">
+      <h1>{{name1}}</h1>
+    </span>
+  </div>
+</div>
+<ion-content>
 
-  <ion-grid>
+<!-- <div class="header ion-padding">
+  <div class="info">
+    <ion-icon name="chevron-back-outline" routerLink="/chat"></ion-icon>
+    <ion-avatar>
+      <img src='./../../assets/icon/favicon.png'>
+    </ion-avatar>
+    <span class="details">
+      <h1>name</h1>
+    </span>
+  </div>
+</div> -->
+<div class="chat">
+<ion-grid>
+    <ion-row *ngFor="let message of messages | async; let i = index">
+      <!-- <div style="text-align: center">
+        <ion-row *ngIf="isDifferentDay(i)">
+          <ion-col>
+            <ion-badge color="primary" text-center
+              >{{ getMessageDate(i) }}
+            </ion-badge>
+          </ion-col>
+        </ion-row>
+      </div> -->
+
+      <ion-col size="9"  class="message"
+        [offset]="message.myMsg ? 3 : 0"
+        [ngClass]="{ 'my-message': message.myMsg, 'other-message': !message.myMsg }">
+        <!-- <b style="font-size: small;">{{ message.fromName }}</b> -->
+        <br>
+        <span>{{ message.msg }}</span>
+        <div class="time ion-text-right"><br>{{ message.createdAt?.toMillis() | date:'short' }}</div>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+
+</ion-content>
+
+ <ion-footer >
+  <ion-toolbar >
+    <ion-row class="ion-align-items-center">
+      <ion-col size="9.7">
+        <!-- <ion-input placeholder="Type a message...."></ion-input> -->
+      <ion-textarea rows="1" autofocus placeholder="Type a message...." [(ngModel)]="newMsg" class="message-input"></ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button color="#feacac" class="send-button" (click)="sendMessage()">
+          <ion-icon name="send-sharp"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+
+
+<!-- <div class="conversation">
+  <div class="chat-section" id="chat">
+    <div class="chat">
+
+      <div class="yours messages">
+        <div class="message">
+          Hey
+        </div>
+        <div class="message">
+          You there?
+        </div>
+        <div >
+          <ion-avatar>
+            <img src='./../../assets/icon/favicon.png'>
+          </ion-avatar>
+          <div class="message last">
+            hello hows going
+          </div>
+        </div>
+        <span>11:11</span>
+      </div>
+
+      <div class="mine messages">
+        <div class="message">
+          great thanks
+        </div>
+        <div class="message">
+          great thanks
+        </div>
+        <div class="message">
+          great thanks
+        </div>
+        <div class="message">
+          great thanks
+        </div>
+        <div class="message last">
+          How abt you
+        </div>
+        <span>
+          <ion-icon name="checkmark-done-outline"></ion-icon>
+          11:14
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="message-input">
+    <ion-input placeholder="Type a message...."></ion-input>
+    <div class="send-button">
+      <ion-icon name="send-sharp"></ion-icon>
+    </div>
+  </div>
+
+</div> -->
+
+
+ <!-- <ion-grid>
     <ion-row *ngFor="let message of messages | async">
       <ion-col size="9" class="message"
         [offset]="message.myMsg ? 3 : 0"
         [ngClass]="{ 'my-message': message.myMsg, 'other-message': !message.myMsg }">
-        <!-- <b style="font-size: small;">{{ message.fromName }}</b><br> -->
+        <b style="font-size: small;">{{ message.fromName }}</b><br>
         <span>{{ message.msg }}
         </span>
         <div class="time ion-text-right"><br>{{ message.createdAt?.toMillis() | date:'short' }}</div>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 
-</ion-content>
-
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar >
     <ion-row class="ion-align-items-center">
       <ion-col size="10">
@@ -38,5 +170,5 @@
       </ion-col>
     </ion-row>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->
 

@@ -4,8 +4,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
-import { chownSync } from 'node:fs';
-import { Observable } from 'rxjs';
+import { Observable } from 'Rxjs';
 import { switchMap, map } from 'rxjs/operators';
 
 export interface User {

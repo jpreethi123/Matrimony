@@ -1,6 +1,6 @@
 {
   "host":"localhost",
   "user":"root",
-  "database":"matrimony_data",
-  "password":""
+  "database":"matrimony",
+  "password":"1234567"
 }
