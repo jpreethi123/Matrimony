@@ -25,7 +25,7 @@ export class MatchprofilePage implements OnInit {
   showpreference=0;
   filledpreference=0;
   filledfamily=0;
-  displayImage;
+  displayImage = '';
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Details={
     name:'',
@@ -65,8 +65,8 @@ export class MatchprofilePage implements OnInit {
     }
 
     this.authService.getSetProfileId(this.matchuid).subscribe((msgs)=>{
-      if(msgs[0].length !== 0){
-        this.authService.getProfilePhoto(this.matchuid,msgs[0][0]['setProfile']).subscribe((msg1)=>{
+      if(msgs['id'] !== null){
+        this.authService.getProfilePhoto(this.matchuid,msgs['id']).subscribe((msg1)=>{
             this.displayImage = 'data:image/jpeg;base64,' + msg1.body['message'];
         });
       }

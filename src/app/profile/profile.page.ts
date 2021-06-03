@@ -225,75 +225,112 @@ export class ProfilePage implements OnInit {
 
     //Get Personal Details
      this.authService.getPersonalDetails(this.uid).subscribe((msg)=>{
-      this.slideThreeForm.get('maritalStatue').setValue(msg[0][0].marital_status);
-      this.slideThreeForm.get('mothertongue').setValue({name:msg[0][0].mother_tongue});
-      this.slideThreeForm.get('caste').setValue({name:msg[0][0].caste});
-      this.slideThreeForm.get('subcaste').setValue({name:msg[0][0].subcaste});
-      this.slideThreeForm.get('aboutme').setValue(msg[0][0].aboutme);
+       if(msg[0][0].marital_status !== null){
+      this.slideThreeForm.get('maritalStatue').setValue(msg[0][0].marital_status);}
+      if(msg[0][0].mother_tongue !== null){
+      this.slideThreeForm.get('mothertongue').setValue({name:msg[0][0].mother_tongue});}
+      if(msg[0][0].caste !== null){
+      this.slideThreeForm.get('caste').setValue({name:msg[0][0].caste});}
+      if(msg[0][0].subcaste !== null){
+      this.slideThreeForm.get('subcaste').setValue({name:msg[0][0].subcaste});}
+      if(msg[0][0].aboutme !== null){
+      this.slideThreeForm.get('aboutme').setValue(msg[0][0].aboutme);}
+      if(msg[0][0].height !== null){
       const hf = Object.keys(this.height_to_num).find(key => this.height_to_num[key] === msg[0][0].height);
-      this.slideThreeForm.get('height').setValue({name:hf});
-      this.slideThreeForm.get('weight').setValue(msg[0][0].weight);
+      this.slideThreeForm.get('height').setValue({name:hf});}
+      if(msg[0][0].weight !== null){
+      this.slideThreeForm.get('weight').setValue(msg[0][0].weight);}
      });
 
     //Get Educational Details
     this.authService.getEduDetails(this.uid).subscribe((msg)=>{
       this.slideFourForm.get('edu').setValue({name:msg[0][0].highest_degree});
       this.slideFourForm.get('occ').setValue({name:msg[0][0].occupation});
-      this.slideFourForm.get('salary').setValue({name:msg[0][0].salary});
+      if(msg[0][0].salary !== null){
+      this.slideFourForm.get('salary').setValue({name:msg[0][0].salary});}
     });
 
     //Get Family Details
     this.authService.getFamilyDetails(this.uid).subscribe((msg)=>{
-      this.slideSixForm.get('fathername').setValue(msg[0][0].father_name);
-      this.slideSixForm.get('fatherocc').setValue({name:msg[0][0].father_occupation});
-      this.slideSixForm.get('mothername').setValue(msg[0][0].mother_name);
-      this.slideSixForm.get('motherocc').setValue({name:msg[0][0].mother_occupation});
-      this.slideSixForm.get('siblings').setValue(msg[0][0].sibling);
-      this.slideSixForm.get('familytype').setValue(msg[0][0].family_type);
-      this.slideSixForm.get('familystatus').setValue(msg[0][0].family_status);
-      this.slideSixForm.get('familyvalue').setValue(msg[0][0].family_value);
+      if(msg[0][0].father_name !== null){
+      this.slideSixForm.get('fathername').setValue(msg[0][0].father_name);}
+      if(msg[0][0].father_occupation !== null){
+      this.slideSixForm.get('fatherocc').setValue({name:msg[0][0].father_occupation});}
+      if(msg[0][0].mother_name !== null){
+      this.slideSixForm.get('mothername').setValue(msg[0][0].mother_name);}
+      if(msg[0][0].mother_occupation !== null){
+      this.slideSixForm.get('motherocc').setValue({name:msg[0][0].mother_occupation});}
+      if(msg[0][0].sibling !== null){
+      this.slideSixForm.get('siblings').setValue(msg[0][0].sibling);}
+      if(msg[0][0].family_type !== null){
+      this.slideSixForm.get('familytype').setValue(msg[0][0].family_type);}
+      if(msg[0][0].family_status !== null){
+      this.slideSixForm.get('familystatus').setValue(msg[0][0].family_status);}
+      if(msg[0][0].family_value !== null){
+      this.slideSixForm.get('familyvalue').setValue(msg[0][0].family_value);}
     });
 
     //Get Partner Details
     this.authService.getPartnerDetails(this.uid).subscribe((msg)=>{
-      this.slideEightForm.get('agefrom').setValue(msg[0][0].age_from);
-      this.slideEightForm.get('ageto').setValue(msg[0][0].age_to);
+      if(msg[0][0].age_from !== null){
+      this.slideEightForm.get('agefrom').setValue(msg[0][0].age_from);}
+      if(msg[0][0].age_to !== null){
+      this.slideEightForm.get('ageto').setValue(msg[0][0].age_to);}
+      if(msg[0][0].height !== null){
       const hf = Object.keys(this.height_to_num).find(key => this.height_to_num[key] === msg[0][0].height);
-      this.slideEightForm.get('height').setValue({name:hf});
-      this.slideEightForm.get('mt').setValue({name:msg[0][0].mother_tongue});
-      this.slideEightForm.get('edu').setValue({name:msg[0][0].highest_degree});
-      this.slideEightForm.get('occ').setValue({name:msg[0][0].occupation});
-      this.slideEightForm.get('salary').setValue({name:msg[0][0].salary});
-      this.slideEightForm.get('caste').setValue({name:msg[0][0].caste});
-      this.slideEightForm.get('subcaste').setValue({name:msg[0][0].subcaste});
+      this.slideEightForm.get('height').setValue({name:hf});}
+      if(msg[0][0].mother_tongue !== null){
+      this.slideEightForm.get('mt').setValue({name:msg[0][0].mother_tongue});}
+      if(msg[0][0].highest_degree !== null){
+      this.slideEightForm.get('edu').setValue({name:msg[0][0].highest_degree});}
+      if(msg[0][0].occupation !== null){
+      this.slideEightForm.get('occ').setValue({name:msg[0][0].occupation});}
+      if(msg[0][0].salary !== null){
+      this.slideEightForm.get('salary').setValue({name:msg[0][0].salary});}
+      if(msg[0][0].caste !== null){
+      this.slideEightForm.get('caste').setValue({name:msg[0][0].caste});}
+      if(msg[0][0].subcaste !== null){
+      this.slideEightForm.get('subcaste').setValue({name:msg[0][0].subcaste});}
     });
 
     //Get Contact Details
     this.authService.getContactDetails(this.uid).subscribe((msg)=>{
-      this.slideFiveForm.get('persontype1').setValue(msg[0][0].person_type1);
-      this.slideFiveForm.get('persontype2').setValue(msg[0][0].person_type2);
-      this.slideFiveForm.get('persontype3').setValue(msg[0][0].person_type3);
-      this.slideFiveForm.get('p1pt1').setValue(msg[0][0].person_type1_num1);
-      this.slideFiveForm.get('p1pt2').setValue(msg[0][0].person_type1_num2);
-      this.slideFiveForm.get('p2pt1').setValue(msg[0][0].person_type2_num1);
-      this.slideFiveForm.get('p2pt2').setValue(msg[0][0].person_type2_num2);
-      this.slideFiveForm.get('p3pt1').setValue(msg[0][0].person_type3_num1);
-      this.slideFiveForm.get('p3pt2').setValue(msg[0][0].person_type3_num2);
+      if(msg[0][0].person_type1 !== null){
+      this.slideFiveForm.get('persontype1').setValue(msg[0][0].person_type1);}
+      if(msg[0][0].person_type2 !==null){
+      this.slideFiveForm.get('persontype2').setValue(msg[0][0].person_type2);}
+      if(msg[0][0].person_type3 !== null){
+      this.slideFiveForm.get('persontype3').setValue(msg[0][0].person_type3);}
+      if(msg[0][0].person_type1_num1 !== null){
+      this.slideFiveForm.get('p1pt1').setValue(msg[0][0].person_type1_num1);}
+      if(msg[0][0].person_type1_num2 !== null){
+      this.slideFiveForm.get('p1pt2').setValue(msg[0][0].person_type1_num2);}
+      if(msg[0][0].person_type2_num1 !== null){
+      this.slideFiveForm.get('p2pt1').setValue(msg[0][0].person_type2_num1);}
+      if(msg[0][0].person_type2_num2 !== null){
+      this.slideFiveForm.get('p2pt2').setValue(msg[0][0].person_type2_num2);}
+      if(msg[0][0].person_type3_num1 !== null){
+      this.slideFiveForm.get('p3pt1').setValue(msg[0][0].person_type3_num1);}
+      if(msg[0][0].person_type3_num2 !== null){
+      this.slideFiveForm.get('p3pt2').setValue(msg[0][0].person_type3_num2);}
 
     });
 
     //Get Other Details
     this.authService.getOtherDetails(this.uid).subscribe((msg)=>{
-      this.slideSevenForm.get('smoke').setValue(msg[0][0].smoke);
-      this.slideSevenForm.get('drink').setValue(msg[0][0].drink);
-      this.slideSevenForm.get('diet').setValue(msg[0][0].diet);
+      if(msg[0][0].smoke !== null){
+      this.slideSevenForm.get('smoke').setValue(msg[0][0].smoke);}
+      if(msg[0][0].drink !== null){
+      this.slideSevenForm.get('drink').setValue(msg[0][0].drink);}
+      if(msg[0][0].diet !== null){
+      this.slideSevenForm.get('diet').setValue(msg[0][0].diet);}
     });
 
   }
-  msChange(a: any){
-    this.marital_statue = a.target.value;
-    console.log(this.marital_statue);
-  }
+  // msChange(a: any){
+  //   this.marital_statue = a.target.value;
+  //   console.log(this.marital_statue);
+  // }
 
   onPersontype1Change(event){
     const a = this.personType.indexOf(event.target.value);

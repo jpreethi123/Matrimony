@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable @typescript-eslint/prefer-for-of */
 /* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -21,7 +22,7 @@ export class SearchresultPage implements OnInit {
   uid='';
   AllMatches = [];
   SearchResult = SearchPage.Result;
-
+  displayImage = '';
   static matchUid='';
   no = '';
   height_to_num = {};
@@ -35,6 +36,7 @@ export class SearchresultPage implements OnInit {
     else{
       this.uid = this.signin;
     }
+
 
     const d=new Date();
 
@@ -57,6 +59,17 @@ export class SearchresultPage implements OnInit {
               console.log(user);
               for(let i=0;i<user[0].length;i++)
               {
+                this.authService.getSetProfileId( user[0][i].uid).subscribe((msg2)=>{
+                  //console.log('main',msg);
+                   if(msg2['id'] !== null){
+                     this.authService.getProfilePhoto( user[0][i].uid,msg2['id']).subscribe((msg1)=>{
+                         this.displayImage = 'data:image/jpeg;base64,' + msg1.body['message'];
+                     });
+                   }
+                   else {
+                     this.displayImage = './../../assets/icon/profile.png';
+                   }
+                 });
                 const date=user[0][i].dob.substring(0,4);
                 // eslint-disable-next-line radix
                 const num=parseInt(date);
