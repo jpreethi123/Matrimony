@@ -136,6 +136,34 @@ exports.signup = async(req,res,next)=>{
 
 };
 
+
+
+exports.verifyemail=async(req,res,next)=>{
+  const mail=req.params.mail;
+  try{
+    const result=await User.findmail(mail);
+    res.status(200).json(result);
+
+  }
+  catch(err)
+  {
+    console.log(err.message);
+  }
+}
+
+exports.verifyuid=async(req,res,next)=>{
+  const uid=req.params.uid;
+  try{
+    const result=await User.finduid(uid);
+    res.status(200).json(result);
+
+  }
+  catch(err)
+  {
+    console.log(err.message);
+  }
+}
+
 exports.login=async(req,res,next)=>{
   const mail=req.body.mail;
   //const password=cryptr.decrypt(req.body.password);
@@ -877,5 +905,35 @@ exports.getSetProfileId = async(req,res,next) => {
     console.log(err.message);
   }
 }
+
+
+
+exports.dislike=async(req,res,next)=>{
+  const from=req.params.from;
+  const to=req.params.to;
+  try{
+    const result=await User.dislike(from,to);
+    res.status(200).json({message:'deleted'});
+  }
+  catch(err)
+  {
+    console.log(err.message);
+  }
+}
+
+
+exports.unsendinterest=async(req,res,next)=>{
+  const from=req.params.from;
+  const to=req.params.to;
+  try{
+    const result=await User.unsendinterest(from,to);
+    res.status(200).json({message:'deleted'});
+  }
+  catch(err)
+  {
+    console.log(err.message);
+  }
+}
+
 
 

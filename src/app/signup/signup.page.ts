@@ -1,3 +1,4 @@
+import { Message } from './../chatservice.service';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -58,6 +59,9 @@ export class SignupPage implements OnInit {
 
   worker: Tesseract.Worker;
   workerReady=false;
+  mailverify=0;
+  uidverify=0;
+  dateverify=0;
 
   constructor(private imagePicker: ImagePicker,private router: Router,public loadingController: LoadingController,
     public formBuilder: FormBuilder,public alertCtrl: AlertController,private country: CountriesService,private authService: AuthService) {
@@ -289,7 +293,21 @@ export class SignupPage implements OnInit {
   //     (this.opresult.includes('DOB') && this.opresult.includes(this.date))))
   //   {
 
+
+    if(!this.slideTwoForm.valid || this.uidverify===1 || this.dateverify===1 || this.mailverify===1)
+    {
+      const alert = await this.alertCtrl.create({
+        message: 'Please enter all details correctly',
+        buttons: ['OK']
+      });
+      await alert.present();
+
+    }
+    else
+    {
+
       this.slides.slideNext();
+    }
     // }
     // else{
     //   const alert = await this.alertCtrl.create({
@@ -415,7 +433,7 @@ export class SignupPage implements OnInit {
       occupation:occ1.name
 
     };
-    //console.log(this.userdetails);
+    console.log(this.userdetails);
     this.authService.signup(this.userdetails)
     .subscribe(async (msg)=>{
       if(msg)
@@ -446,5 +464,63 @@ export class SignupPage implements OnInit {
     // console.log('entire details are: ',this.userdetails);
 
   }
+
+  checkmail(m)
+  {
+    console.log(m);
+    this.authService.verifyemail(m).subscribe((msg)=>{
+      //console.log('verifying email is',msg);
+      if(msg[0].length===1)
+      {
+        this.mailverify=1;
+       // console.log(msg[0]);
+        //console.log(this.mailverify);
+      }
+      else
+      {
+        this.mailverify=0;
+      }
+    });
+  }
+
+  checkuid(m)
+  {
+    console.log(m);
+    this.authService.verifyuid(m).subscribe((msg)=>{
+      //console.log('verifying uid is',msg);
+      if(msg[0].length===1)
+      {
+        this.uidverify=1;
+        //console.log(msg[0]);
+        //console.log(this.uidverify);
+      }
+      else
+      {
+        this.uidverify=0;
+      }
+    });
+
+  }
+
+  checkdate(d)
+  {
+    console.log(d);
+    const dd=d.substring(0,4);
+    console.log(dd);
+    // eslint-disable-next-line radix
+    const dd1=parseInt(dd);
+    const dd2=new Date();
+    if(dd2.getFullYear()-dd1<18)
+    {
+      this.dateverify=1;
+
+    }
+    else
+    {
+      this.dateverify=0;
+    }
+
+  }
+
 
 }

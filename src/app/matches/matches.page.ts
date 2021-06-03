@@ -361,4 +361,44 @@ export class MatchesPage implements OnInit {
   }
 
 
+
+  dislike(uidreq)
+  {
+    console.log(uidreq);
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
+    for(let i=0;i<this.AllMatches.length;i++)
+    {
+      if(this.AllMatches[i].uid===uidreq)
+      {
+        this.AllMatches[i].like=0;
+        break;
+      }
+    }
+
+    this.authService.dislike(this.uid,uidreq).subscribe((msg)=>{
+      console.log(msg);
+    });
+  }
+
+  unsendinterest(uidreq)
+  {
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
+    for(let i=0;i<this.AllMatches.length;i++)
+    {
+      if(this.AllMatches[i].uid===uidreq)
+      {
+        this.AllMatches[i].flag=0;
+        break;
+      }
+    }
+
+    this.authService.unsendinterest(this.uid,uidreq).subscribe((msg)=>{
+      console.log(msg);
+    });
+
+
+  }
+
+
+
 }
