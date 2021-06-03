@@ -117,4 +117,10 @@ router.get('/imageCount/:uid',authController.imageCount);
 router.get('/getProfilePhoto/:uid/:id',authController.getProfilePhoto);
 router.get('/getSetProfileId/:uid',authController.getSetProfileId);
 
+
+router.delete('/dislike/:from/:to',authController.dislike);
+router.delete('/unsendinterest/:from/:to',authController.unsendinterest);
+router.get('/verifyemail/:mail',authController.verifyemail);
+router.get('/verifyuid/:uid',authController.verifyuid);
+
 module.exports=router;

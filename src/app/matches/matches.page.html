@@ -83,19 +83,19 @@
             <button color="#ff6e40" class="icon tooltip" (click)="view(match.uid)" > <ion-icon class="icon1" name="person"></ion-icon><span class="tooltiptext">Visit Profile</span></button>
             <div *ngIf="match.like===0">
               <!-- <button class="icon" (click)="changeicon(match.uid)"> <ion-icon class="icon1" name="heart-outline"></ion-icon></button> -->
-              <button color="#ff6e40" class="icon tooltip" (click)="changeicon(match.uid)" > <ion-icon class="icon1" name="heart-outline"></ion-icon><span class="tooltiptext">Send Like</span></button>
+              <button color="#ff6e40" class="icon tooltip" (click)="changeicon(match.uid)" > <ion-icon class="icon1" name="heart-outline"></ion-icon><span class="tooltiptext">Like</span></button>
 
             </div>
             <div *ngIf="match.like===1">
-              <button  color="#ff6e40" class="icon tooltip" > <ion-icon class="icon1" name="heart"></ion-icon><span class="tooltiptext">Like Sent</span></button>
+              <button  color="#ff6e40" class="icon tooltip" (click)="dislike(match.uid)" > <ion-icon class="icon1" name="heart"></ion-icon><span class="tooltiptext">Dislike</span></button>
             </div>
 
             <div *ngIf="match.flag===0">
               <!-- <ion-button color="#ff6e40" (click)="interest(match.uid)" class="text5">interest</ion-button> -->
-              <button color="#ff6e40" class="icon tooltip" (click)="interest(match.uid)" > <ion-icon class="icon1" name="star-outline"></ion-icon><span class="tooltiptext">Send Interest</span></button>
+              <button color="#ff6e40" class="icon tooltip" (click)="interest(match.uid)" > <ion-icon class="icon1" name="star-outline"></ion-icon><span class="tooltiptext">Interest</span></button>
             </div>
             <div *ngIf="match.flag===1">
-              <button color="#ff6e40" class="icon tooltip"><ion-icon class="icon1" name="star"></ion-icon><span class="tooltiptext">Interest Sent</span></button>
+              <button color="#ff6e40" class="icon tooltip" (click)="unsendinterest(match.uid)"><ion-icon class="icon1" name="star"></ion-icon><span class="tooltiptext">Not Interested</span></button>
             </div>
             <!-- <ion-button color="#ff6e40" (click)="view(match.uid)"class="text4">profile</ion-button> -->
             <div *ngIf="match.chatreq===0">

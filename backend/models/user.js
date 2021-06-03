@@ -432,4 +432,20 @@ static getProfilePhoto(uid,id){
   )
 }
 
+
+static dislike(from,to)
+{
+  return db.execute(
+    'delete from likes where send_from=? and send_to=?',[from,to]
+  );
+}
+
+static unsendinterest(from,to)
+{
+  return db.execute(
+    'delete from request where send_from=? and send_to=?',[from,to]
+  );
+
+}
+
 }
