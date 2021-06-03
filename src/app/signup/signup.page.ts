@@ -427,7 +427,7 @@ export class SignupPage implements OnInit {
       mother_tongue:mother_tongue1.name,
       caste:this.slideThreeForm.get('caste').value.name,
       subcaste:sc,
-      height:Object.keys(this.height_to_num).find(key => this.height_to_num[key] === height1.name),
+      height:this.height_to_num[height1.name],
       // eslint-disable-next-line @typescript-eslint/naming-convention
       highest_degree:degree.name,
       occupation:occ1.name

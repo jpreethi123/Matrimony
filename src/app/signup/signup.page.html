@@ -172,14 +172,25 @@
             </ion-list>
 
           <br>
-          <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">
-            <ion-icon name="arrow-back-circle-outline"></ion-icon>
-          </ion-button>
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">
+            <ion-icon src="./../../assets/icon/back.svg"></ion-icon>
+          </ion-button> -->
+          <ion-fab style="margin-left: -45%;">
+            <ion-fab-button color = "white" routerLink="/home" >
+              <ion-icon src="./../../assets/icon/back.svg"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          <ion-fab style="margin-left: 30%;">
+            <ion-fab-button color = "white" (click)="slidetwoform()">
+              <ion-icon src="./../../assets/icon/next.svg"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
           <ion-button type="submit" color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="slidetwoform()">
-            <ion-icon name="arrow-forward-circle-outline"></ion-icon>
-          </ion-button>
+            <ion-icon src="./../../assets/icon/next.svg"></ion-icon>
+          </ion-button> -->
+       <br><br><br><br>
         </ion-card-content>
       </ion-card>
         </form>
@@ -288,16 +299,26 @@
             </ionic-selectable>
           </ion-item>
 
-          <br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">
+          <br><br><br><br><br><br><br><br><br><br><br>
+        <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">
           <ion-icon name="arrow-back-circle-outline"></ion-icon>
         </ion-button>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <ion-button  (click)="slidethreeform()"  color="#ff6e40" shape="round" style="--box-shadow:none;">
           <ion-icon name="arrow-forward-circle-outline"></ion-icon>
-        </ion-button>
-
+        </ion-button> -->
+        <ion-fab style="margin-left: -45%;">
+          <ion-fab-button color = "white" (click)="swipeBack()" >
+            <ion-icon src="./../../assets/icon/back.svg"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <ion-fab style="margin-left: 30%;">
+          <ion-fab-button color = "white" (click)="slidethreeform()">
+            <ion-icon src="./../../assets/icon/next.svg"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+           <br><br><br><br><br>
           </ion-card-content>
           </ion-card>
       </form>
@@ -353,16 +374,26 @@
             </ionic-selectable>
         </ion-item>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">
           <ion-icon name="arrow-back-circle-outline"></ion-icon>
         </ion-button>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 
         <ion-button (click)="signup()" color="#ff6e40" shape="round" style="--box-shadow:none;">
         Sign up
-        </ion-button>
-
+        </ion-button> -->
+        <ion-fab style="margin-left: -45%;">
+          <ion-fab-button color = "white" (click)="swipeBack()" >
+            <ion-icon src="./../../assets/icon/back.svg"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <ion-fab style="margin-left: 30%;">
+          <ion-fab-button color = "white" (click)="signup()">
+            <ion-icon src="./../../assets/icon/registration.svg"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+<br><br><br><br><br>
       </ion-card-content>
     </ion-card>
       </form>

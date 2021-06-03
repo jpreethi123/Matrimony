@@ -20,7 +20,7 @@
 
 
 .my-message {
-  background: #feacac;
+  background: #9394e7;
   color: rgb(10, 10, 10);
   border-radius: 20px;
 }
@@ -62,7 +62,7 @@ ion-input{
           }
 
 ion-content{
-  --background: #e29292;
+  --background: #4A4BAE;
 }
 
 .chat{
@@ -79,7 +79,7 @@ ion-content{
     justify-content: space-between;
     letter-spacing: 1px;
     height:  10vh;
-    background-color: #e29292;
+    background-color: #4A4BAE;
     ion-icon{
       font-size: 1.6rem;
       color: #fff;
@@ -98,7 +98,7 @@ ion-content{
         flex-direction: column;
         h1{
           margin: 0;
-          color: black;
+          color: white;
           margin-left: 10px;
           font-size: 1.0rem;
           font-weight: bold;

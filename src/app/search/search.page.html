@@ -10,9 +10,7 @@
 
   <ion-content>
 
-    Search
-
-  <br><br>
+  <br>
   <form [formGroup]="searchForm">
   <ion-item>
     <ion-label position="floating">Marital Statue</ion-label>
@@ -334,11 +332,33 @@
         </ion-item>
 
         <br>
-        <ion-button type="submit" color="light" shape="round" style="--box-shadow:none;" (click)="clearAll()">Clear All</ion-button>
-        <ion-button type="submit"  color="light" shape="round" style="--box-shadow:none;" (click)="search()">Search</ion-button>
-        <ion-button type="submit"color="light" shape="round" style="--box-shadow:none;" (click)="saveSearch()">Save</ion-button>
-
+        <!-- <ion-button type="submit" color="white" shape="round" style="--box-shadow:none;" (click)="clearAll()">
+         <ion-icon src="./../../assets/icon/eraser.svg"></ion-icon>
+        </ion-button> -->
+        <ion-fab style="margin-left: 4%;">
+          <ion-fab-button color = "white" (click)="clearAll()">
+            <ion-icon src="./../../assets/icon/eraser.svg"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <!-- <ion-button type="submit" color="white" shape="round" style="--box-shadow:none;" (click)="search()">
+          <ion-icon src="./../../assets/icon/search.svg"></ion-icon>
+        </ion-button> -->
+        <ion-fab style="margin-left: 40%;">
+          <ion-fab-button color = "white" (click)="search()">
+            <ion-icon src="./../../assets/icon/search.svg"></ion-icon>
+          </ion-fab-button>search
+        </ion-fab>
+        <!-- <ion-button type="submit" color="white" shape="round" style="--box-shadow:none;" (click)="saveSearch()">
+          <ion-icon src="./../../assets/icon/diskette.svg"></ion-icon>
+        </ion-button> -->
+        <ion-fab style="margin-left: 80%;">
+          <ion-fab-button color = "white" (click)="saveSearch()">
+            <ion-icon src="./../../assets/icon/diskette.svg"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <br><br>
     </form>
+    <br>
   </ion-content>
 
 

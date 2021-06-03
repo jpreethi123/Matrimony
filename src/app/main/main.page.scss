@@ -1,5 +1,5 @@
 .t2{
-  background: #121f97;
+  background: #4A4BAE;
   color: white;
 
   //linear-gradient(to bottom, #ff0066 0%, #cc00ff 100%);
@@ -8,32 +8,38 @@
 
 
  .p1{
-   font-size: 11px;
+   font-size: 12px;
    color: white;
  }
 
-//  .a{
-//   color: black;
-//  }
+.icon{
+  font-size: 32px;
+}
 
  ion-tab-bar {
 
-	--background: #121f97;
-	// box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.4);
-	// border-radius: 16px !important;
+	--background: #4A4BAE;
+	box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.4);
+	border-radius: 20px !important;
 
-	// height: 40px;
-	// width: 95%;
-	// padding-top: 5px;
-	// padding-bottom: 5px;
+	height: 55px;
+	width: 98%;
+	padding-top: 5px;
+	padding-bottom: 5px;
 
-	// bottom: 20px;
-	// position: relative;
-	// margin: 0 auto !important;
-	// border-top: none;
+	bottom: 20px;
+	position: relative;
+	margin: 0 auto !important;
+	border-top: none;
 }
 
-// ion-tab-button {
 
-//     border-radius: 16px !important;
-// }
+ion-tab-button {
+  border-radius: 16px !important;
+}
+
+ion-toolbar{
+  --background: #4A4BAE;
+  color: white;
+}
+
