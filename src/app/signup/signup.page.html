@@ -135,6 +135,7 @@
                 <ion-label position="floating">State<ion-text color="danger">*</ion-text></ion-label>
                 <ionic-selectable
                 [items]="stateInfo"
+                [(ngModel)]="selectstate"
                 itemValueField= StateName itemTextField= StateName
                 headerColor="light"
                 [canSearch]="true"
@@ -155,6 +156,7 @@
                 <ion-label position="floating">City<ion-text color="danger">*</ion-text></ion-label>
                 <ionic-selectable
                 [items]="cities"
+                [(ngModel)]="selectcity"
                 itemValueField= city itemTextField= city
                 headerColor="light"
                 [canSearch]="true"

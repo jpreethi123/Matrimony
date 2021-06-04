@@ -936,4 +936,43 @@ exports.unsendinterest=async(req,res,next)=>{
 }
 
 
+exports.getcountrynames=async(req,res,next)=>{
+  try{
+    const result=await User.getCountries();
+    res.status(200).json(result);
+
+  }catch(err)
+  {
+    console.log(err.message);
+  }
+}
+
+
+exports.getstatenames=async(req,res,next)=>{
+  try{
+    const id=req.params.id;
+    const result=await User.getStates(id);
+    res.status(200).json(result);
+
+  }
+  catch(err)
+  {
+    console.log(err.message);
+  }
+}
+
+exports.getcitynames=async(req,res,next)=>{
+  try{
+    const id=req.params.id;
+    const result=await User.getCities(id);
+    res.status(200).json(result);
+
+  }
+  catch(err)
+  {
+    console.log(err.message);
+  }
+}
+
+
 

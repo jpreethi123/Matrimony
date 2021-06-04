@@ -19,10 +19,10 @@ export class MatchprofilePage implements OnInit {
  valuefrommatch=MatchesPage.viewvalue;
  valuefromnoti=NotificationsPage.viewnoti;
  matchuid;
-  showpersonal=1;
-  showfamily=0;
-  showedu=0;
-  showpreference=0;
+  // showpersonal=1;
+  // showfamily=0;
+  // showedu=0;
+  // showpreference=0;
   filledpreference=0;
   filledfamily=0;
   displayImage = '';
@@ -184,34 +184,34 @@ export class MatchprofilePage implements OnInit {
 
 
   }
-  personal(){
-    console.log(this.Details);
-    this.showfamily=0;
-    this.showpersonal=1;
-    this.showedu=0;
-    this.showpreference=0;
-  }
-  education(){
-    this.showfamily=0;
-    this.showpersonal=0;
-    this.showedu=1;
-    this.showpreference=0;
-  }
-  family(){
-    this.showfamily=1;
-    this.showpersonal=0;
-    this.showedu=0;
-    this.showpreference=0;
+  // personal(){
+  //   console.log(this.Details);
+  //   this.showfamily=0;
+  //   this.showpersonal=1;
+  //   this.showedu=0;
+  //   this.showpreference=0;
+  // }
+  // education(){
+  //   this.showfamily=0;
+  //   this.showpersonal=0;
+  //   this.showedu=1;
+  //   this.showpreference=0;
+  // }
+  // family(){
+  //   this.showfamily=1;
+  //   this.showpersonal=0;
+  //   this.showedu=0;
+  //   this.showpreference=0;
 
-  }
+  // }
 
-  preference(){
-    console.log(this.Details);
-    this.showfamily=0;
-    this.showpersonal=0;
-    this.showedu=0;
-    this.showpreference=1;
+  // preference(){
+  //   console.log(this.Details);
+  //   this.showfamily=0;
+  //   this.showpersonal=0;
+  //   this.showedu=0;
+  //   this.showpreference=1;
 
-  }
+  // }
 
 }

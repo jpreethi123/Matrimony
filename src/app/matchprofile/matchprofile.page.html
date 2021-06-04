@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<!-- <ion-content> -->
 <!-- <ion-card  *ngFor="let user of user1$ | async">
   <ion-card-content>
     <img src="./../../assets/icon/profile.png">
@@ -16,7 +16,7 @@
   </ion-card-content>
 </ion-card> -->
 
-
+<!--
 <ion-card>
   <ion-card-content>
     <ion-row>
@@ -82,6 +82,84 @@
 
   </ion-card-content>
 </ion-card>
+</ion-content> -->
+
+
+<ion-content>
+
+
+  <ion-row>
+    <img [src]="displayImage">
+  </ion-row><br>
+
+  <div class="ion-text-center text1">
+    <ion-text>{{Details.name}}</ion-text>
+
+  </div><br><br>
+
+
+
+      <ion-text class="c1">Basic Details</ion-text><br>
+      <div class="c2">
+      <ion-text class="c3">Age &nbsp; &nbsp;- &nbsp; &nbsp; {{Details.age}}</ion-text><br>
+       <ion-text class="c3">Caste &nbsp; &nbsp;-&nbsp; &nbsp;{{Details.caste}}</ion-text><br>
+       <ion-text class="c3" *ngIf="Details.subcaste">Subcaste &nbsp; &nbsp;-&nbsp; &nbsp;{{Details.subcaste}} <br></ion-text>
+       <ion-text class="c3" >Marital Status &nbsp; &nbsp;-&nbsp; &nbsp;{{Details.marital}}</ion-text><br>
+       <ion-text class="c3" >Mother Tongue&nbsp; &nbsp;-&nbsp; &nbsp;{{Details.mother_tongue}}</ion-text><br>
+       <ion-text class="c3" >Height &nbsp; &nbsp;-&nbsp; &nbsp;{{Details.height}}</ion-text><br>
+       <ion-text class="c3" >Phone Number &nbsp; &nbsp;-&nbsp; &nbsp;{{Details.phone}}</ion-text><br>
+       <ion-text class="c3">Address &nbsp; &nbsp;-&nbsp; &nbsp;{{Details.city}},&nbsp; &nbsp; {{Details.state}} ,&nbsp; &nbsp; {{Details.country}}</ion-text><br><br>
+
+      </div>
+
+
+
+      <ion-text class="c1">Personal Details</ion-text><br>
+      <div class="c2">
+        <ion-text class="c3" >Education  &nbsp;-&nbsp;{{Details.degree}}</ion-text><br>
+        <ion-text class="c3" > Occupation  &nbsp;-&nbsp;{{Details.occu}}</ion-text><br>
+        <ion-text class="c3"  *ngIf="Details.contact">Contact Person &nbsp;-&nbsp;{{Details.contact}} <br></ion-text>
+        <ion-text class="c3" *ngIf="Details.contact_phone">Contact Person Number &nbsp;-&nbsp;{{Details.contact_phone}} <br></ion-text>
+        <ion-text class="c3" *ngIf="Details.diet">Type of diet &nbsp;-&nbsp;{{Details.diet}} <br></ion-text>
+        <ion-text class="c3" *ngIf="Details.drink">Drinking habit &nbsp;-&nbsp;{{Details.drink}} <br></ion-text>
+        <ion-text class="c3" *ngIf="Details.smoke">Smoking habit &nbsp;-&nbsp;{{Details.smoke}} <br></ion-text>
+
+
+
+
+      </div><br><br>
+
+
+
+    <ion-text *ngIf="filledfamily">
+
+      <ion-text class="c1">Family Details</ion-text><br>
+      <div class="c2">
+        <ion-text class="c3" *ngIf="Details.family_status">Family Status&nbsp;-&nbsp;{{Details.family_status}} <br></ion-text>
+        <ion-text class="c3" *ngIf="Details.family_value">Family Value&nbsp;-&nbsp;{{Details.family_value}} <br></ion-text>
+        <ion-text class="c3" *ngIf="Details.family_type">family Type&nbsp;-&nbsp;{{Details.family_type}} <br></ion-text>
+
+      </div>
+
+    </ion-text><br><br>
+
+
+    <ion-text *ngIf="filledpreference">
+
+      <ion-text class="c1">Preference Details</ion-text><br>
+      <div class="c2">
+        <ion-text class="c3" *ngIf="Details.preagefrom && Details.preageto">Preferred Age&nbsp;-&nbsp;{{Details.preagefrom}}-{{Details.preageto}} <br></ion-text>
+        <ion-text class="c3" *ngIf="Details.preheight">Preferred height &nbsp;-&nbsp;{{Details.preheight}} <br></ion-text>
+        <ion-text class="c3" *ngIf="Details.predegree">Preferred Degree &nbsp;-&nbsp;{{Details.predegree}} <br></ion-text>
+        <ion-text class="c3" *ngIf="Details.preoccu">Preferred Occupation&nbsp;-&nbsp;{{Details.preoccu}} <br></ion-text>
+        <ion-text class="c3" *ngIf="Details.precaste">Preferred Caste&nbsp;-&nbsp;{{Details.precaste}} <br></ion-text>
+        </div>
+
+    </ion-text><br><br><br>
+
+
+
 </ion-content>
+
 
 

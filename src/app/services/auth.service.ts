@@ -313,6 +313,22 @@ httpOptionsFile: {headers: HttpHeaders}={
     return this.http.get(`http://localhost:5000/auth/verifyuid/${uid}`,this.httpOptions);
   }
 
+  getcountrynames()
+  {
+    return this.http.get(`http://localhost:5000/auth/getcountrynames`,this.httpOptions);
+  }
+
+  getstatenames(id)
+  {
+    return this.http.get(`http://localhost:5000/auth/getstatenames/${id}`,this.httpOptions);
+  }
+
+  getcitynames(id)
+  {
+    return this.http.get(`http://localhost:5000/auth/getcitynames/${id}`,this.httpOptions);
+  }
+
+
 
 
 

@@ -36,6 +36,8 @@ export class SignupPage implements OnInit {
   public countryInfo: any[] = [];
   public cityInfo: any[] = [];
   cities = [];
+  selectstate=null;
+  selectcity=null;
 
   mt = [];
   caste = [];
@@ -99,7 +101,16 @@ export class SignupPage implements OnInit {
 
 
     ngOnInit() {
-      this.getCountries();
+      // this.getCountries();
+
+      this.authService.getcountrynames().subscribe((msg)=>{
+        // eslint-disable-next-line @typescript-eslint/prefer-for-of
+        for(let i=0;i<msg[0].length;i++)
+        {
+          this.countryInfo.push({id:msg[0][i].id,CountryName:msg[0][i].name});
+        }
+        console.log(this.countryInfo);
+      });
 
       this.authService.getMotherTongue().subscribe((msg)=>{
         // eslint-disable-next-line @typescript-eslint/prefer-for-of
@@ -140,17 +151,17 @@ export class SignupPage implements OnInit {
     this.slideThreeForm.controls.subcaste.disable();
 
   }
-  getCountries(){
-    this.country.allCountries().
-    subscribe(
-      data2 => {
-        this.countryInfo=data2.Countries;
-        console.log('Data:', this.countryInfo);
-      },
-      err => console.log(err),
-      () => console.log('complete')
-    );
-  }
+  // getCountries(){
+  //   this.country.allCountries().
+  //   subscribe(
+  //     data2 => {
+  //       this.countryInfo=data2.Countries;
+  //       console.log('Data:', this.countryInfo);
+  //     },
+  //     err => console.log(err),
+  //     () => console.log('complete')
+  //   );
+  // }
 
   onChangeCaste(event: {
     component: IonicSelectableComponent;
@@ -173,26 +184,71 @@ export class SignupPage implements OnInit {
      //console.log(event.value.name);
   }
 
+  // onChangeCountry(event: {
+  //   component: IonicSelectableComponent;
+  //   value: any;
+  // }) {
+  //    this.stateInfo=event.value.States;
+  // }
+
+  // onChangeState(event: {
+  //   component: IonicSelectableComponent;
+  //   value: any;
+  // }) {
+  //   //  this.stateInfo=event.value.States;
+  //    this.cityInfo=event.value.Cities;
+  //    // eslint-disable-next-line @typescript-eslint/prefer-for-of
+  //    for (let i = 0; i < this.cityInfo.length; i++){
+  //              this.cities.push({id: i,city: this.cityInfo[i]});
+  //             }
+  //   // this.cities = [Object.assign({}, this.cityInfo)];
+  //   //console.log(this.cities);
+  // }
+
+
+
   onChangeCountry(event: {
     component: IonicSelectableComponent;
     value: any;
-  }) {
-     this.stateInfo=event.value.States;
-  }
 
+  })
+  {
+    this.selectstate={id:-1,CountryName:null};
+    this.selectcity={id:-1,city:null};
+    console.log(event.value);
+    //console.log(event.value.id);
+    this.authService.getstatenames(event.value.id).subscribe((msg)=>{
+      this.stateInfo=[];
+      // eslint-disable-next-line @typescript-eslint/prefer-for-of
+      for(let i=0;i<msg[0].length;i++)
+      {
+        this.stateInfo.push({id:msg[0][i].id,StateName:msg[0][i].name});
+      }
+    });
+
+  }
   onChangeState(event: {
     component: IonicSelectableComponent;
     value: any;
-  }) {
-    //  this.stateInfo=event.value.States;
-     this.cityInfo=event.value.Cities;
-     // eslint-disable-next-line @typescript-eslint/prefer-for-of
-     for (let i = 0; i < this.cityInfo.length; i++){
-               this.cities.push({id: i,city: this.cityInfo[i]});
-              }
-    // this.cities = [Object.assign({}, this.cityInfo)];
-    //console.log(this.cities);
+
+  })
+  {
+    console.log(event);
+    this.selectcity={id:-1,city:null};
+    this.authService.getcitynames(event.value.id).subscribe((msg)=>{
+      console.log(msg);
+      this.cities=[];
+       // eslint-disable-next-line @typescript-eslint/prefer-for-of
+       for(let i=0;i<msg[0].length;i++)
+       {
+         this.cities.push({id:msg[0][i].id,city:msg[0][i].name});
+       }
+
+    });
+
+
   }
+
 
   async swipeNext(){
     if(this.image === '')

@@ -13,7 +13,7 @@
 .text1{
   font-size: 20px;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
-  color: #ff6e40;
+  color: #4849A1;
   opacity: 0.8;
   margin: 0.5px;
 }
@@ -36,7 +36,7 @@
   margin-top:6px;
   width: 100px;
   height: 25px;
-  background-color: #ff6e40;
+  background-color: #4849A1;
   border-radius: 15px 15px 15px 15px;
   margin-left: 5px;
   color:white;
@@ -59,7 +59,7 @@
   margin-top:10px;
   width: 80px;
   height: 25px;
-  background-color: #ff6e40;
+  background-color: #4849A1;
   border-radius: 15px 15px 15px 15px;
   margin-left: 15px;
 
@@ -93,11 +93,18 @@
   margin-left: 8px;
   margin-top: 5px;
   border-radius: 50%;
-  border: 2px solid #ff6e40;
+  border: 2px solid #4849A1;
 
 }
 .icon1{
-  color:#ff6e40;
+  color: #4849A1;
+  width: 20px;
+  height: 20px;
+
+}
+
+.icon2{
+  color:red;
   width: 20px;
   height: 20px;
 
@@ -116,13 +123,13 @@ ion-card{
 .tooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted #ff6e40;
+  border-bottom: 1px dotted #4849A1;
 }
 
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: #ff6e40;
+  background-color: #4849A1;
   color: #fff;
   text-align: center;
   border-radius: 6px;
