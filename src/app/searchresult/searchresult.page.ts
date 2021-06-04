@@ -77,6 +77,7 @@ export class SearchresultPage implements OnInit {
                 user[0][i].age=d.getFullYear()-num;
                 user[0][i].flag=0;
                 user[0][i].like=0;
+                user[0][i].chatreq=0;
                 user[0][i].height = Object.keys(this.height_to_num).find(key => this.height_to_num[key] === user[0][i].height);
                 console.log('each user',user[0][i]);
                 this.AllMatches.push(user[0][i]);
@@ -110,6 +111,25 @@ export class SearchresultPage implements OnInit {
                     }
                   }
 
+                });
+
+                this.authService.getchatrequest(this.uid).subscribe((msg3) => {
+                  for(let j=0;j<msg3[0].length;j++)
+                  {
+                    for(let p=0;p<this.AllMatches.length;p++)
+                    {
+                      if((this.AllMatches[p].uid === msg3[0][j].send_to || this.AllMatches[p].uid === msg3[0][j].send_from)  &&
+                       msg3[0][j].status === 'accepted')
+                      {
+                        this.AllMatches[p].chatreq=2;
+                      }
+                      if((this.AllMatches[p].uid === msg3[0][j].send_to || this.AllMatches[p].uid === msg3[0][j].send_from) &&
+                       msg3[0][j].status === 'pending')
+                      {
+                        this.AllMatches[p].chatreq=1;
+                      }
+                    }
+                  }
                 });
               }
             });
@@ -210,6 +230,68 @@ export class SearchresultPage implements OnInit {
       console.log(msg);
     });
   }
+
+
+  chatrequest(uidreq){
+    for(let i=0;i<this.AllMatches.length;i++)
+      {
+        if(this.AllMatches[i].uid===uidreq)
+        {
+          this.AllMatches[i].chatreq=1;
+          break;
+        }
+      }
+
+    const req={
+      from:this.uid,
+      to:uidreq,
+      status:'pending'
+    };
+    this.authService.chatrequests(req).subscribe((msg)=>{
+      console.log(msg);
+    });
+
+  }
+
+
+  dislike(uidreq)
+  {
+    console.log(uidreq);
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
+    for(let i=0;i<this.AllMatches.length;i++)
+    {
+      if(this.AllMatches[i].uid===uidreq)
+      {
+        this.AllMatches[i].like=0;
+        break;
+      }
+    }
+
+    this.authService.dislike(this.uid,uidreq).subscribe((msg)=>{
+      console.log(msg);
+    });
+  }
+
+  unsendinterest(uidreq)
+  {
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
+    for(let i=0;i<this.AllMatches.length;i++)
+    {
+      if(this.AllMatches[i].uid===uidreq)
+      {
+        this.AllMatches[i].flag=0;
+        break;
+      }
+    }
+
+    this.authService.unsendinterest(this.uid,uidreq).subscribe((msg)=>{
+      console.log(msg);
+    });
+
+
+  }
+
+
 
 
 }

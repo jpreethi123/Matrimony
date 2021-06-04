@@ -123,4 +123,9 @@ router.delete('/unsendinterest/:from/:to',authController.unsendinterest);
 router.get('/verifyemail/:mail',authController.verifyemail);
 router.get('/verifyuid/:uid',authController.verifyuid);
 
+
+router.get('/getcountrynames',authController.getcountrynames);
+router.get('/getstatenames/:id',authController.getstatenames);
+router.get('/getcitynames/:id',authController.getcitynames);
+
 module.exports=router;

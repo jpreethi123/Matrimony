@@ -41,6 +41,8 @@ export class SearchPage implements OnInit {
   public countryInfo: any[] = [];
   public cityInfo: any[] = [];
   cities = [];
+  selectstate=null;
+  selectcity=null;
   userdetails = {};
   smoke=[{id:'Any',name:'Any'},{id:'Non-Smoker',name:'Non-Smoker'}, {id:'Occasional Smoker',name:'Occasional Smoker'}, {id:'Regular Smoker',name:'Regular Smoker'}];
   drink=[{id:'Any',name:'Any'},{id:'Non-Drinker',name:'Non-Drinker'}, {id:'Light / Social Drinker',name:'Light / Social Drinker'}, {id:'Regular Drinker',name:'Regular Drinker'}];
@@ -91,7 +93,16 @@ export class SearchPage implements OnInit {
       this.uid = this.signin;
     }
 
-    this.getCountries();
+    this.authService.getcountrynames().subscribe((msg)=>{
+      // eslint-disable-next-line @typescript-eslint/prefer-for-of
+      for(let i=0;i<msg[0].length;i++)
+      {
+        this.countryInfo.push({id:msg[0][i].id,CountryName:msg[0][i].name});
+      }
+      console.log(this.countryInfo);
+    });
+
+    // this.getCountries();
 
     this.searchForm.controls.subCaste.disable();
 
@@ -264,46 +275,97 @@ export class SearchPage implements OnInit {
      }
   }
 
-  getCountries(){
-    this.country.allCountries().
-    subscribe(
-      data2 => {
-        this.countryInfo=data2.Countries;
-        console.log('Data:', this.countryInfo);
-      },
-      err => console.log(err),
-      () => console.log('complete')
-    );
+  // getCountries(){
+  //   this.country.allCountries().
+  //   subscribe(
+  //     data2 => {
+  //       this.countryInfo=data2.Countries;
+  //       console.log('Data:', this.countryInfo);
+  //     },
+  //     err => console.log(err),
+  //     () => console.log('complete')
+  //   );
+  // }
+
+  // onChangeCountry(event: {
+  //   component: IonicSelectableComponent;
+  //   value: any;
+  // }) {
+  //   this.searchForm.get('state').setValue('');
+  //   this.searchForm.get('city').setValue('');
+  //   const a = (event.value);
+  //   this.stateInfo = [];
+  //   for(let j=0;j<a.length;j++){
+  //     this.stateInfo=a[j].States;
+  //   }
+  //   //this.stateInfo=event.value.States;
+  // }
+
+  // onChangeState(event: {
+  //   component: IonicSelectableComponent;
+  //   value: any;
+  // }) {
+  //   const a = (event.value);
+  //   this.cities = [];
+  //   this.cityInfo = [];
+  //   for(let j=0;j<a.length;j++){
+  //     this.cityInfo=a[j].Cities;
+  //   }
+  //   for (let i = 0; i < this.cityInfo.length; i++){
+  //              this.cities.push({id: i,city: this.cityInfo[i]});
+  //             }
+  // }
+
+
+  onChangeCountry(event)
+  {
+    this.selectstate={id:-1,CountryName:null};
+    this.selectcity={id:-1,city:null};
+    console.log(event.value);
+    //console.log(event.value.id);
+    const c=event.value;
+    this.stateInfo=[];
+    for(let j=0;j<c.length;j++)
+    {
+      console.log(c[j].id);
+
+    this.authService.getstatenames(c[j].id).subscribe((msg)=>{
+      // eslint-disable-next-line @typescript-eslint/prefer-for-of
+      for(let i=0;i<msg[0].length;i++)
+      {
+        this.stateInfo.push({id:msg[0][i].id,StateName:msg[0][i].name});
+      }
+    });
+  }
+  console.log(this.stateInfo);
+
+  }
+  onChangeState(event)
+  {
+    console.log(event);
+    this.selectcity={id:-1,city:null};
+    this.cities=[];
+    const c=event.value;
+    for(let j=0;j<c.length;j++)
+    {
+      console.log(c[j].id);
+
+    this.authService.getcitynames(c[j].id).subscribe((msg)=>{
+      console.log(msg);
+
+       // eslint-disable-next-line @typescript-eslint/prefer-for-of
+       for(let i=0;i<msg[0].length;i++)
+       {
+         this.cities.push({id:msg[0][i].id,city:msg[0][i].name});
+       }
+
+    });
+  }
+  console.log(this.stateInfo);
+
+
   }
 
-  onChangeCountry(event: {
-    component: IonicSelectableComponent;
-    value: any;
-  }) {
-    this.searchForm.get('state').setValue('');
-    this.searchForm.get('city').setValue('');
-    const a = (event.value);
-    this.stateInfo = [];
-    for(let j=0;j<a.length;j++){
-      this.stateInfo=a[j].States;
-    }
-    //this.stateInfo=event.value.States;
-  }
-
-  onChangeState(event: {
-    component: IonicSelectableComponent;
-    value: any;
-  }) {
-    const a = (event.value);
-    this.cities = [];
-    this.cityInfo = [];
-    for(let j=0;j<a.length;j++){
-      this.cityInfo=a[j].Cities;
-    }
-    for (let i = 0; i < this.cityInfo.length; i++){
-               this.cities.push({id: i,city: this.cityInfo[i]});
-              }
-  }
 
 
   formatmaritalstatue(maritalstatue1) {

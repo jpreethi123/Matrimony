@@ -448,4 +448,26 @@ static unsendinterest(from,to)
 
 }
 
+
+static getCountries()
+{
+  return db.execute(
+    'select * from countries'
+  );
+}
+
+static getStates(countryid)
+{
+  return db.execute(
+    'select * from states where country_id=?',[countryid]
+  );
+}
+
+static getCities(stateid)
+{
+  return db.execute(
+    'select * from cities where state_id=?',[stateid]
+  );
+}
+
 }
