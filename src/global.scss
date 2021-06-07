@@ -26,11 +26,11 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @font-face {
-  font-family: 'Merriweather';    //This is what we are going to call
-  src: url('./assets/fonts/Merriweather-Bold.ttf');
+  font-family: 'Open Sans Condensed', sans-serif;//This is what we are going to call
+  src: url('./assets/fonts/OpenSansCondensed-Light.ttf');
 }
 
 * {
-  font-family: 'Merriweather';
+  font-family: 'Open Sans Condensed', sans-serif;
   font-size:medium;
 }

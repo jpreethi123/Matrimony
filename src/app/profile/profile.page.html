@@ -1,10 +1,33 @@
 <ion-header>
   <ion-toolbar style="--background: #4A4BAE;color: white;">
-    <!-- <ion-buttons slot="start">
+    <ion-buttons slot="start">
       <ion-back-button defaultHref="main"></ion-back-button>
-    </ion-buttons> -->
-    <ion-title>Profile</ion-title>
+    </ion-buttons>
+    <ion-title style="font-size: 20px;">Profile</ion-title>
   </ion-toolbar>
+  <ion-segment  mode="ios" scrollable style="background-color: #c5c5c5; border: 1px solid #4A4BAE;">
+    <ion-segment-button (click)="next(0)">
+      <ion-label style="color:#4A4BAE;font-size: 14px;" checked>Basic</ion-label>
+    </ion-segment-button>
+    <ion-segment-button (click)="next(1)">
+      <ion-label style="color:#4A4BAE;font-size: 14px;">Personal</ion-label>
+    </ion-segment-button>
+    <ion-segment-button (click)="next(2)">
+      <ion-label style="color:#4A4BAE;font-size: 14px;">Education</ion-label>
+    </ion-segment-button>
+    <ion-segment-button (click)="next(3)">
+      <ion-label style="color:#4A4BAE;font-size: 14px;">Contact</ion-label>
+    </ion-segment-button>
+    <ion-segment-button (click)="next(4)">
+      <ion-label style="color:#4A4BAE;font-size: 14px;">Family</ion-label>
+    </ion-segment-button>
+    <ion-segment-button (click)="next(5)">
+      <ion-label style="color:#4A4BAE;font-size: 14px;">Other</ion-label>
+    </ion-segment-button>
+    <ion-segment-button (click)="next(6)">
+      <ion-label style="color:#4A4BAE;font-size: 14px;">Partner</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 <!-- <ion-app style="margin-top: 27.5%;"> -->
@@ -16,6 +39,7 @@
       <ion-slide>
         <form [formGroup]="slideTwoForm">
           <br>
+
         <ion-label class="title">Basic Details</ion-label>
         <ion-card>
           <ion-card-content>
@@ -130,10 +154,10 @@
               </ion-item>
             </ion-list>
           <br><br>
-          <!-- <ion-button routerLink="/main"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
-          <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveBasicDetails()">Save</ion-button>
-          <ion-button type="submit" color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="swipeNext()">Next</ion-button> -->
-          <ion-fab style="margin-left: -45%;">
+          <!-- <ion-button routerLink="/main"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button> -->
+          <ion-button type="submit" fill="outline" color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveBasicDetails()">Save</ion-button>
+          <!-- <ion-button type="submit" color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="swipeNext()">Next</ion-button> -->
+          <!-- <ion-fab style="margin-left: -45%;">
             <ion-fab-button color = "white" routerLink="/main" >
               <ion-icon src="./../../assets/icon/back.svg"></ion-icon>
             </ion-fab-button>
@@ -147,8 +171,8 @@
             <ion-fab-button color = "white" (click)="swipeNext()">
               <ion-icon src="./../../assets/icon/next.svg"></ion-icon>
             </ion-fab-button>
-          </ion-fab>
-          <br><br><br><br>
+          </ion-fab> -->
+          <br><br>
         </ion-card-content>
       </ion-card>
         </form>
@@ -276,10 +300,10 @@
           <ion-textarea placeholder="Write about yourself" formControlName="aboutme"></ion-textarea>
         </ion-item>
         <br>
-        <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
-        <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="savePersonalDetails()">Save</ion-button>
-        <ion-button  (click)="swipeNext()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button> -->
-        <ion-fab style="margin-left: -45%;">
+        <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button> -->
+        <ion-button type="submit" fill="outline" color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="savePersonalDetails()">Save</ion-button>
+        <!-- <ion-button  (click)="swipeNext()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button> -->
+        <!-- <ion-fab style="margin-left: -45%;">
           <ion-fab-button color = "white"(click)="swipeBack()" >
             <ion-icon src="./../../assets/icon/back.svg"></ion-icon>
           </ion-fab-button>
@@ -293,8 +317,8 @@
           <ion-fab-button color = "white" (click)="swipeNext()">
             <ion-icon src="./../../assets/icon/next.svg"></ion-icon>
           </ion-fab-button>
-        </ion-fab>
-        <br><br><br><br>
+        </ion-fab> -->
+        <!-- <br><br><br><br> -->
 
       </ion-card-content>
     </ion-card>
@@ -370,11 +394,11 @@
             </ionic-selectable>
         </ion-item>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
-        <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveEduDetails()">Save</ion-button>
-        <ion-button (click)="swipeNext()" color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button> -->
-        <ion-fab style="margin-left: -45%;">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button> -->
+        <ion-button type="submit" fill="outline" color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveEduDetails()">Save</ion-button>
+        <!-- <ion-button (click)="swipeNext()" color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button> -->
+        <!-- <ion-fab style="margin-left: -45%;">
           <ion-fab-button color = "white"(click)="swipeBack()" >
             <ion-icon src="./../../assets/icon/back.svg"></ion-icon>
           </ion-fab-button>
@@ -388,8 +412,8 @@
           <ion-fab-button color = "white" (click)="swipeNext()">
             <ion-icon src="./../../assets/icon/next.svg"></ion-icon>
           </ion-fab-button>
-        </ion-fab>
-        <br><br><br><br>
+        </ion-fab> -->
+        <br><br><br>
 
          </ion-card-content>
        </ion-card>
@@ -461,10 +485,10 @@
             <ion-input type="text" formControlName="p3pt2"></ion-input>
           </ion-item>
           <br>
-        <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
-        <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveContactDetails()">Save</ion-button>
-        <ion-button  (click)="swipeNext()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button> -->
-        <ion-fab style="margin-left: -45%;">
+        <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button> -->
+        <ion-button type="submit" fill="outline" color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveContactDetails()">Save</ion-button>
+        <!-- <ion-button  (click)="swipeNext()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button> -->
+        <!-- <ion-fab style="margin-left: -45%;">
           <ion-fab-button color = "white"(click)="swipeBack()" >
             <ion-icon src="./../../assets/icon/back.svg"></ion-icon>
           </ion-fab-button>
@@ -478,8 +502,8 @@
           <ion-fab-button color = "white" (click)="swipeNext()">
             <ion-icon src="./../../assets/icon/next.svg"></ion-icon>
           </ion-fab-button>
-        </ion-fab>
-        <br><br><br><br>
+        </ion-fab> -->
+        <br><br>
 
              </ion-card-content>
            </ion-card>
@@ -591,10 +615,10 @@
        <ion-textarea></ion-textarea>
      </ion-item> -->
         <br><br>
-        <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
-        <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveFamilyDetails()">Save</ion-button>
-        <ion-button (click)="swipeNext()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button> -->
-        <ion-fab style="margin-left: -45%;">
+        <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button> -->
+        <ion-button type="submit" fill="outline" color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveFamilyDetails()">Save</ion-button>
+        <!-- <ion-button (click)="swipeNext()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button> -->
+        <!-- <ion-fab style="margin-left: -45%;">
           <ion-fab-button color = "white"(click)="swipeBack()" >
             <ion-icon src="./../../assets/icon/back.svg"></ion-icon>
           </ion-fab-button>
@@ -608,8 +632,8 @@
           <ion-fab-button color = "white" (click)="swipeNext()">
             <ion-icon src="./../../assets/icon/next.svg"></ion-icon>
           </ion-fab-button>
-        </ion-fab>
-        <br><br><br><br>
+        </ion-fab> -->
+        <br><br>
 
          </ion-card-content>
        </ion-card>
@@ -651,11 +675,11 @@
             </ion-select>
           </ion-item>
 
-          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-          <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
-          <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveOtherDetails()">Save</ion-button>
-          <ion-button  (click)="swipeNext()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button> -->
-          <ion-fab style="margin-left: -45%;">
+          <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+          <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button> -->
+          <ion-button type="submit" fill="outline" color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="saveOtherDetails()">Save</ion-button>
+          <!-- <ion-button  (click)="swipeNext()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Next</ion-button> -->
+          <!-- <ion-fab style="margin-left: -45%;">
             <ion-fab-button color = "white"(click)="swipeBack()" >
               <ion-icon src="./../../assets/icon/back.svg"></ion-icon>
             </ion-fab-button>
@@ -669,8 +693,8 @@
             <ion-fab-button color = "white" (click)="swipeNext()">
               <ion-icon src="./../../assets/icon/next.svg"></ion-icon>
             </ion-fab-button>
-          </ion-fab>
-          <br><br><br><br>
+          </ion-fab> -->
+          <br><br><br>
 
             </ion-card-content>
           </ion-card>
@@ -687,16 +711,16 @@
 
             <ion-item>
               <ion-label position="floating">Age from</ion-label><br>
-             <ion-range min="20" max="60" color="secondary" pin="true" formControlName="agefrom">
-               <ion-label slot="start">20</ion-label>
+             <ion-range min="18" max="60" color="secondary" pin="true" formControlName="agefrom">
+               <ion-label slot="start">18</ion-label>
                <ion-label slot="end">60</ion-label>
              </ion-range>
 
             </ion-item>
             <ion-item>
              <ion-label position="floating">Age To</ion-label><br>
-            <ion-range min="20" max="60" color="secondary" pin="true" formControlName="ageto">
-              <ion-label slot="start">20</ion-label>
+            <ion-range min="19" max="60" color="secondary" pin="true" formControlName="ageto">
+              <ion-label slot="start">19</ion-label>
               <ion-label slot="end">60</ion-label>
             </ion-range>
            </ion-item>
@@ -848,9 +872,9 @@
            </ion-item>
 
         <br>
-        <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button>
-        <ion-button type="submit"  color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="savePartnerDetails()">Save</ion-button> -->
-        <ion-fab style="margin-left: -45%;">
+        <!-- <ion-button (click)="swipeBack()"  color="#ff6e40" shape="round" style="--box-shadow:none;">Back</ion-button> -->
+        <ion-button type="submit" fill="outline" color="#ff6e40" shape="round" style="--box-shadow:none;" (click)="savePartnerDetails()">Save</ion-button>
+        <!-- <ion-fab style="margin-left: -45%;">
           <ion-fab-button color = "white"(click)="swipeBack()" >
             <ion-icon src="./../../assets/icon/back.svg"></ion-icon>
           </ion-fab-button>
@@ -859,8 +883,8 @@
           <ion-fab-button color = "white" (click)="savePartnerDetails()">
             <ion-icon src="./../../assets/icon/diskette.svg"></ion-icon>
           </ion-fab-button>
-          </ion-fab>
-        <br><br><br><br>
+          </ion-fab> -->
+        <br><br>
 
             </ion-card-content>
           </ion-card>

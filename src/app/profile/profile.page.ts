@@ -342,6 +342,9 @@ export class ProfilePage implements OnInit {
   //   this.marital_statue = a.target.value;
   //   console.log(this.marital_statue);
   // }
+  next(i){
+    this.slides.slideTo(i);
+  }
 
   onPersontype1Change(event){
     const a = this.personType.indexOf(event.target.value);

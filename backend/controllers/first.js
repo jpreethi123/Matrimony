@@ -823,14 +823,14 @@ exports.uploadblob=async(req,res,next)=>{
     //console.log(base64);
     //const buff2 = Buffer.from(base64,"base64");
    // const base64D = buff2.toString("utf8");
-    console.log(buff);
+
     const basic = {
       img: buff,
       uid: req.body.uid
      }
       const user=await User.uploadblob(basic);
 
-      //console.log(basic);
+      console.log(basic);
       res.status(200).json({meessage:'inserted'});
 
 

@@ -14,6 +14,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { Camera } from '@ionic-native/camera/ngx';
+import {NgxImageCompressService} from 'ngx-image-compress';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { Camera } from '@ionic-native/camera/ngx';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule, ],
-  providers: [ImagePicker,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, Camera],
+  providers: [ImagePicker,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, Camera,NgxImageCompressService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

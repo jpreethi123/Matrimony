@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Message } from './../chatservice.service';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Router } from '@angular/router';
@@ -12,6 +13,7 @@ import { Platform } from '@ionic/angular';
 import { Plugins,CameraResultType,CameraSource } from '@capacitor/core';
 import { createWorker } from 'tesseract.js';
 import { AuthService } from './../services/auth.service';
+import { ChatserviceService } from './../chatservice.service';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const { Camera }=Plugins;
@@ -65,7 +67,7 @@ export class SignupPage implements OnInit {
   uidverify=0;
   dateverify=0;
 
-  constructor(private imagePicker: ImagePicker,private router: Router,public loadingController: LoadingController,
+  constructor(private imagePicker: ImagePicker,private router: Router,public loadingController: LoadingController,private chatService: ChatserviceService,
     public formBuilder: FormBuilder,public alertCtrl: AlertController,private country: CountriesService,private authService: AuthService) {
       this.slideTwoForm = this.formBuilder.group({
         firstName: ['', Validators.compose([Validators.minLength(3), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -489,7 +491,7 @@ export class SignupPage implements OnInit {
       occupation:occ1.name
 
     };
-    console.log(this.userdetails);
+    //console.log(this.userdetails);
     this.authService.signup(this.userdetails)
     .subscribe(async (msg)=>{
       if(msg)
@@ -501,6 +503,21 @@ export class SignupPage implements OnInit {
           translucent:true,
           cssClass:'custom-class custom-loading'
         });
+        this.chatService
+      .signup(this.userdetails.mail,this.userdetails.password)
+      .then(
+        (user) => {
+         //
+        },
+        async (err) => {
+          loading.dismiss();
+          const alert = await this.alertCtrl.create({
+            header: 'Sign up failed',
+            message: err.message,
+            buttons: ['OK'],
+          });
+        }
+        );
         console.log('console msg',msg);
         this.router.navigate(['main']);
         return (await loading).present();

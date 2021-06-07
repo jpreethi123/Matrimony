@@ -19,6 +19,7 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Router } from '@angular/router';
 import { SigninPage } from '../signin/signin.page';
 import { SignupPage } from '../signup/signup.page';
+import {NgxImageCompressService} from 'ngx-image-compress';
 
 
 @Component({
@@ -51,6 +52,7 @@ export class ImguploadPage implements OnInit {
   //   public navCtrl: NavController,
   private sanitizer: DomSanitizer,
    private camera: Camera,
+   private imageCompress: NgxImageCompressService,
   // public loadingCtrl: LoadingController,
   // public toastCtrl: ToastController
   ) {
@@ -79,11 +81,26 @@ export class ImguploadPage implements OnInit {
     const options: CameraOptions = {
       quality: 100,
       sourceType: sourceType,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: true,
+      correctOrientation: true
     };
-    this.camera.getPicture(options).then(async (imageData) => {
+    this.camera.getPicture(options).then((imageData) => {
+      const img = 'data:image/jpeg;base64,'+ imageData;
+      this.imageCompress.compressFile(img, 50, 50).then(
+        result => {
+          const r = result.slice(23,result.length);
+          this.api.insertimageblob({uid:this.uid,img:r}).subscribe((msg)=>{
+              //console.log('msg',msg);
+              this.image = [];
+              this.getImage();
+            });
+          //console.log(r);
+          //console.log('Size in bytes is now:', this.imageCompress.byteCount(result));
+        }
+      );
       //console.log('get',imageData);
        //let base64Image = 'data:image/jpeg;base64,' + imageData;
       //const base64Response = await fetch('data:image/jpeg;base64,'+ imageData);
@@ -93,11 +110,11 @@ export class ImguploadPage implements OnInit {
        //console.log('image data =>  ', blob);
        //console.log('uploading file');
 
-       this.api.insertimageblob({uid:this.uid,img:imageData}).subscribe((msg)=>{
-        console.log('msg',msg);
-        this.image = [];
-        this.getImage();
-      });
+      //  this.api.insertimageblob({uid:this.uid,img:imageData}).subscribe((msg)=>{
+      //   //console.log('msg',msg);
+      //   this.image = [];
+      //   this.getImage();
+      // });
 
     }, (err) => {
       console.log(err);
@@ -106,6 +123,23 @@ export class ImguploadPage implements OnInit {
   }
 
   async selectImage() {
+    // this.imageCompress.uploadFile().then(({image, orientation}) => {
+
+    //   this.imageCompress.compressFile(image, 50, 50).then(
+    //     result => {
+    //       const r = result.slice(23,result.length);
+    //   //     this.api.insertimageblob({uid:this.uid,img:r}).subscribe((msg)=>{
+    //   //         //console.log('msg',msg);
+    //   //         this.image = [];
+    //   //         this.getImage();
+    //   //       });
+    //       console.log(r);
+    //   //     console.log('Size in bytes is now:', this.imageCompress.byteCount(result));
+    //     }
+    //   );
+
+    // });
+
     if(this.count===10){
       let alert = await this.alertCtrl.create({
         message: 'You can upload only 10 Photos',

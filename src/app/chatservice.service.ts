@@ -35,7 +35,7 @@ export class ChatserviceService {
     });
    }
 
-   async signup({ email, password }): Promise<any> {
+   async signup( email, password ): Promise<any> {
     const credential = await this.afAuth.createUserWithEmailAndPassword(
       email,
       password

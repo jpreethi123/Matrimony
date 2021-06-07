@@ -6,51 +6,10 @@
 
 <ion-content>
 
-  <!-- <ion-card class="mainCard">
-    <ion-row justify-content-between>
-      <ion-col>
-        <img src='./../../assets/rose.jpg' item-left/>
-       </ion-col>
-
-      <ion-col>
-        <ion-row text-wrap><h2><ion-label>Name</ion-label></h2></ion-row>
-        <ion-row text-wrap><h2><ion-label>Age</ion-label></h2></ion-row>
-        <ion-row text-wrap><h2><ion-label>Caste</ion-label></h2></ion-row>
-      </ion-col>
-    </ion-row>
-  </ion-card>
-
-  <ion-card class="mainCard">
-    <ion-row justify-content-between>
-      <ion-col>
-        <img src='./../../assets/rose.jpg' item-left/>
-       </ion-col>
-
-      <ion-col>
-        <ion-row text-wrap><h2><ion-label>Name</ion-label></h2></ion-row>
-        <ion-row text-wrap><h2><ion-label>Age</ion-label></h2></ion-row>
-        <ion-row text-wrap><h2><ion-label>Caste</ion-label></h2></ion-row>
-      </ion-col>
-    </ion-row>
-  </ion-card>
-
-  <ion-card class="mainCard">
-    <ion-row justify-content-between>
-      <ion-col>
-        <img src='./../../assets/rose.jpg' item-left/>
-       </ion-col>
-
-      <ion-col>
-        <ion-row text-wrap><h2><ion-label>Name</ion-label></h2></ion-row>
-        <ion-row text-wrap><h2><ion-label>Age</ion-label></h2></ion-row>
-        <ion-row text-wrap><h2><ion-label>Caste</ion-label></h2></ion-row>
-      </ion-col>
-    </ion-row>
-  </ion-card> -->
   <ion-card *ngFor="let match of AllMatches">
     <ion-card-content>
       <ion-row justify-content-between>
-        <ion-col size ="5">
+        <ion-col size ="6">
           <img  class="i2" [src]="match.displayImage">
           <!-- <ion-row>
             <button color="light" class="icon"> <ion-icon class="icon1" name="heart-outline"></ion-icon></button>
