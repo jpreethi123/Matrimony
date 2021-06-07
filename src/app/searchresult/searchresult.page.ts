@@ -29,6 +29,8 @@ export class SearchresultPage implements OnInit {
 
   constructor(private authService: AuthService,public router: Router) { }
 
+  ionViewDidEnter(){}
+
   ngOnInit() {
     if(this.signin===''){
       this.uid = this.signup;
@@ -56,18 +58,18 @@ export class SearchresultPage implements OnInit {
       this.AllMatches = [];
       for(let k = 0;k<this.SearchResult.length;k++){
         this.authService.fetchSearchResult(this.SearchResult[k]).subscribe((user) => {
-              console.log(user);
+          // this.AllMatches = [];
               for(let i=0;i<user[0].length;i++)
               {
                 this.authService.getSetProfileId( user[0][i].uid).subscribe((msg2)=>{
                   //console.log('main',msg);
                    if(msg2['id'] !== null){
                      this.authService.getProfilePhoto( user[0][i].uid,msg2['id']).subscribe((msg1)=>{
-                         this.displayImage = 'data:image/jpeg;base64,' + msg1.body['message'];
+                      user[0][i].displayImage = 'data:image/jpeg;base64,' + msg1.body['message'];
                      });
                    }
                    else {
-                     this.displayImage = './../../assets/icon/profile.png';
+                    user[0][i].displayImage = './../../assets/icon/profile.png';
                    }
                  });
                 const date=user[0][i].dob.substring(0,4);

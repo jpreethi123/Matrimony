@@ -39,34 +39,50 @@
             <ion-button color="light" (click)="view(match.uid)"class="text4">profile</ion-button>
           </ion-row> -->
           <ion-row class="a">
-            <button color="#070E52" class="icon tooltip" (click)="view(match.uid)" > <ion-icon class="icon1" name="person"></ion-icon><span class="tooltiptext">Visit Profile</span></button>
-            <div *ngIf="match.like===0">
+            <button style="margin-left: 6%;" color="#070E52" class="icon tooltip" (click)="view(match.uid)" >
+              <ion-icon style="color: #4849A1;" class="icon1" name="person"></ion-icon>
+              <span class="tooltiptext">Visit Profile</span>
+            </button>
+
+              <div *ngIf="match.like===0" style="margin-left: 5%;">
               <!-- <button class="icon" (click)="changeicon(match.uid)"> <ion-icon class="icon1" name="heart-outline"></ion-icon></button> -->
               <button color="#070E52" class="icon tooltip" (click)="changeicon(match.uid)" > <ion-icon class="icon1" name="heart-outline"></ion-icon><span class="tooltiptext">Like</span></button>
-
             </div>
-            <div *ngIf="match.like===1">
-              <button  color="#070E52" class="icon tooltip" (click)="dislike(match.uid)" > <ion-icon class="icon2" name="heart"></ion-icon><span class="tooltiptext">Dislike</span></button>
+            <div *ngIf="match.like===1" style="margin-left: 5%;">
+              <button color="#070E52" class="icon tooltip" (click)="dislike(match.uid)" > <ion-icon class="icon2" name="heart"></ion-icon><span class="tooltiptext">Dislike</span></button>
             </div>
 
-            <div *ngIf="match.flag===0">
+            <div *ngIf="match.flag===0" style="margin-left: 5%;">
               <!-- <ion-button color="#ff6e40" (click)="interest(match.uid)" class="text5">interest</ion-button> -->
-              <button color="#070E52" class="icon tooltip" (click)="interest(match.uid)" > <ion-icon class="icon1" name="star-outline"></ion-icon><span class="tooltiptext">Interest</span></button>
+              <button color="#070E52" class="icon tooltip" (click)="interest(match.uid)" >
+                <ion-icon style="color: #4849A1;" class="icon1" name="star-outline"></ion-icon>
+                <span class="tooltiptext">Interest</span></button>
             </div>
-            <div *ngIf="match.flag===1">
-              <button color="#070E52" class="icon tooltip" (click)="unsendinterest(match.uid)"><ion-icon class="icon1" name="star"></ion-icon><span class="tooltiptext">Not Interested</span></button>
+            <div *ngIf="match.flag===1" style="margin-left: 5%;">
+              <button color="#070E52" class="icon tooltip" (click)="unsendinterest(match.uid)">
+                <ion-icon style="color: #4849A1;" class="icon1" name="star"></ion-icon>
+                <span class="tooltiptext">Not Interested</span></button>
             </div>
             <!-- <ion-button color="#ff6e40" (click)="view(match.uid)"class="text4">profile</ion-button> -->
-            <div *ngIf="match.chatreq===0">
+            <div *ngIf="match.chatreq===0" style="margin-left: 10%;">
               <button color="#070E52" (click)="chatrequest(match.uid)"class="text4"><span><ion-icon  name="chatbubbles-outline" ></ion-icon></span>Request</button>
             </div>
-            <div *ngIf="match.chatreq===1">
+            <div *ngIf="match.chatreq===1" style="margin-left: 10%;" >
               <button color="#070E52" class="text4"><ion-icon name="chatbubbles-outline" ></ion-icon>Request sent</button>
             </div>
-            <div *ngIf="match.chatreq===2">
+            <div *ngIf="match.chatreq===2" style="margin-left: 10%;">
               <button color="#070E52" class="text4"><ion-icon name="chatbubbles-outline" ></ion-icon>Chat</button>
             </div>
 
+            <div style="margin-left: 8%;margin-top: -2%;">
+              <ion-label style="font-size: 10px;">View</ion-label>
+            </div>
+            <div style="margin-left: 12%;margin-top: -2%;">
+              <ion-label style="font-size: 10px;">Like</ion-label>
+            </div>
+            <div style="margin-left: 10%;margin-top: -2%;">
+              <ion-label style="font-size: 10px;">Interest</ion-label>
+            </div>
 
           </ion-row>
 

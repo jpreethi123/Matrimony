@@ -66,7 +66,18 @@ ion-text{
 ion-button{
   background-color: white;
   border-radius: 50px;
+  color: #4A4BAE;
 }
+
+ion-progress-bar{
+  --progress-background: #4648ad;
+  --buffer-background: #acadd1;
+}
+
+.progress{
+   text-align: right;
+}
+
 //  ion-input{
 //   font-size:small;
 //   margin-left: 5%;

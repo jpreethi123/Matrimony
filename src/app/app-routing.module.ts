@@ -42,6 +42,10 @@ const routes: Routes = [
     path: 'imgupload',
     loadChildren: () => import('./imgupload/imgupload.module').then( m => m.ImguploadPageModule)
   },
+  {
+    path: 'interestedprofile',
+    loadChildren: () => import('./interestedprofile/interestedprofile.module').then( m => m.InterestedprofilePageModule)
+  },
 
 
 

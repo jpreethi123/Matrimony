@@ -27,7 +27,11 @@
           <ion-label class="title">Basic Details</ion-label>
           <ion-card>
             <ion-card-content>
-
+              <ion-progress-bar value="0.3333" buffer="1"></ion-progress-bar>
+              &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+              <ion-label style="font-size: 16px;font-style: italic;color:black"><b>Step 1/3</b></ion-label>
               <ion-list>
                 <ion-item>
                   <ion-label position="floating">Name<ion-text color="danger">*</ion-text></ion-label>
@@ -204,6 +208,11 @@
         <ion-label class="title">Personal Details</ion-label>
         <ion-card>
           <ion-card-content>
+            <ion-progress-bar value="0.6666" buffer="1"></ion-progress-bar>
+            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+              <ion-label style="font-size: 16px;font-style: italic;color:black"><b>Step 2/3</b></ion-label>
         <ion-item>
           <ion-label position="floating">Marital Statue<ion-text color="danger">*</ion-text></ion-label>
           <ion-select okText="Select" cancelText="Cancel" formControlName="maritalStatue" [class.invalid]="!slideThreeForm.controls.maritalStatue.valid && (slideThreeForm.controls.maritalStatue.dirty || submitAttempt)">
@@ -320,7 +329,7 @@
             <ion-icon src="./../../assets/icon/next.svg"></ion-icon>
           </ion-fab-button>
         </ion-fab>
-           <br><br><br><br><br>
+           <br><br><br><br>
           </ion-card-content>
           </ion-card>
       </form>
@@ -333,7 +342,11 @@
        <ion-label class="title">Eduction Details</ion-label>
        <ion-card>
          <ion-card-content>
-
+            <ion-progress-bar value="1"></ion-progress-bar>
+            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+              <ion-label style="font-size: 16px;font-style: italic;color:black"><b>Step 3/3</b></ion-label>
        <ion-item>
           <ion-label position="floating">Highest Degree<ion-text color="danger">*</ion-text></ion-label>
           <ionic-selectable
@@ -385,18 +398,18 @@
         <ion-button (click)="signup()" color="#ff6e40" shape="round" style="--box-shadow:none;">
         Sign up
         </ion-button> -->
-        <ion-fab style="margin-left: -45%;">
+        <ion-fab style="margin-left: 2%;">
           <ion-fab-button color = "white" (click)="swipeBack()" >
             <ion-icon src="./../../assets/icon/back.svg"></ion-icon>
           </ion-fab-button>
         </ion-fab>
-        <ion-button type="submit" style="margin-left: 30%;" fill="outline" color="#ff6e40" shape="round" (click)="signup()">Save</ion-button>
+        <ion-button type="submit" style="margin-left: 60%;" fill="outline" color="#ff6e40" shape="round" (click)="signup()">Sign up</ion-button>
         <!-- <ion-fab style="margin-left: 30%;">
           <ion-fab-button color = "white" (click)="signup()">
             <ion-icon src="./../../assets/icon/registration.svg"></ion-icon>
           </ion-fab-button>
         </ion-fab> -->
-<br><br><br><br><br>
+<br><br><br><br>
       </ion-card-content>
     </ion-card>
       </form>

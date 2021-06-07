@@ -83,8 +83,8 @@
 .i2{
   width: 100%;
   height:100px;
-  margin-left: -10%;
-
+  margin-left: -2%;
+  border-radius: 20px;
 }
 
 .icon{
@@ -92,31 +92,32 @@
   padding: 4px;
   margin-left: 8px;
   margin-top: 5px;
-  border-radius: 50%;
-  border: 2px solid #4849A1;
+  size: 32px;
+  // border-radius: 50%;
+  // border: 2px solid #4849A1;
 
 }
 .icon1{
   color: #4849A1;
-  width: 20px;
-  height: 20px;
-
+  width: 25px;
+  height: 25px;
+  size: 32px;
 }
 
 
 .icon2{
   color:red;
-  width: 20px;
-  height: 20px;
-
+  width: 25px;
+  height: 25px;
 }
 .a{
   margin-left: -5%;
 }
 
 ion-card{
-  margin-left: -1%;
-  margin-right: -1%;
+  margin-left: 4%;
+  margin-right: 4%;
+  border-radius: 20px;
 }
 
 //background-color: #ff6e40;
@@ -124,7 +125,7 @@ ion-card{
 .tooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted #4849A1;
+ // border-bottom: 1px dotted #4849A1;
 }
 
 .tooltip .tooltiptext {
@@ -145,3 +146,9 @@ ion-card{
   visibility: visible;
 }
 
+ion-content{
+  --background: #f5f0e1;
+}
+button{
+  background-color: white;
+}

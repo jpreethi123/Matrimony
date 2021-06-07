@@ -738,6 +738,7 @@ export class SearchPage implements OnInit {
   search(){
     this.data();
     console.log(this.userdetails);
+    SearchPage.Result = [];
     this.authService.getSearch(this.userdetails).subscribe((msg)=>{
       //console.log(msg[0]);
       const a = msg[0];
