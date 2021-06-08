@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <span><ion-icon class="a1" name="call"></ion-icon></span>&nbsp;&nbsp;&nbsp;
+      <ion-label class="a2">Hide Phone number</ion-label>
+    <ion-toggle [checked]="checked" (ionChange)="knowhiding()"></ion-toggle>
+    </ion-item>
+    <ion-item >
+      <span> <ion-icon class="a1" name="trash"></ion-icon></span> &nbsp;&nbsp;&nbsp;
+      <ion-text (click)="deleteaccount()" class="a2">Delete account</ion-text>
+
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

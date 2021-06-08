@@ -1,3 +1,4 @@
+import { settings } from 'node:cluster';
 /* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { NotificationsPage } from './../notifications/notifications.page';
@@ -5,7 +6,7 @@ import { AuthService } from './../services/auth.service';
 import { MatchesPage } from './../matches/matches.page';
 import { SearchresultPage } from './../searchresult/searchresult.page';
 import { Component, OnInit } from '@angular/core';
-
+import { SettingsPage } from '../settings/settings.page';
 @Component({
   selector: 'app-matchprofile',
   templateUrl: './matchprofile.page.html',
@@ -89,9 +90,23 @@ export class MatchprofilePage implements OnInit {
       // eslint-disable-next-line radix
       const num=parseInt(date);
       msg[0][0].age=d.getFullYear()-num;
+      this.authService.showhiding(this.matchuid).subscribe((msg1)=>{
+        console.log('hiding',msg1[0]);
+        console.log('hide',msg1[0][0].hide);
+
+        if(msg1[0][0].hide===0)
+        {
+          this.Details.phone=msg[0][0].phone_num;
+
+        }
+      });
       this.Details.name=msg[0][0].name;this.Details.age=msg[0][0].age;
-      this.Details.phone=msg[0][0].phone_num;this.Details.country=msg[0][0].country;
+      this.Details.country=msg[0][0].country;
       this.Details.state=msg[0][0].state;this.Details.city=msg[0][0].city;
+      if(this.Details.phone.length===0)
+      {
+        this.Details.phone='xxxxxxxxxx';
+      }
 
 
     });
