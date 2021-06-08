@@ -109,6 +109,11 @@ exports.signup = async(req,res,next)=>{
     const userpartner={
       uid:uid
     }
+    const hidevalues={
+      uid:uid,
+      hide:0
+    }
+    console.log(hidevalues);
 
 
     const result1=await User.savebasic(userbasic);
@@ -118,6 +123,7 @@ exports.signup = async(req,res,next)=>{
     const r5 = await User.savefamily(userfamily);
     const r6 = await User.saveother(userother);
     const r7 = await User.savepartner(userpartner);
+    const r8=await User.hidephone(hidevalues);
     const u = await User.insertSetP({uid: uid})
 
 
@@ -973,6 +979,77 @@ exports.getcitynames=async(req,res,next)=>{
     console.log(err.message);
   }
 }
+
+exports.deleteaccount=async(req,res,next)=>{
+  try{
+    const uid=req.params.id;
+    console.log(uid);
+    const r1=await User.deletelikes(uid);
+    const r2=await User.deleterequest(uid);
+    const r3=await User.deletechatrequest(uid);
+    const r4=await User.deletecontact(uid);
+    const r5=await User.deleteeducation(uid);
+    const r6=await User.deletefamily(uid);
+    const r7=await User.deletepartner(uid);
+    const r8=await User.deletesearch(uid);
+    const r9=await User.deletepersonal(uid);
+    const r10=await User.deleteother(uid);
+    const r11=await User.deletebasic(uid);
+    res.status(200).json({message:'account deleted'});
+
+  }
+  catch(err)
+  {
+    console.log(err.message);
+
+  }
+}
+
+
+exports.displayinterests=async(req,res,next)=>{
+  try{
+    const uid=req.params.uid;
+    const result=await User.displayinterests(uid);
+    res.status(200).json(result);
+
+  }catch(err)
+  {
+    console.log(err.message);
+  }
+
+}
+
+exports.updatehidephone=async(req,res,next)=>{
+  try{
+    const uid=req.body.uid;
+    const hide=req.body.hide;
+    const user={
+      uid:uid,
+      hide:hide
+    }
+    const result=await User.updatehidephone(user);
+    res.status(200).json(result);
+
+  }catch(err)
+  {
+    console.log(err.message);
+  }
+}
+
+
+exports.showhiding=async(req,res,next)=>{
+  try{
+    const uid=req.params.uid;
+
+    const result=await User.showhiding(uid);
+    res.status(200).json(result);
+
+  }catch(err)
+  {
+    console.log(err.message);
+  }
+}
+
 
 
 

@@ -128,4 +128,9 @@ router.get('/getcountrynames',authController.getcountrynames);
 router.get('/getstatenames/:id',authController.getstatenames);
 router.get('/getcitynames/:id',authController.getcitynames);
 
+router.delete('/deleteaccount/:id',authController.deleteaccount);
+router.get('/displayinterests/:uid',authController.displayinterests);
+
+router.put('/updatehidephone',authController.updatehidephone);
+router.get('/showhiding/:uid',authController.showhiding);
 module.exports=router;

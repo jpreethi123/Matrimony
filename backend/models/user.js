@@ -470,4 +470,101 @@ static getCities(stateid)
   );
 }
 
+static deletebasic(uid)
+{
+  return db.execute(
+    'delete from basic_details where uid=?',[uid]
+  );
+}
+static deleteeducation(uid)
+{
+  return db.execute(
+    'delete from education_details where uid=?',[uid]
+  );
+}
+static deletepersonal(uid)
+{
+  return db.execute(
+    'delete from personal_details where uid=?',[uid]
+  );
+}
+static deletecontact(uid)
+{
+  return db.execute(
+    'delete from contact_details where uid=?',[uid]
+  );
+}
+static deletefamily(uid)
+{
+  return db.execute(
+    'delete from family_details where uid=?',[uid]
+  );
+}
+static deletesearch(uid)
+{
+  return db.execute(
+    'delete from search_details where uid=?',[uid]
+  );
+}
+static deletepartner(uid)
+{
+  return db.execute(
+    'delete from partner_details where uid=?',[uid]
+  );
+}
+static deleteother(uid)
+{
+  return db.execute(
+    'delete from other_details where uid=?',[uid]
+  );
+}
+static deletelikes(uid)
+{
+  return db.execute(
+    'delete from likes where send_from=?',[uid]
+  );
+}
+static deleterequest(uid)
+{
+  return db.execute(
+    'delete from request where send_from=?',[uid]
+  );
+}
+static deletechatrequest(uid)
+{
+  return db.execute(
+    'delete from chatrequest where send_from=?',[uid]
+  );
+}
+
+static displayinterests(uid)
+{
+  return db.execute(
+    'select * from request where send_from=?',[uid]
+  );
+}
+
+static hidephone(user)
+{
+  return db.execute(
+    'insert into hidephone(uid,hide) values(?,?)',[user.uid,user.hide]
+  );
+}
+
+
+static updatehidephone(user)
+{
+  return db.execute(
+    'update hidephone set hide=? where uid=?',[user.hide,user.uid]
+  );
+}
+
+static showhiding(uid)
+{
+  return db.execute(
+    'select * from hidephone where uid=?',[uid]
+  );
+}
+
+
 }
